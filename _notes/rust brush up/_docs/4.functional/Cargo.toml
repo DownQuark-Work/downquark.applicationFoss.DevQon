@@ -1,0 +1,25 @@
+[package]
+name = "functional" # must be unique
+version = "0.1.0"
+authors = ["dq-mlnck <mlnck@downquark.work>"]
+edition = "2018"
+description = "A fun game where you guess what number the computer has chosen."
+license = "MIT OR Apache-2.0"
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+
+# https://doc.rust-lang.org/book/ch14-01-release-profiles.html
+#   The opt-level setting controls the number of optimizations Rust will apply to your code, with a range of 0 to 3.
+#   Applying more optimizations extends compiling time, so if you’re in development and compiling your code often, 
+#     you’ll want faster compiling even if the resulting code runs slower.
+## cargo build
+[profile.dev]
+opt-level = 0
+
+## cargo build --release
+[profile.release]
+opt-level = 3

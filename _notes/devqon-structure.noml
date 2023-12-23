@@ -1,0 +1,78 @@
+#title: devqon-structure
+
+[<reference>
+  // initial
+  [<instance>tabs]->
+  [create]
+  [tabs]->[moderate]
+  
+  // sections
+  [create]->[determine]
+  [create]->[discover]
+  [create]->[design]
+  [create]->[develop]
+  [create]->[document]
+  [create]->[deploy]
+  
+  [moderate]->[monitor]
+  [moderate]->[update]
+  [moderate]->[navigate]
+  
+  //options|widgets
+    // create
+  [determine]->[determine opts|repoverview|qanban]
+  [discover]->[discover opts|gpt|browser|todos]
+  [design]->[design opts|pixso|curve|mindnode]
+  [develop]->[develop opts|ide|dbgui]
+  [document]->[document opts|changelog|mdbook|blog|forum]
+  [deploy]->[deploy opts|gh_actions|publish|ci/cd]
+  
+    // moderate
+  [monitor]->[monitor opts|matomo|datadog|snyk]
+  [update]->[update opts|blog|forum|cms|wiki]
+  [navigate]->[navigate opts|github|dq.work]
+]
+
+
+[<hidden id=old>
+    [<table>tabs|Create||Moderate]
+    [<table>sections|
+      [<table>
+      	create|determine|discover;---;develop|document|deploy]
+      ||[<table>
+      	moderate|monitor|update|navigate]
+    ]
+    [<table id=inforefoptions>options;---;widgets|
+      [<table>create|monitor|update|navigate]
+      ||[<table>moderate|monitor|update|navigate]
+    ]
+  ]
+
+  [<hidden> input|
+  [<table>moderate|
+        matomo|datadog|snyk|-
+        ||blog|forum|cms|wiki
+        ||github
+      ]
+  ]
+
+  //[<frame> frame|[Pirate|
+  //[beard]--label[parrot]
+  //[beard]-:>[foul mouth]]]
+
+  // [<start>newstart] -> [<state>plunderx] -> [<choice>more loot] -> [start]
+  //[more loot] no ->[<end>newend]
+
+  //[Pirate|
+    //[beard]--[parrot]
+    //[beard]-:>[foul mouth]
+  //]
+
+  //[<table>mischief| bawl | sing || yell | drink ]
+
+  //[<abstract>Marauder]<:--[Pirate]
+  //[Pirate] - 0..7[mischief]
+  //[<actor id=sailor>Jolly;Sailor]
+  //[sailor]->[Pirate]
+  //[sailor]->[rum]
+  //[Pirate]-> *[rum|tastiness: Int|swig()]
