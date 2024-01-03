@@ -1,5 +1,19 @@
 # Development Qonsole
-> A dual build
+> A dq build
+
+## setup
+### create new project: `% cargo tauri init`
+### run dev server: `% cargo tauri dev`
+
+## features!
+> https://tauri.app/v1/guides/features/
+## api!
+> https://tauri.app/v1/api/cli/
+> https://tauri.app/v1/api/js/
+### design patterns:
+> https://rust-unofficial.github.io/patterns/patterns/index.html
+
+> We would normally be recommending the `@tauri-apps/api` package here, but since we're not using a bundler for this guide, please enable `withGlobalTauri` in your tauri.conf.json file:
 
 [awesome tauri](https://github.com/tauri-apps/awesome-tauri)
 [tauri-deno-starter](https://github.com/marc2332/tauri-deno-starter)
@@ -9,8 +23,16 @@ TODO:
   - implement the CLI??
   - use the native system tray
 
+## keep alive
+  - https://tauri.app/v1/guides/features/system-tray#preventing-the-app-from-closing
+## invoke rust from the FE
+  - https://tauri.app/v1/guides/features/command
+
 ## system tray
   - https://tauri.app/v1/guides/features/system-tray
+
+## `pkg-config` issue and resolution
+  - https://tauri.app/v1/guides/faq#build-conflict-with-homebrew-on-linux
 
 The first implementation will be created simultaneously with the [Qanban Board](//github.com/DownQuark-Work/downquark.applicationFoss.QanbanBoard).
 
