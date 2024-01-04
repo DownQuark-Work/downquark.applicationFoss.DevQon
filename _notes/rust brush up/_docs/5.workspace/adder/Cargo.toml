@@ -1,0 +1,13 @@
+[package]
+name = "adder"
+version = "0.1.0"
+authors = ["dq-mlnck <mlnck@downquark.work>"]
+edition = "2018"
+
+# Library crate in the workspace (add_one), 
+# we can have the **binary** crate `adder` depend on the _library_ crate `add_one`. 
+# First, we’ll need to add a path dependency to add_one from adder/Cargo.toml.
+
+[dependencies]
+add_one = { path = "../add-one" }
+add_two = { path = "../add-two" }

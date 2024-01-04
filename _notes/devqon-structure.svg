@@ -1,0 +1,537 @@
+<svg version="1.1" baseProfile="full" width="1563.0" height="480.0" viewbox="0 0 1563 480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+		<title >devqon-structure</title>
+	<desc >#title: devqon-structure
+	
+	[&lt;reference&gt;
+	  // initial
+	  [&lt;instance&gt;tabs]-&gt;
+	  [create]
+	  [tabs]-&gt;[moderate]
+	  
+	  // sections
+	  [create]-&gt;[determine]
+	  [create]-&gt;[discover]
+	  [create]-&gt;[design]
+	  [create]-&gt;[develop]
+	  [create]-&gt;[document]
+	  [create]-&gt;[deploy]
+	  
+	  [moderate]-&gt;[monitor]
+	  [moderate]-&gt;[update]
+	  [moderate]-&gt;[navigate]
+	  
+	  //options|widgets
+	    // create
+	  [determine]-&gt;[determine opts|repoverview|qanban]
+	  [discover]-&gt;[discover opts|gpt|browser|todos]
+	  [design]-&gt;[design opts|pixso|curve|mindnode]
+	  [develop]-&gt;[develop opts|ide|dbgui]
+	  [document]-&gt;[document opts|changelog|mdbook|blog|forum]
+	  [deploy]-&gt;[deploy opts|gh_actions|publish|ci/cd]
+	  
+	    // moderate
+	  [monitor]-&gt;[monitor opts|matomo|datadog|snyk]
+	  [update]-&gt;[update opts|blog|forum|cms|wiki]
+	  [navigate]-&gt;[navigate opts|github|dq.work]
+	]
+	
+	
+	[&lt;hidden id=old&gt;
+	    [&lt;table&gt;tabs|Create||Moderate]
+	    [&lt;table&gt;sections|
+	      [&lt;table&gt;
+	      	create|determine|discover;---;develop|document|deploy]
+	      ||[&lt;table&gt;
+	      	moderate|monitor|update|navigate]
+	    ]
+	    [&lt;table id=inforefoptions&gt;options;---;widgets|
+	      [&lt;table&gt;create|monitor|update|navigate]
+	      ||[&lt;table&gt;moderate|monitor|update|navigate]
+	    ]
+	  ]
+	
+	  [&lt;hidden&gt; input|
+	  [&lt;table&gt;moderate|
+	        matomo|datadog|snyk|-
+	        ||blog|forum|cms|wiki
+	        ||github
+	      ]
+	  ]
+	</desc>
+	<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="normal" font-style="normal">
+			<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+				<g stroke="transparent" fill="transparent">
+					<rect x="0.0" y="0.0" height="480.0" width="1563.0" stroke="none"></rect>
+				</g>
+			<g transform="translate(8, 8)" fill="#33322E">
+					<g transform="translate(20, 20)">
+						<g >
+							<g fill="#eee8d5" stroke="#33322E" stroke-dasharray="6 6">
+								<rect x="0.0" y="0.0" height="424.0" width="1425.0"></rect>
+							</g>
+						<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+								<g transform="translate(8, 8)" fill="#33322E">
+									<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+										<path d="M745.8 18.3 L459.25 51 L459.25 64.33333333333333 L459.3 64.3 " fill="none"></path>
+									<path d="M453.9 57.7 L459.3 64.3 L464.6 57.7 L459.3 71.0 Z"></path>
+									<path d="M794.8 17.8 L1156.5 51 L1156.5 64.33333333333333 L1156.5 64.3 " fill="none"></path>
+									<path d="M1151.2 57.7 L1156.5 64.3 L1161.8 57.7 L1156.5 71.0 Z"></path>
+									<path d="M427.8 89.3 L65.5 122 L65.5 135.33333333333334 L65.5 135.3 " fill="none"></path>
+									<path d="M60.2 128.7 L65.5 135.3 L70.8 128.7 L65.5 142.0 Z"></path>
+									<path d="M427.8 91.4 L231 122 L231 135.33333333333334 L231.0 135.3 " fill="none"></path>
+									<path d="M225.7 128.7 L231.0 135.3 L236.3 128.7 L231.0 142.0 Z"></path>
+									<path d="M427.8 101.4 L384 122 L384 135.33333333333334 L384.0 135.3 " fill="none"></path>
+									<path d="M378.7 128.7 L384.0 135.3 L389.3 128.7 L384.0 142.0 Z"></path>
+									<path d="M490.8 101.4 L534.5 122 L534.5 135.33333333333334 L534.5 135.3 " fill="none"></path>
+									<path d="M529.2 128.7 L534.5 135.3 L539.8 128.7 L534.5 142.0 Z"></path>
+									<path d="M490.8 91.2 L697.5 122 L697.5 135.33333333333334 L697.5 135.3 " fill="none"></path>
+									<path d="M692.2 128.7 L697.5 135.3 L702.8 128.7 L697.5 142.0 Z"></path>
+									<path d="M490.8 89.3 L856 122 L856 135.33333333333334 L856.0 135.3 " fill="none"></path>
+									<path d="M850.7 128.7 L856.0 135.3 L861.3 128.7 L856.0 142.0 Z"></path>
+									<path d="M1112.5 96.9 L1006 122 L1006 135.33333333333334 L1006.0 135.3 " fill="none"></path>
+									<path d="M1000.7 128.7 L1006.0 135.3 L1011.3 128.7 L1006.0 142.0 Z"></path>
+									<path d="M1156.5 102.0 L1156.5 122 L1156.5 135.33333333333334 L1156.5 135.3 " fill="none"></path>
+									<path d="M1151.2 128.7 L1156.5 135.3 L1161.8 128.7 L1156.5 142.0 Z"></path>
+									<path d="M1200.5 96.7 L1309.5 122 L1309.5 135.33333333333334 L1309.5 135.3 " fill="none"></path>
+									<path d="M1304.2 128.7 L1309.5 135.3 L1314.8 128.7 L1309.5 142.0 Z"></path>
+									<path d="M65.5 173.0 L65.5 193 L65.5 237.33333333333334 L65.5 237.3 " fill="none"></path>
+									<path d="M60.2 230.7 L65.5 237.3 L70.8 230.7 L65.5 244.0 Z"></path>
+									<path d="M231.0 173.0 L231 193 L231 221.83333333333334 L231.0 221.8 " fill="none"></path>
+									<path d="M225.7 215.2 L231.0 221.8 L236.3 215.2 L231.0 228.5 Z"></path>
+									<path d="M384.0 173.0 L384 193 L384 221.83333333333334 L384.0 221.8 " fill="none"></path>
+									<path d="M378.7 215.2 L384.0 221.8 L389.3 215.2 L384.0 228.5 Z"></path>
+									<path d="M534.5 173.0 L534.5 193 L534.5 237.33333333333334 L534.5 237.3 " fill="none"></path>
+									<path d="M529.2 230.7 L534.5 237.3 L539.8 230.7 L534.5 244.0 Z"></path>
+									<path d="M697.5 173.0 L697.5 193 L697.5 206.33333333333334 L697.5 206.3 " fill="none"></path>
+									<path d="M692.2 199.7 L697.5 206.3 L702.8 199.7 L697.5 213.0 Z"></path>
+									<path d="M856.0 173.0 L856 193 L856 221.83333333333334 L856.0 221.8 " fill="none"></path>
+									<path d="M850.7 215.2 L856.0 221.8 L861.3 215.2 L856.0 228.5 Z"></path>
+									<path d="M1006.0 173.0 L1006 193 L1006 221.83333333333334 L1006.0 221.8 " fill="none"></path>
+									<path d="M1000.7 215.2 L1006.0 221.8 L1011.3 215.2 L1006.0 228.5 Z"></path>
+									<path d="M1156.5 173.0 L1156.5 193 L1156.5 206.33333333333334 L1156.5 206.3 " fill="none"></path>
+									<path d="M1151.2 199.7 L1156.5 206.3 L1161.8 199.7 L1156.5 213.0 Z"></path>
+									<path d="M1309.5 173.0 L1309.5 193 L1309.5 237.33333333333334 L1309.5 237.3 " fill="none"></path>
+									<path d="M1304.2 230.7 L1309.5 237.3 L1314.8 230.7 L1309.5 244.0 Z"></path>
+									<g data-name="tabs">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="tabs">
+												<rect x="745.8" y="0.0" height="31.0" width="49.0" data-name="tabs"></rect>
+											</g>
+										<g transform="translate(745.75, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tabs">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" stroke-width="3.0" data-name="tabs">
+													<text x="16.5" y="13.5" stroke="none" text-anchor="middle" data-name="tabs">tabs</text>
+												<path d="M1.4 16.0 L31.6 16.0" fill="none" data-name="tabs"></path>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="create">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="create">
+												<rect x="427.8" y="71.0" height="31.0" width="63.0" data-name="create"></rect>
+											</g>
+										<g transform="translate(427.75, 71)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="create">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="create">
+													<text x="23.5" y="13.5" stroke="none" text-anchor="middle" data-name="create">create</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="moderate">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="moderate">
+												<rect x="1112.5" y="71.0" height="31.0" width="88.0" data-name="moderate"></rect>
+											</g>
+										<g transform="translate(1112.5, 71)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="moderate">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="moderate">
+													<text x="36.0" y="13.5" stroke="none" text-anchor="middle" data-name="moderate">moderate</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="determine">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="determine">
+												<rect x="19.5" y="142.0" height="31.0" width="92.0" data-name="determine"></rect>
+											</g>
+										<g transform="translate(19.5, 142)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="determine">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="determine">
+													<text x="38.0" y="13.5" stroke="none" text-anchor="middle" data-name="determine">determine</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="discover">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="discover">
+												<rect x="190.0" y="142.0" height="31.0" width="82.0" data-name="discover"></rect>
+											</g>
+										<g transform="translate(190, 142)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="discover">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="discover">
+													<text x="33.0" y="13.5" stroke="none" text-anchor="middle" data-name="discover">discover</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="design">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="design">
+												<rect x="350.0" y="142.0" height="31.0" width="68.0" data-name="design"></rect>
+											</g>
+										<g transform="translate(350, 142)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="design">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="design">
+													<text x="26.0" y="13.5" stroke="none" text-anchor="middle" data-name="design">design</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="develop">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="develop">
+												<rect x="496.5" y="142.0" height="31.0" width="76.0" data-name="develop"></rect>
+											</g>
+										<g transform="translate(496.5, 142)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="develop">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="develop">
+													<text x="30.0" y="13.5" stroke="none" text-anchor="middle" data-name="develop">develop</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="document">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="document">
+												<rect x="651.5" y="142.0" height="31.0" width="92.0" data-name="document"></rect>
+											</g>
+										<g transform="translate(651.5, 142)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="document">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="document">
+													<text x="38.0" y="13.5" stroke="none" text-anchor="middle" data-name="document">document</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="deploy">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="deploy">
+												<rect x="822.0" y="142.0" height="31.0" width="68.0" data-name="deploy"></rect>
+											</g>
+										<g transform="translate(822, 142)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="deploy">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="deploy">
+													<text x="26.0" y="13.5" stroke="none" text-anchor="middle" data-name="deploy">deploy</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="monitor">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="monitor">
+												<rect x="968.0" y="142.0" height="31.0" width="76.0" data-name="monitor"></rect>
+											</g>
+										<g transform="translate(968, 142)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="monitor">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="monitor">
+													<text x="30.0" y="13.5" stroke="none" text-anchor="middle" data-name="monitor">monitor</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="update">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="update">
+												<rect x="1122.5" y="142.0" height="31.0" width="68.0" data-name="update"></rect>
+											</g>
+										<g transform="translate(1122.5, 142)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="update">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="update">
+													<text x="26.0" y="13.5" stroke="none" text-anchor="middle" data-name="update">update</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="navigate">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="navigate">
+												<rect x="1269.0" y="142.0" height="31.0" width="81.0" data-name="navigate"></rect>
+											</g>
+										<g transform="translate(1269, 142)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="navigate">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="navigate">
+													<text x="32.5" y="13.5" stroke="none" text-anchor="middle" data-name="navigate">navigate</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="determine opts">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="determine opts">
+												<rect x="0.0" y="244.0" height="93.0" width="131.0" data-name="determine opts"></rect>
+											<path d="M0.0 275.0 L131.0 275.0" fill="none" data-name="determine opts"></path>
+											<path d="M0.0 306.0 L131.0 306.0" fill="none" data-name="determine opts"></path>
+											</g>
+										<g transform="translate(0, 244)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="determine opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="determine opts">
+													<text x="57.5" y="13.5" stroke="none" text-anchor="middle" data-name="determine opts">determine opts</text>
+												
+												</g>
+											</g>
+										<g transform="translate(0, 275)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="determine opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="determine opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="determine opts">repoverview</text>
+												
+												</g>
+											</g>
+										<g transform="translate(0, 306)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="determine opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="determine opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="determine opts">qanban</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="discover opts">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="discover opts">
+												<rect x="171.0" y="228.5" height="124.0" width="120.0" data-name="discover opts"></rect>
+											<path d="M171.0 259.5 L291.0 259.5" fill="none" data-name="discover opts"></path>
+											<path d="M171.0 290.5 L291.0 290.5" fill="none" data-name="discover opts"></path>
+											<path d="M171.0 321.5 L291.0 321.5" fill="none" data-name="discover opts"></path>
+											</g>
+										<g transform="translate(171, 228.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="discover opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="discover opts">
+													<text x="52.0" y="13.5" stroke="none" text-anchor="middle" data-name="discover opts">discover opts</text>
+												
+												</g>
+											</g>
+										<g transform="translate(171, 259.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="discover opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="discover opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="discover opts">gpt</text>
+												
+												</g>
+											</g>
+										<g transform="translate(171, 290.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="discover opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="discover opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="discover opts">browser</text>
+												
+												</g>
+											</g>
+										<g transform="translate(171, 321.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="discover opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="discover opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="discover opts">todos</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="design opts">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="design opts">
+												<rect x="331.0" y="228.5" height="124.0" width="106.0" data-name="design opts"></rect>
+											<path d="M331.0 259.5 L437.0 259.5" fill="none" data-name="design opts"></path>
+											<path d="M331.0 290.5 L437.0 290.5" fill="none" data-name="design opts"></path>
+											<path d="M331.0 321.5 L437.0 321.5" fill="none" data-name="design opts"></path>
+											</g>
+										<g transform="translate(331, 228.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="design opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="design opts">
+													<text x="45.0" y="13.5" stroke="none" text-anchor="middle" data-name="design opts">design opts</text>
+												
+												</g>
+											</g>
+										<g transform="translate(331, 259.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="design opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="design opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="design opts">pixso</text>
+												
+												</g>
+											</g>
+										<g transform="translate(331, 290.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="design opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="design opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="design opts">curve</text>
+												
+												</g>
+											</g>
+										<g transform="translate(331, 321.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="design opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="design opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="design opts">mindnode</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="develop opts">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="develop opts">
+												<rect x="477.0" y="244.0" height="93.0" width="115.0" data-name="develop opts"></rect>
+											<path d="M477.0 275.0 L592.0 275.0" fill="none" data-name="develop opts"></path>
+											<path d="M477.0 306.0 L592.0 306.0" fill="none" data-name="develop opts"></path>
+											</g>
+										<g transform="translate(477, 244)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="develop opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="develop opts">
+													<text x="49.5" y="13.5" stroke="none" text-anchor="middle" data-name="develop opts">develop opts</text>
+												
+												</g>
+											</g>
+										<g transform="translate(477, 275)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="develop opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="develop opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="develop opts">ide</text>
+												
+												</g>
+											</g>
+										<g transform="translate(477, 306)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="develop opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="develop opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="develop opts">dbgui</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="document opts">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="document opts">
+												<rect x="632.0" y="213.0" height="155.0" width="131.0" data-name="document opts"></rect>
+											<path d="M632.0 244.0 L763.0 244.0" fill="none" data-name="document opts"></path>
+											<path d="M632.0 275.0 L763.0 275.0" fill="none" data-name="document opts"></path>
+											<path d="M632.0 306.0 L763.0 306.0" fill="none" data-name="document opts"></path>
+											<path d="M632.0 337.0 L763.0 337.0" fill="none" data-name="document opts"></path>
+											</g>
+										<g transform="translate(632, 213)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="document opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="document opts">
+													<text x="57.5" y="13.5" stroke="none" text-anchor="middle" data-name="document opts">document opts</text>
+												
+												</g>
+											</g>
+										<g transform="translate(632, 244)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="document opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="document opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="document opts">changelog</text>
+												
+												</g>
+											</g>
+										<g transform="translate(632, 275)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="document opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="document opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="document opts">mdbook</text>
+												
+												</g>
+											</g>
+										<g transform="translate(632, 306)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="document opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="document opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="document opts">blog</text>
+												
+												</g>
+											</g>
+										<g transform="translate(632, 337)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="document opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="document opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="document opts">forum</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="deploy opts">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="deploy opts">
+												<rect x="803.0" y="228.5" height="124.0" width="106.0" data-name="deploy opts"></rect>
+											<path d="M803.0 259.5 L909.0 259.5" fill="none" data-name="deploy opts"></path>
+											<path d="M803.0 290.5 L909.0 290.5" fill="none" data-name="deploy opts"></path>
+											<path d="M803.0 321.5 L909.0 321.5" fill="none" data-name="deploy opts"></path>
+											</g>
+										<g transform="translate(803, 228.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="deploy opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="deploy opts">
+													<text x="45.0" y="13.5" stroke="none" text-anchor="middle" data-name="deploy opts">deploy opts</text>
+												
+												</g>
+											</g>
+										<g transform="translate(803, 259.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="deploy opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="deploy opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="deploy opts">gh_actions</text>
+												
+												</g>
+											</g>
+										<g transform="translate(803, 290.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="deploy opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="deploy opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="deploy opts">publish</text>
+												
+												</g>
+											</g>
+										<g transform="translate(803, 321.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="deploy opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="deploy opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="deploy opts">ci/cd</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="monitor opts">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="monitor opts">
+												<rect x="949.0" y="228.5" height="124.0" width="114.0" data-name="monitor opts"></rect>
+											<path d="M949.0 259.5 L1063.0 259.5" fill="none" data-name="monitor opts"></path>
+											<path d="M949.0 290.5 L1063.0 290.5" fill="none" data-name="monitor opts"></path>
+											<path d="M949.0 321.5 L1063.0 321.5" fill="none" data-name="monitor opts"></path>
+											</g>
+										<g transform="translate(949, 228.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="monitor opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="monitor opts">
+													<text x="49.0" y="13.5" stroke="none" text-anchor="middle" data-name="monitor opts">monitor opts</text>
+												
+												</g>
+											</g>
+										<g transform="translate(949, 259.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="monitor opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="monitor opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="monitor opts">matomo</text>
+												
+												</g>
+											</g>
+										<g transform="translate(949, 290.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="monitor opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="monitor opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="monitor opts">datadog</text>
+												
+												</g>
+											</g>
+										<g transform="translate(949, 321.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="monitor opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="monitor opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="monitor opts">snyk</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="update opts">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="update opts">
+												<rect x="1103.0" y="213.0" height="155.0" width="107.0" data-name="update opts"></rect>
+											<path d="M1103.0 244.0 L1210.0 244.0" fill="none" data-name="update opts"></path>
+											<path d="M1103.0 275.0 L1210.0 275.0" fill="none" data-name="update opts"></path>
+											<path d="M1103.0 306.0 L1210.0 306.0" fill="none" data-name="update opts"></path>
+											<path d="M1103.0 337.0 L1210.0 337.0" fill="none" data-name="update opts"></path>
+											</g>
+										<g transform="translate(1103, 213)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="update opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="update opts">
+													<text x="45.5" y="13.5" stroke="none" text-anchor="middle" data-name="update opts">update opts</text>
+												
+												</g>
+											</g>
+										<g transform="translate(1103, 244)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="update opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="update opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="update opts">blog</text>
+												
+												</g>
+											</g>
+										<g transform="translate(1103, 275)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="update opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="update opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="update opts">forum</text>
+												
+												</g>
+											</g>
+										<g transform="translate(1103, 306)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="update opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="update opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="update opts">cms</text>
+												
+												</g>
+											</g>
+										<g transform="translate(1103, 337)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="update opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="update opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="update opts">wiki</text>
+												
+												</g>
+											</g>
+										</g>
+									<g data-name="navigate opts">
+											<g fill="#fdf6e3" stroke="#33322E" data-name="navigate opts">
+												<rect x="1250.0" y="244.0" height="93.0" width="119.0" data-name="navigate opts"></rect>
+											<path d="M1250.0 275.0 L1369.0 275.0" fill="none" data-name="navigate opts"></path>
+											<path d="M1250.0 306.0 L1369.0 306.0" fill="none" data-name="navigate opts"></path>
+											</g>
+										<g transform="translate(1250, 244)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="navigate opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="navigate opts">
+													<text x="51.5" y="13.5" stroke="none" text-anchor="middle" data-name="navigate opts">navigate opts</text>
+												
+												</g>
+											</g>
+										<g transform="translate(1250, 275)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="navigate opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="navigate opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="navigate opts">github</text>
+												
+												</g>
+											</g>
+										<g transform="translate(1250, 306)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="navigate opts">
+												<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="navigate opts">
+													<text x="0.0" y="13.5" stroke="none" data-name="navigate opts">dq.work</text>
+												
+												</g>
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</svg>

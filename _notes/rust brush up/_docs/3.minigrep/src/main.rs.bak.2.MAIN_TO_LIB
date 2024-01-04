@@ -1,0 +1,114 @@
+use std::{env, Error, fs, process};
+
+/*
+  NOTE: The args Function and Invalid Unicode
+  Note that std::env::args will panic if any argument contains invalid Unicode.
+  If your program needs to accept arguments containing invalid Unicode, use std::env::args_os instead.
+  That function returns an iterator that produces OsString values instead of String values.
+  We’ve chosen to use std::env::args here for simplicity,
+    because OsString values differ per platform and are more complex to work with than String values.
+*/
+
+/*
+  https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#separation-of-concerns-for-binary-projects
+  >> Separation of Concerns for Binary Projects
+    The organizational problem of allocating responsibility for multiple tasks to the main function is common to many binary projects.
+    As a result, the Rust community has developed a process to use as a guideline for splitting the separate concerns of a binary program when main starts getting large.
+    The process has the following steps:
+      - Split your program into a main.rs and a lib.rs and move your program’s logic to lib.rs.
+      - As long as your command line parsing logic is small, it can remain in main.rs.
+      - When the command line parsing logic starts getting complicated, extract it from main.rs and move it to lib.rs.
+    The responsibilities that remain in the main function after this process should be limited to the following:
+      - Calling the command line parsing logic with the argument values
+      - Setting up any other configuration
+      - Calling a run function in lib.rs
+      - Handling the error if run returns an error
+    This pattern is about separating concerns:
+      main.rs handles running the program,
+      and lib.rs handles all the logic of the task at hand.
+    Because you can’t test the main function directly, this structure lets you test all of your program’s logic by moving it into functions in lib.rs.
+    The only code that remains in main.rs will be small enough to verify its correctness by reading it.
+*/
+
+// run with:
+  // cargo run abc def ghi jkl mno pqr stu vwx yz! 
+  // cargo run searchString filename.ext
+
+struct Config {
+  query: String,
+  filename: String,
+}
+// Config constructor
+impl Config {
+    fn new(args: &[String]) -> Result<Config, &'static str> {
+      if args.len() < 3 {
+        return Err("USAGE: `$ cargo run <QUERY> <FILENAME>`");
+      }
+        let query = args[1].clone();
+        let filename = args[2].clone();
+
+        Ok(Config { query, filename })
+    }
+}
+
+fn main()
+{
+  // Although we very rarely need to annotate types in Rust,
+    // collect is one function you do often need to annotate
+    // because Rust isn’t able to infer the kind of collection you want.
+  let args: Vec<String> = env::args().collect();
+  println!("{:?}", args);
+  
+  // Note:
+    // Using primitive values when a complex type would be more appropriate
+    // is an anti-pattern known as primitive obsession.
+  // let (query, filename) = antipattern_parse_config(&args);
+  
+  //Creating a Constructor for Config
+    // no more function
+  // let config = parse_config(&args);
+    // instead
+  let config = Config::new(&args).unwrap_or_else(|err| {
+    println!("Problem parsing arguments: {}", err);
+    process::exit(1);
+  });
+  println!("Searching for {}", config.query);
+  println!("In file {}", config.filename);
+
+  // We use if let rather than unwrap_or_else because run returns () in the success case
+    // We only care about detecting an error, so we don’t need unwrap_or_else to return the 
+    // unwrapped value because it would only be ()
+  if let Err(e) = run(config)
+  {
+    println!("Application error: {}", e);
+    process::exit(1);
+  }
+}
+
+//Creating a Constructor for Config
+  // no more function
+/*fn parse_config(args: &[String]) -> Config {
+    let query = args[1].clone();
+    let filename = args[2].clone();
+
+    Config { query, filename }
+}*/
+
+/* fn antipattern_parse_config(args: &[String]) -> (&str, &str)
+{
+  let query = &args[1];
+  let filename = &args[2];
+  (query, filename)
+} */
+
+fn run(config: Config) -> Result<(), Box<dyn Error>>
+{
+  //Second, we’ve removed the call to expect in favor of the ? operator, as we talked about in Chapter 9.
+    // Rather than panic! on an error, ? will return the error value from the current function for the caller to handle.
+  let contents = fs::read_to_string(config.filename)?;
+  println!("With text:\n{}", contents);
+  // This Ok(()) syntax might look a bit strange at first
+    // using () like this is the idiomatic way to indicate that we’re calling run for its side effects only
+    // it doesn’t return a value we need.
+  Ok(())
+}

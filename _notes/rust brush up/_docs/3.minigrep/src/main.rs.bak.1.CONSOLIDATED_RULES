@@ -1,0 +1,32 @@
+use std::{env, fs};
+
+/*
+  NOTE: The args Function and Invalid Unicode
+  Note that std::env::args will panic if any argument contains invalid Unicode.
+  If your program needs to accept arguments containing invalid Unicode, use std::env::args_os instead.
+  That function returns an iterator that produces OsString values instead of String values.
+  We’ve chosen to use std::env::args here for simplicity,
+    because OsString values differ per platform and are more complex to work with than String values.
+*/
+
+// run with:
+  // cargo run abc def ghi jkl mno pqr stu vwx yz! 
+  // cargo run searchString filename.ext
+fn main()
+{
+  // Although we very rarely need to annotate types in Rust,
+    // collect is one function you do often need to annotate
+    // because Rust isn’t able to infer the kind of collection you want.
+  let args: Vec<String> = env::args().collect();
+  println!("{:?}", args);
+
+  let filename = &args[2];
+  let contents = fs::read_to_string(filename)
+        .expect("Something went wrong reading the file");
+  
+  println!("Searching for {}", query);
+  println!("In file {}", filename);
+  println!("With text:\n{}", contents);
+
+  let query = &args[1];
+}
