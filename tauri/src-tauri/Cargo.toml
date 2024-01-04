@@ -1,11 +1,11 @@
 [package]
-name = "app"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
-license = ""
+name = "devqon"
+version = "0.0.1"
+description = "DownQuark Development Qonsole"
+authors = ["downquark"]
+license = "GNU"
 repository = ""
-default-run = "app"
+default-run = "devqon"
 edition = "2021"
 rust-version = "1.60"
 

@@ -133,3 +133,6 @@ dist
 
 # Optional private notes directory
 _notes/.ignored/
+
+# Playwright
+__specs__/r*

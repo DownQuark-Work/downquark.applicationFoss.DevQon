@@ -50,6 +50,17 @@ mod tests {
 }
 ```
 
+## [crates](https://doc.rust-lang.org/book/ch07-01-packages-and-crates.html)
+A _crate_ is the smallest amount of code that the Rust compiler considers at a time.
+
+A crate can come in one of two forms: a **binary** crate or a **library** crate.
+
+1. _**Binary**_ crates are programs you can compile to an executable that you can run, such as a command-line program or a server.
+    - Each must have a function called `main` that defines what happens when the executable runs.
+
+1. _**Library**_ crates don’t have a main function, and they don’t compile to an executable.
+    - Instead, they define functionality intended to be shared with multiple projects.
+
 ## library
 ### create
 `% rustc --crate-type=lib rary.rs`
