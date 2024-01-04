@@ -1,6 +1,6 @@
 [package]
 name = "devqon"
-version = "0.0.1"
+version = "0.0.1-alpha"
 description = "DownQuark Development Qonsole"
 authors = ["downquark"]
 license = "GNU"
