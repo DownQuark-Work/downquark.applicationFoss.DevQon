@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "devqon",
-    "version": "0.0.2-pre-release"
+    "version": "0.0.3-pre-release"
   },
   "tauri": {
     "allowlist": {
