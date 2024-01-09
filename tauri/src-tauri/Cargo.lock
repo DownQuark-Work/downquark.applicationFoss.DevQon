@@ -558,7 +558,7 @@ dependencies = [
 
 [[package]]
 name = "devqon"
-version = "0.0.1-pre-release"
+version = "0.0.2-pre-release"
 dependencies = [
  "serde",
  "serde_json",
@@ -654,7 +654,7 @@ dependencies = [
 
 [[package]]
 name = "enhancements"
-version = "0.0.1-pre-release"
+version = "0.0.2-pre-release"
 dependencies = [
  "mechanisms",
  "widgets",
@@ -1173,7 +1173,7 @@ checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
 
 [[package]]
 name = "hooks"
-version = "0.0.1-pre-release"
+version = "0.0.2-pre-release"
 
 [[package]]
 name = "html5ever"
@@ -1469,7 +1469,7 @@ checksum = "b5e6163cb8c49088c2c36f57875e58ccd8c87c7427f7fbd50ea6710b2f3f2e8f"
 
 [[package]]
 name = "logging"
-version = "0.0.1-pre-release"
+version = "0.0.2-pre-release"
 
 [[package]]
 name = "loom"
@@ -1532,7 +1532,7 @@ checksum = "2532096657941c2fea9c289d370a250971c689d4f143798ff67113ec042024a5"
 
 [[package]]
 name = "mechanisms"
-version = "0.0.1-pre-release"
+version = "0.0.2-pre-release"
 
 [[package]]
 name = "memchr"
@@ -3132,7 +3132,7 @@ checksum = "09cc8ee72d2a9becf2f2febe0205bbed8fc6615b7cb429ad062dc7b7ddd036a9"
 
 [[package]]
 name = "utils"
-version = "0.0.1-pre-release"
+version = "0.0.2-pre-release"
 dependencies = [
  "hooks",
  "logging",
@@ -3354,7 +3354,7 @@ dependencies = [
 
 [[package]]
 name = "widgets"
-version = "0.0.1-pre-release"
+version = "0.0.2-pre-release"
 dependencies = [
  "mechanisms",
 ]

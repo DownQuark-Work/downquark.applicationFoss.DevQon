@@ -1,6 +1,6 @@
 {
   "name": "devqon",
-  "version": "0.0.1-pre-release",
+  "version": "0.0.2-pre-release",
   "author": "downquark",
   "source": "tauri/src-ui/index.html",
   "scripts": {
