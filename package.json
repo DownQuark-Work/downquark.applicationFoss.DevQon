@@ -1,6 +1,6 @@
 {
   "name": "devqon",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2-pre-release",
   "author": "downquark",
   "source": "tauri/src-ui/index.html",
   "scripts": {
@@ -9,6 +9,7 @@
     "tauri:build": "tauri build",
     "tauri:dev": "tauri dev",
     "tauri:info": "tauri info",
+    "td": "tauri dev",
     "build": "parcel build",
     "dev": "parcel",
     "dev:deprecated": "NODE_OPTIONS=--trace-deprecation parcel",

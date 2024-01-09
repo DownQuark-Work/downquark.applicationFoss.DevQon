@@ -1,7 +1,0 @@
-[workspace]
-
-members = [
-    "adder", # cargo new adder
-    "add-one", # cargo new add-one --lib ## SEE: adder/Cargo.toml
-    "add-two", # cargo new add-two --lib ## SEE: adder/Cargo.toml
-]

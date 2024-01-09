@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+members = [
+    "enhancements", # cargo new enhancements
+    "mechanisms", # cargo new mechanisms --lib ## SEE: enhancements/Cargo.toml
+    "widgets", # cargo new --lib widgets ## SEE: enhancements/Cargo.toml
+]
