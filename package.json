@@ -9,6 +9,7 @@
     "tauri:build": "tauri build",
     "tauri:dev": "tauri dev",
     "tauri:info": "tauri info",
+    "td": "tauri dev",
     "build": "parcel build",
     "dev": "parcel",
     "dev:deprecated": "NODE_OPTIONS=--trace-deprecation parcel",
