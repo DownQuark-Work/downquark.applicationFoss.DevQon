@@ -1,7 +1,0 @@
-cargo new --lib hooks
-cargo new --lib logging
-cargo new utils
-
-## from _root_ directory
-- `% cargo build`
-- `% cargo run -p utils`

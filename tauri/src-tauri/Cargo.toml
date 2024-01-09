@@ -1,17 +1,9 @@
 [workspace]
 resolver = "2"
 members = [
-    "./workspaces/enhancements/enhancements", # cargo new enhancements
-    "./workspaces/enhancements/mechanisms", # cargo new mechanisms --lib ## SEE: enhancements/Cargo.toml
-    "./workspaces/enhancements/widgets", # cargo new --lib widgets ## SEE: enhancements/Cargo.toml
-    "./workspaces/utils/utils", # cargo new utils
-    "./workspaces/utils/hooks", # cargo new hooks --lib ## SEE: utils/Cargo.toml
-    "./workspaces/utils/logging", # cargo new --lib logging ## SEE: utils/Cargo.toml
+    "./workspaces/enhancements",
+    "./workspaces/utils"
 ]
-default-members = [
-  "./workspaces/enhancements/enhancements",
-  "./workspaces/utils/utils"
-  ]
 [workspace.package]
 version = "0.0.2-pre-release"
 edition = "2021"
@@ -36,7 +28,13 @@ tauri-build = { version = "1.5.1", features = [] }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.5.4", features = [] }
+tauri = { version = "1.5.4", features = [
+    "icon-ico",
+    "system-tray"
+] }
+# workspace dependencies
+enhancements = { path = "./workspaces/enhancements" }
+utils = { path = "./workspaces/utils" }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.
