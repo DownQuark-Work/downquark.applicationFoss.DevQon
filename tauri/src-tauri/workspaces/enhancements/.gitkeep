@@ -1,0 +1,7 @@
+cargo new --lib widgets
+cargo new --lib mechanisms
+cargo new --bin enhancements
+
+## from _root_ directory
+- `% cargo build`
+- `% cargo run -p enhancements`

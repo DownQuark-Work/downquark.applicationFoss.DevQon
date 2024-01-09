@@ -1,62 +1,7 @@
 # Development Qonsole
 > A dq build
 
-## setup
-### create new project: `% cargo tauri init`
-- 👆 only 1x
-### run dev server: `% cargo tauri dev`
-- 👆 for development work
-
-TODO: to close out the `basic-configuration` branch
-- [x] typescript as opposed to javascript
-- [x] scss
-- [x] lit
-- [x] add build step (parcel)
-- [x] testing
-  - [x] playwright?
-- [x] implement the CLI??
-- [ ] [directory structure](https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html)
-  - [ ] ui
-    - sector / zone / region / field
-  - [ ] rust
-    - executable (`lib`)
-    - widget (`bin <module>`)
-    - implementation (`bin <workspace>`)
-      - see `./_notes/rust brush up/_docs/5.workspace`
-  - [ ] hooks? (`lib`?)
-    - should they be grouped by each level mentioned above?
-- [ ] add splash page
-- [ ] use the native system tray
-- [ ] db connection
-
-## features!
-> https://tauri.app/v1/guides/features/
-## api!
-> https://tauri.app/v1/api/cli/
-> https://tauri.app/v1/api/js/
-### design patterns:
-> https://rust-unofficial.github.io/patterns/patterns/index.html
-
-## references:
-[awesome tauri](https://github.com/tauri-apps/awesome-tauri)
-[tauri-deno-starter](https://github.com/marc2332/tauri-deno-starter)
-
-### keep alive
-  - https://tauri.app/v1/guides/features/system-tray#preventing-the-app-from-closing
-
-### invoke rust from the FE
-  - https://tauri.app/v1/guides/features/command
-
-### system tray
-  - https://tauri.app/v1/guides/features/system-tray
-
-### `pkg-config` issue and resolution
-  - https://tauri.app/v1/guides/faq#build-conflict-with-homebrew-on-linux
-
-### Creating additional HTML pages
-  - https://tauri.app/v1/guides/features/multiwindow
-> If you want to create additional pages beyond index.html, you will need to make sure they are present in the dist directory at build time. How you do this depends on your frontend setup.
-
+## WIP
 
 The first implementation will be created simultaneously with the [Qanban Board](//github.com/DownQuark-Work/downquark.applicationFoss.QanbanBoard).
 
