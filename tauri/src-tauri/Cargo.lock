@@ -558,7 +558,7 @@ dependencies = [
 
 [[package]]
 name = "devqon"
-version = "0.0.3-pre-release"
+version = "0.0.4-pre-release"
 dependencies = [
  "enhancements",
  "serde",
@@ -656,7 +656,7 @@ dependencies = [
 
 [[package]]
 name = "enhancements"
-version = "0.0.3-pre-release"
+version = "0.0.4-pre-release"
 
 [[package]]
 name = "equivalent"
@@ -3175,8 +3175,9 @@ checksum = "09cc8ee72d2a9becf2f2febe0205bbed8fc6615b7cb429ad062dc7b7ddd036a9"
 
 [[package]]
 name = "utils"
-version = "0.0.3-pre-release"
+version = "0.0.4-pre-release"
 dependencies = [
+ "serde",
  "tauri",
 ]
 

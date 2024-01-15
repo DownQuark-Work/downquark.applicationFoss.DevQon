@@ -1,0 +1,833 @@
+<svg version="1.1" baseProfile="full" width="1052.0" height="2862.0" viewbox="0 0 1052 2862" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+	<title >devqon-user-flow-start-up</title>
+	<desc >#title: devqon-user-flow-start-up
+	
+	[&lt;abstract&gt;[&lt;actor&gt; all users]]--
+	[&lt;reference id=launch-app&gt;Launch App|
+	  // happy path
+	  [&lt;start&gt;]-[&lt;state id=&quot;loginreg&quot;&gt; login||register]-&gt;[&lt;state&gt; splashscreen]
+	  [splashscreen]-&gt;[&lt;choice&gt;devqon dir exists]
+	  [devqon dir exists]-&gt;yes[&lt;choice&gt;active devqon vision?]
+	  [active devqon vision?]-&gt;yes[&lt;note id=&quot;goto-apo&quot;&gt;goto|active vision overview]-&gt;[&lt;end&gt; launch-app]
+	  
+	  // sad trail
+	  [devqon dir exists]-&gt;no[&lt;note id=&quot;goto-frs&quot;&gt;goto|first-run screen]-&gt;[&lt;end&gt; launch-app]
+	  [active devqon vision?]-&gt;no[&lt;note id=&quot;goto-pcs&quot;&gt;goto|vision config screen]-&gt;[&lt;end&gt; launch-app]
+	  
+	  // extraneous info
+	  [splashscreen]--[&lt;abstract&gt;query devqon dir|~/.dq/development-console]
+	]
+	
+	[&lt;reference id=first-run&gt;First Run|
+		[required|
+	      [&lt;table id=tbl-first-run-req-usr&gt;provide user info|
+	         contact info|occupation||
+	         //occupation: dev/des/writer will allow for recommended presets (eventually)
+	         ToC
+	      ]
+	     |[&lt;table id=tbl-first-run-req-app&gt;top level app config|
+	         allow rwx|set devqon dir||
+	         metric collection?
+	         // tiered? only on crash reports, etc
+	       ]
+	    ]
+	   |[recommended|
+	   	 [&lt;table id=tbl-first-run-rec&gt;reference material|
+	         docs \| glossary|tutorials||live examples|tips &amp; tricks
+	     ]
+	     | [&lt;sender id=send-first-run-to-new-vision&gt;CTA: goto Config New Vision]
+	   ]
+	   |[footer|
+	   	 github \| about \| contact \| pricing? \| FOSS \| feedback
+	   ]
+	]
+	[&lt;reference id=vision-config&gt;Config New Vision|
+		[required|
+	      [&lt;table id=tbl-vision-config-req&gt;top-level vision|
+	         name|desc||about|keywords||related visions|invite users
+	      ]
+	      |¿ denotes optional field
+	    ]
+	   |[recommended|
+	   	 [&lt;table id=tbl-vision-config-rec&gt;reference material|
+	         .|..||
+	     ]
+	     | [&lt;sender id=send-new-vision-to-overview&gt;CTA: goto Vision Overview]
+	   ]
+	   |[footer|
+	   	 suggestions \| help
+	   ]
+	]
+	[&lt;reference id=vision-overview&gt;Vision Oveview|
+		The best references for the|Vision Overview are currently on the|forum and github||
+	    ... more information coming soon ...
+	]
+	
+	[launch-app]-&gt;[&lt;choice id=launch-app-goto&gt;goto?]-&gt;[first-run]
+	[launch-app-goto]-[&lt;label id=lbl-launch-to-new-vision&gt;devqon dir exists|NO active Vision located]-&gt;[vision-config]
+	
+	[launch-app-goto]-[&lt;label id=lbl-new-vision-to-overview&gt;devqon dir exists|active Vision located]-&gt;[vision-overview]
+	
+	[first-run]cta click-&gt;[vision-config]
+	[vision-config]cta click-&gt;[vision-overview]
+	
+	// below should specify recommended setups for each user type
+	[&lt;hidden&gt;
+	  [&lt;reference id=ref-dev&gt;
+	    [&lt;actor&gt; developer]
+	  ]
+	]
+	[&lt;hidden&gt;
+	  [&lt;reference id=ref-des&gt;
+	    [&lt;actor&gt; designer]
+	  ]
+	]
+	[&lt;hidden&gt;
+	  [&lt;reference id=ref-write&gt;
+	    [&lt;actor&gt; writer]
+	  ]
+	]</desc>
+	<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="normal" font-style="normal">
+		<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+			<g stroke="transparent" fill="transparent">
+				<rect x="0.0" y="0.0" height="2862.0" width="1052.0" stroke="none"></rect>
+			</g>
+			<g transform="translate(8, 8)" fill="#33322E">
+				<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+					<g stroke-dasharray="6 6">
+						<path d="M371.5 111.0 L371.5 131 L371.5 151 L371.5 151.0 " fill="none"></path>
+					</g>
+					<path d="M371.5 809.5 L371.5 829.5 L371.5 842.8333333333334 L371.5 842.8 " fill="none"></path>
+					<path d="M366.2 836.2 L371.5 842.8 L376.8 836.2 L371.5 849.5 Z"></path>
+					<path d="M417.3 877.9 L756 916 L756 929.3333333333334 L756.0 929.3 " fill="none"></path>
+					<path d="M750.7 922.7 L756.0 929.3 L761.3 922.7 L756.0 936.0 Z"></path>
+					<path d="M371.5 896.0 L371.5 916 L371.5 1333.5 L371.5 1333.5 " fill="none"></path>
+					<path d="M371.5 1395.5 L371.5 1813 L378.1349651160608 1826.977429763353 L378.1 1827.0 " fill="none"></path>
+					<path d="M370.5 1823.2 L378.1 1827.0 L380.1 1818.7 L381.0 1833.0 Z"></path>
+					<path d="M325.8 881.3 L141 916 L141 1364.5 L141 1364.5 L141 1813 L141 1813 L141 2187 L141.0 2187.0 " fill="none"></path>
+					<path d="M141.0 2249.0 L141 2623 L248.27587829933867 2664.166357835096 L248.3 2664.2 " fill="none"></path>
+					<path d="M240.1 2666.8 L248.3 2664.2 L244.0 2656.8 L254.5 2666.6 Z"></path>
+					<text x="764.0" y="1813.0" stroke="none">cta click</text>
+					<path d="M756.0 1793.0 L756 1813 L749.3650348839392 1826.977429763353 L749.4 1827.0 " fill="none"></path>
+					<path d="M747.4 1818.7 L749.4 1827.0 L757.0 1823.2 L746.5 1833.0 Z"></path>
+					<text x="571.8" y="2623.0" stroke="none">cta click</text>
+					<path d="M563.8 2603.0 L563.75 2623 L538.1793319253856 2639.400776047857 L538.2 2639.4 " fill="none"></path>
+					<path d="M540.9 2631.3 L538.2 2639.4 L546.7 2640.3 L532.6 2643.0 Z"></path>
+					<g >
+						<g fill="#eee8d5" stroke="#33322E">
+							<rect x="302.0" y="0.0" height="111.0" width="139.0"></rect>
+						</g>
+						<g transform="translate(302, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="italic">
+							<g transform="translate(8, 8)" fill="#33322E">
+								<g transform="translate(20, 20)">
+									<g data-name="all users">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="all users">
+											<circle r="4.0" cx="41.5" cy="12.0" data-name="all users"></circle>
+											<path d="M41.5 16.0 L41.5 24.0" fill="none" data-name="all users"></path>
+											<path d="M37.5 20.0 L45.5 20.0" fill="none" data-name="all users"></path>
+											<path d="M37.5 28.0 L41.5 24.0 L45.5 28.0" fill="none" data-name="all users"></path>
+										</g>
+										<g transform="translate(0, 24)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="all users">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="all users">
+												<text x="33.5" y="13.5" stroke="none" text-anchor="middle" data-name="all users">all users</text>
+												
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+					<g data-name="launch-app">
+						<g fill="#eee8d5" stroke="#33322E" stroke-dasharray="6 6" data-name="launch-app">
+							<rect x="0.0" y="151.0" height="658.5" width="743.0" data-name="launch-app"></rect>
+							<path d="M0.0 182.0 L743.0 182.0" fill="none" data-name="launch-app"></path>
+						</g>
+						<g transform="translate(0, 151)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="launch-app">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="launch-app">
+								<text x="363.5" y="13.5" stroke="none" text-anchor="middle" data-name="launch-app">Launch App</text>
+								
+							</g>
+						</g>
+						<g transform="translate(0, 182)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="launch-app">
+							<g transform="translate(8, 8)" fill="#33322E" data-name="launch-app">
+								<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="launch-app">
+									<path d="M437.1 30.0 L437.125 50 L437.125 70 L437.1 70.0 " fill="none" data-name="launch-app"></path>
+									<path d="M437.1 140.0 L437.125 160 L437.125 173.33333333333334 L437.1 173.3 " fill="none" data-name="launch-app"></path>
+									<path d="M431.8 166.7 L437.1 173.3 L442.5 166.7 L437.1 180.0 Z" data-name="launch-app"></path>
+									<path d="M378.5 211.0 L302.75 231 L302.75 252.08333333333334 L302.8 252.1 " fill="none" data-name="launch-app"></path>
+									<path d="M297.4 245.4 L302.8 252.1 L308.1 245.4 L302.8 258.8 Z" data-name="launch-app"></path>
+									<text x="169.3" y="345.0" stroke="none" data-name="launch-app">yes</text>
+									<path d="M258.3 305.3 L205.25 333 L205.25 346.3333333333333 L205.3 346.3 " fill="none" data-name="launch-app"></path>
+									<path d="M199.9 339.7 L205.3 346.3 L210.6 339.7 L205.3 353.0 Z" data-name="launch-app"></path>
+									<text x="58.5" y="431.5" stroke="none" data-name="launch-app">yes</text>
+									<path d="M145.7 399.5 L94.5 419.5 L94.5 432.8333333333333 L94.5 432.8 " fill="none" data-name="launch-app"></path>
+									<path d="M89.2 426.2 L94.5 432.8 L99.8 426.2 L94.5 439.5 Z" data-name="launch-app"></path>
+									<path d="M94.5 501.5 L94.5 521.5 L281.1755397881151 552.8740403005236 L281.2 552.9 " fill="none" data-name="launch-app"></path>
+									<path d="M273.7 557.0 L281.2 552.9 L275.5 546.5 L287.8 554.0 Z" data-name="launch-app"></path>
+									<text x="519.0" y="431.5" stroke="none" data-name="launch-app">no</text>
+									<path d="M397.7 305.3 L511 333 L511 376.25 L511 376.25 L511 419.5 L511 419.5 L511 432.8333333333333 L511.0 432.8 " fill="none" data-name="launch-app"></path>
+									<path d="M505.7 426.2 L511.0 432.8 L516.3 426.2 L511.0 439.5 Z" data-name="launch-app"></path>
+									<path d="M511.0 501.5 L511 521.5 L324.3244602118849 552.8740403005236 L324.3 552.9 " fill="none" data-name="launch-app"></path>
+									<path d="M330.0 546.5 L324.3 552.9 L331.8 557.0 L317.8 554.0 Z" data-name="launch-app"></path>
+									<text x="324.0" y="431.5" stroke="none" data-name="launch-app">no</text>
+									<path d="M264.8 399.5 L316 419.5 L316 432.8333333333333 L316.0 432.8 " fill="none" data-name="launch-app"></path>
+									<path d="M310.7 426.2 L316.0 432.8 L321.3 426.2 L316.0 439.5 Z" data-name="launch-app"></path>
+									<path d="M316.0 501.5 L316 521.5 L310.78890493894136 535.2651567650606 L310.8 535.3 " fill="none" data-name="launch-app"></path>
+									<path d="M308.2 527.1 L310.8 535.3 L318.1 530.9 L308.4 541.5 Z" data-name="launch-app"></path>
+									<g stroke-dasharray="6 6" data-name="launch-app">
+										<path d="M495.8 211.0 L571.5 231 L571.5 251 L571.5 251.0 " fill="none" data-name="launch-app"></path>
+									</g>
+									<g >
+										<g fill="#33322E" stroke="#33322E">
+											<circle r="12.0" cx="437.1" cy="15.0" stroke="none"></circle>
+										</g>
+									</g>
+									<g data-name="&quot;loginreg&quot;">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="&quot;loginreg&quot;">
+											<rect x="399.1" y="70.0" rx="20.0" ry="20.0" height="70.0" width="76.0" data-name="&quot;loginreg&quot;"></rect>
+											<path d="M399.1 101.0 L475.1 101.0" fill="none" data-name="&quot;loginreg&quot;"></path>
+											<path d="M399.1 109.0 L475.1 109.0" fill="none" data-name="&quot;loginreg&quot;"></path>
+										</g>
+										<g transform="translate(399.125, 70)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="&quot;loginreg&quot;">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="&quot;loginreg&quot;">
+												<text x="30.0" y="13.5" stroke="none" text-anchor="middle" data-name="&quot;loginreg&quot;">login</text>
+												
+											</g>
+										</g>
+										<g transform="translate(399.125, 101)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="&quot;loginreg&quot;">
+											<g transform="translate(8, 8)" fill="#33322E" data-name="&quot;loginreg&quot;">
+												
+											</g>
+										</g>
+										<g transform="translate(399.125, 109)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="&quot;loginreg&quot;">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="&quot;loginreg&quot;">
+												<text x="0.0" y="13.5" stroke="none" data-name="&quot;loginreg&quot;">register</text>
+												
+											</g>
+										</g>
+									</g>
+									<g data-name="splashscreen">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="splashscreen">
+											<rect x="376.1" y="180.0" rx="15.5" ry="15.5" height="31.0" width="122.0" data-name="splashscreen"></rect>
+										</g>
+										<g transform="translate(376.125, 180)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="splashscreen">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="splashscreen">
+												<text x="53.0" y="13.5" stroke="none" text-anchor="middle" data-name="splashscreen">splashscreen</text>
+												
+											</g>
+										</g>
+									</g>
+									<g data-name="devqon dir exists">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="devqon dir exists">
+											<path d="M302.8 258.8 L416.0 282.0 L302.8 305.3 L189.5 282.0 Z" data-name="devqon dir exists"></path>
+										</g>
+										<g transform="translate(227.25, 266.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="devqon dir exists">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="devqon dir exists">
+												<text x="67.5" y="13.5" stroke="none" text-anchor="middle" data-name="devqon dir exists">devqon dir exists</text>
+												
+											</g>
+										</g>
+									</g>
+									<g data-name="active devqon vision?">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="active devqon vision?">
+											<path d="M205.3 353.0 L346.3 376.3 L205.3 399.5 L64.3 376.3 Z" data-name="active devqon vision?"></path>
+										</g>
+										<g transform="translate(111.25, 360.75)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="active devqon vision?">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="active devqon vision?">
+												<text x="86.0" y="13.5" stroke="none" text-anchor="middle" data-name="active devqon vision?">active devqon vision?</text>
+												
+											</g>
+										</g>
+									</g>
+									<g data-name="&quot;goto-apo&quot;">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="&quot;goto-apo&quot;">
+											<path d="M0.0 439.5 L181.0 439.5 L189.0 447.5 L189.0 501.5 L0.0 501.5 L0.0 439.5 Z" data-name="&quot;goto-apo&quot;"></path>
+											<path d="M181.0 439.5 L181.0 447.5 L189.0 447.5" fill="none" data-name="&quot;goto-apo&quot;"></path>
+											<path d="M0.0 470.5 L189.0 470.5" fill="none" data-name="&quot;goto-apo&quot;"></path>
+										</g>
+										<g transform="translate(0, 439.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="&quot;goto-apo&quot;">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="&quot;goto-apo&quot;">
+												<text x="0.0" y="13.5" stroke="none" data-name="&quot;goto-apo&quot;">goto</text>
+												
+											</g>
+										</g>
+										<g transform="translate(0, 470.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="&quot;goto-apo&quot;">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="&quot;goto-apo&quot;">
+												<text x="0.0" y="13.5" stroke="none" data-name="&quot;goto-apo&quot;">active vision overview</text>
+												
+											</g>
+										</g>
+									</g>
+									<g data-name="launch-app">
+										<g fill="#33322E" stroke="#33322E" data-name="launch-app">
+											<circle r="10.0" cx="302.8" cy="556.5" data-name="launch-app"></circle>
+											<circle r="6.0" cx="302.8" cy="556.5" stroke="none" data-name="launch-app"></circle>
+										</g>
+									</g>
+									<g data-name="&quot;goto-frs&quot;">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="&quot;goto-frs&quot;">
+											<path d="M443.0 439.5 L571.0 439.5 L579.0 447.5 L579.0 501.5 L443.0 501.5 L443.0 439.5 Z" data-name="&quot;goto-frs&quot;"></path>
+											<path d="M571.0 439.5 L571.0 447.5 L579.0 447.5" fill="none" data-name="&quot;goto-frs&quot;"></path>
+											<path d="M443.0 470.5 L579.0 470.5" fill="none" data-name="&quot;goto-frs&quot;"></path>
+										</g>
+										<g transform="translate(443, 439.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="&quot;goto-frs&quot;">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="&quot;goto-frs&quot;">
+												<text x="0.0" y="13.5" stroke="none" data-name="&quot;goto-frs&quot;">goto</text>
+												
+											</g>
+										</g>
+										<g transform="translate(443, 470.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="&quot;goto-frs&quot;">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="&quot;goto-frs&quot;">
+												<text x="0.0" y="13.5" stroke="none" data-name="&quot;goto-frs&quot;">first-run screen</text>
+												
+											</g>
+										</g>
+									</g>
+									<g data-name="&quot;goto-pcs&quot;">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="&quot;goto-pcs&quot;">
+											<path d="M229.0 439.5 L395.0 439.5 L403.0 447.5 L403.0 501.5 L229.0 501.5 L229.0 439.5 Z" data-name="&quot;goto-pcs&quot;"></path>
+											<path d="M395.0 439.5 L395.0 447.5 L403.0 447.5" fill="none" data-name="&quot;goto-pcs&quot;"></path>
+											<path d="M229.0 470.5 L403.0 470.5" fill="none" data-name="&quot;goto-pcs&quot;"></path>
+										</g>
+										<g transform="translate(229, 439.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="&quot;goto-pcs&quot;">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="&quot;goto-pcs&quot;">
+												<text x="0.0" y="13.5" stroke="none" data-name="&quot;goto-pcs&quot;">goto</text>
+												
+											</g>
+										</g>
+										<g transform="translate(229, 470.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="&quot;goto-pcs&quot;">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="&quot;goto-pcs&quot;">
+												<text x="0.0" y="13.5" stroke="none" data-name="&quot;goto-pcs&quot;">vision config screen</text>
+												
+											</g>
+										</g>
+									</g>
+									<g data-name="query devqon dir">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="query devqon dir">
+											<rect x="456.0" y="251.0" height="62.0" width="231.0" data-name="query devqon dir"></rect>
+											<path d="M456.0 282.0 L687.0 282.0" fill="none" data-name="query devqon dir"></path>
+										</g>
+										<g transform="translate(456, 251)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="italic" data-name="query devqon dir">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="query devqon dir">
+												<text x="107.5" y="13.5" stroke="none" text-anchor="middle" data-name="query devqon dir">query devqon dir</text>
+												
+											</g>
+										</g>
+										<g transform="translate(456, 282)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="query devqon dir">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="query devqon dir">
+												<text x="0.0" y="13.5" stroke="none" data-name="query devqon dir">~/.dq/development-console</text>
+												
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+					<g data-name="first-run">
+						<g fill="#eee8d5" stroke="#33322E" stroke-dasharray="6 6" data-name="first-run">
+							<rect x="516.0" y="936.0" height="857.0" width="480.0" data-name="first-run"></rect>
+							<path d="M516.0 967.0 L996.0 967.0" fill="none" data-name="first-run"></path>
+							<path d="M516.0 1352.0 L996.0 1352.0" fill="none" data-name="first-run"></path>
+							<path d="M516.0 1675.0 L996.0 1675.0" fill="none" data-name="first-run"></path>
+						</g>
+						<g transform="translate(516, 936)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="first-run">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="first-run">
+								<text x="232.0" y="13.5" stroke="none" text-anchor="middle" data-name="first-run">First Run</text>
+								
+							</g>
+						</g>
+						<g transform="translate(516, 967)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="first-run">
+							<g transform="translate(8, 8)" fill="#33322E" data-name="first-run">
+								<g transform="translate(20, 20)" data-name="first-run">
+									<g data-name="required">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="required">
+											<rect x="0.0" y="0.0" height="329.0" width="364.0" data-name="required"></rect>
+											<path d="M0.0 31.0 L364.0 31.0" fill="none" data-name="required"></path>
+											<path d="M0.0 180.0 L364.0 180.0" fill="none" data-name="required"></path>
+										</g>
+										<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="required">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="required">
+												<text x="174.0" y="13.5" stroke="none" text-anchor="middle" data-name="required">required</text>
+												
+											</g>
+										</g>
+										<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="required">
+											<g transform="translate(8, 8)" fill="#33322E" data-name="required">
+												<g transform="translate(20, 20)" data-name="required">
+													<g data-name="tbl-first-run-req-usr">
+														<g fill="#eee8d5" stroke="#33322E" data-name="tbl-first-run-req-usr">
+															<rect x="0.0" y="0.0" height="93.0" width="216.0" data-name="tbl-first-run-req-usr"></rect>
+															<path d="M0.0 31.0 L0.0 31.0" fill="none" data-name="tbl-first-run-req-usr"></path>
+															<path d="M0.0 31.0 L216.0 31.0" fill="none" data-name="tbl-first-run-req-usr"></path>
+															<path d="M0.0 62.0 L216.0 62.0" fill="none" data-name="tbl-first-run-req-usr"></path>
+															<path d="M108.0 31.0 L108.0 93.0" fill="none" data-name="tbl-first-run-req-usr"></path>
+															<path d="M216.0 31.0 L216.0 93.0" fill="none" data-name="tbl-first-run-req-usr"></path>
+														</g>
+														<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="tbl-first-run-req-usr">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="tbl-first-run-req-usr">
+																<text x="100.0" y="13.5" stroke="none" text-anchor="middle" data-name="tbl-first-run-req-usr">provide user info</text>
+																
+															</g>
+														</g>
+														<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-first-run-req-usr">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-first-run-req-usr">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-first-run-req-usr">contact info</text>
+																
+															</g>
+														</g>
+														<g transform="translate(108, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-first-run-req-usr">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-first-run-req-usr">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-first-run-req-usr">occupation</text>
+																
+															</g>
+														</g>
+														<g transform="translate(0, 62)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-first-run-req-usr">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-first-run-req-usr">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-first-run-req-usr">ToC</text>
+																
+															</g>
+														</g>
+													</g>
+												</g>
+											</g>
+										</g>
+										<g transform="translate(0, 180)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="required">
+											<g transform="translate(8, 8)" fill="#33322E" data-name="required">
+												<g transform="translate(20, 20)" data-name="required">
+													<g data-name="tbl-first-run-req-app">
+														<g fill="#eee8d5" stroke="#33322E" data-name="tbl-first-run-req-app">
+															<rect x="0.0" y="0.0" height="93.0" width="308.0" data-name="tbl-first-run-req-app"></rect>
+															<path d="M0.0 31.0 L0.0 31.0" fill="none" data-name="tbl-first-run-req-app"></path>
+															<path d="M0.0 31.0 L308.0 31.0" fill="none" data-name="tbl-first-run-req-app"></path>
+															<path d="M0.0 62.0 L308.0 62.0" fill="none" data-name="tbl-first-run-req-app"></path>
+															<path d="M154.0 31.0 L154.0 93.0" fill="none" data-name="tbl-first-run-req-app"></path>
+															<path d="M308.0 31.0 L308.0 93.0" fill="none" data-name="tbl-first-run-req-app"></path>
+														</g>
+														<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="tbl-first-run-req-app">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="tbl-first-run-req-app">
+																<text x="146.0" y="13.5" stroke="none" text-anchor="middle" data-name="tbl-first-run-req-app">top level app config</text>
+																
+															</g>
+														</g>
+														<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-first-run-req-app">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-first-run-req-app">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-first-run-req-app">allow rwx</text>
+																
+															</g>
+														</g>
+														<g transform="translate(154, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-first-run-req-app">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-first-run-req-app">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-first-run-req-app">set devqon dir</text>
+																
+															</g>
+														</g>
+														<g transform="translate(0, 62)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-first-run-req-app">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-first-run-req-app">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-first-run-req-app">metric collection?</text>
+																
+															</g>
+														</g>
+													</g>
+												</g>
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+						<g transform="translate(516, 1352)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="first-run">
+							<g transform="translate(8, 8)" fill="#33322E" data-name="first-run">
+								<g transform="translate(20, 20)" data-name="first-run">
+									<g data-name="recommended">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="recommended">
+											<rect x="0.0" y="0.0" height="267.0" width="328.0" data-name="recommended"></rect>
+											<path d="M0.0 31.0 L328.0 31.0" fill="none" data-name="recommended"></path>
+											<path d="M0.0 180.0 L328.0 180.0" fill="none" data-name="recommended"></path>
+										</g>
+										<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="recommended">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="recommended">
+												<text x="156.0" y="13.5" stroke="none" text-anchor="middle" data-name="recommended">recommended</text>
+												
+											</g>
+										</g>
+										<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="recommended">
+											<g transform="translate(8, 8)" fill="#33322E" data-name="recommended">
+												<g transform="translate(20, 20)" data-name="recommended">
+													<g data-name="tbl-first-run-rec">
+														<g fill="#eee8d5" stroke="#33322E" data-name="tbl-first-run-rec">
+															<rect x="0.0" y="0.0" height="93.0" width="272.0" data-name="tbl-first-run-rec"></rect>
+															<path d="M0.0 31.0 L0.0 31.0" fill="none" data-name="tbl-first-run-rec"></path>
+															<path d="M0.0 31.0 L272.0 31.0" fill="none" data-name="tbl-first-run-rec"></path>
+															<path d="M0.0 62.0 L272.0 62.0" fill="none" data-name="tbl-first-run-rec"></path>
+															<path d="M136.0 31.0 L136.0 93.0" fill="none" data-name="tbl-first-run-rec"></path>
+															<path d="M272.0 31.0 L272.0 93.0" fill="none" data-name="tbl-first-run-rec"></path>
+														</g>
+														<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="tbl-first-run-rec">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="tbl-first-run-rec">
+																<text x="128.0" y="13.5" stroke="none" text-anchor="middle" data-name="tbl-first-run-rec">reference material</text>
+																
+															</g>
+														</g>
+														<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-first-run-rec">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-first-run-rec">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-first-run-rec">docs | glossary</text>
+																
+															</g>
+														</g>
+														<g transform="translate(136, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-first-run-rec">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-first-run-rec">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-first-run-rec">tutorials</text>
+																
+															</g>
+														</g>
+														<g transform="translate(0, 62)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-first-run-rec">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-first-run-rec">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-first-run-rec">live examples</text>
+																
+															</g>
+														</g>
+														<g transform="translate(136, 62)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-first-run-rec">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-first-run-rec">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-first-run-rec">tips &amp; tricks</text>
+																
+															</g>
+														</g>
+													</g>
+												</g>
+											</g>
+										</g>
+										<g transform="translate(0, 180)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="recommended">
+											<g transform="translate(8, 8)" fill="#33322E" data-name="recommended">
+												<g transform="translate(20, 20)" data-name="recommended">
+													<g data-name="send-first-run-to-new-vision">
+														<g fill="#eee8d5" stroke="#33322E" data-name="send-first-run-to-new-vision">
+															<path d="M0.0 0.0 L234.0 0.0 L242.0 15.5 L234.0 31.0 L0.0 31.0 Z" data-name="send-first-run-to-new-vision"></path>
+														</g>
+														<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="send-first-run-to-new-vision">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="send-first-run-to-new-vision">
+																<text x="0.0" y="13.5" stroke="none" data-name="send-first-run-to-new-vision">CTA: goto Config New Vision</text>
+																
+															</g>
+														</g>
+													</g>
+												</g>
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+						<g transform="translate(516, 1675)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="first-run">
+							<g transform="translate(8, 8)" fill="#33322E" data-name="first-run">
+								<g transform="translate(20, 20)" data-name="first-run">
+									<g data-name="footer">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="footer">
+											<rect x="0.0" y="0.0" height="62.0" width="424.0" data-name="footer"></rect>
+											<path d="M0.0 31.0 L424.0 31.0" fill="none" data-name="footer"></path>
+										</g>
+										<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="footer">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="footer">
+												<text x="204.0" y="13.5" stroke="none" text-anchor="middle" data-name="footer">footer</text>
+												
+											</g>
+										</g>
+										<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="footer">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="footer">
+												<text x="0.0" y="13.5" stroke="none" data-name="footer">github | about | contact | pricing? | FOSS | feedback</text>
+												
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+					<g data-name="vision-config">
+						<g fill="#eee8d5" stroke="#33322E" stroke-dasharray="6 6" data-name="vision-config">
+							<rect x="376.8" y="1833.0" height="770.0" width="374.0" data-name="vision-config"></rect>
+							<path d="M376.8 1864.0 L750.8 1864.0" fill="none" data-name="vision-config"></path>
+							<path d="M376.8 2162.0 L750.8 2162.0" fill="none" data-name="vision-config"></path>
+							<path d="M376.8 2485.0 L750.8 2485.0" fill="none" data-name="vision-config"></path>
+						</g>
+						<g transform="translate(376.75, 1833)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="vision-config">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="vision-config">
+								<text x="179.0" y="13.5" stroke="none" text-anchor="middle" data-name="vision-config">Config New Vision</text>
+								
+							</g>
+						</g>
+						<g transform="translate(376.75, 1864)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="vision-config">
+							<g transform="translate(8, 8)" fill="#33322E" data-name="vision-config">
+								<g transform="translate(20, 20)" data-name="vision-config">
+									<g data-name="required">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="required">
+											<rect x="0.0" y="0.0" height="242.0" width="318.0" data-name="required"></rect>
+											<path d="M0.0 31.0 L318.0 31.0" fill="none" data-name="required"></path>
+											<path d="M0.0 211.0 L318.0 211.0" fill="none" data-name="required"></path>
+										</g>
+										<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="required">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="required">
+												<text x="151.0" y="13.5" stroke="none" text-anchor="middle" data-name="required">required</text>
+												
+											</g>
+										</g>
+										<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="required">
+											<g transform="translate(8, 8)" fill="#33322E" data-name="required">
+												<g transform="translate(20, 20)" data-name="required">
+													<g data-name="tbl-vision-config-req">
+														<g fill="#eee8d5" stroke="#33322E" data-name="tbl-vision-config-req">
+															<rect x="0.0" y="0.0" height="124.0" width="262.0" data-name="tbl-vision-config-req"></rect>
+															<path d="M0.0 31.0 L0.0 31.0" fill="none" data-name="tbl-vision-config-req"></path>
+															<path d="M0.0 31.0 L262.0 31.0" fill="none" data-name="tbl-vision-config-req"></path>
+															<path d="M0.0 62.0 L262.0 62.0" fill="none" data-name="tbl-vision-config-req"></path>
+															<path d="M0.0 93.0 L262.0 93.0" fill="none" data-name="tbl-vision-config-req"></path>
+															<path d="M131.0 31.0 L131.0 124.0" fill="none" data-name="tbl-vision-config-req"></path>
+															<path d="M262.0 31.0 L262.0 124.0" fill="none" data-name="tbl-vision-config-req"></path>
+														</g>
+														<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="tbl-vision-config-req">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="tbl-vision-config-req">
+																<text x="123.0" y="13.5" stroke="none" text-anchor="middle" data-name="tbl-vision-config-req">top-level vision</text>
+																
+															</g>
+														</g>
+														<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-vision-config-req">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-vision-config-req">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-vision-config-req">name</text>
+																
+															</g>
+														</g>
+														<g transform="translate(131, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-vision-config-req">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-vision-config-req">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-vision-config-req">desc</text>
+																
+															</g>
+														</g>
+														<g transform="translate(0, 62)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-vision-config-req">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-vision-config-req">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-vision-config-req">about</text>
+																
+															</g>
+														</g>
+														<g transform="translate(131, 62)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-vision-config-req">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-vision-config-req">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-vision-config-req">keywords</text>
+																
+															</g>
+														</g>
+														<g transform="translate(0, 93)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-vision-config-req">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-vision-config-req">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-vision-config-req">related visions</text>
+																
+															</g>
+														</g>
+														<g transform="translate(131, 93)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-vision-config-req">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-vision-config-req">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-vision-config-req">invite users</text>
+																
+															</g>
+														</g>
+													</g>
+												</g>
+											</g>
+										</g>
+										<g transform="translate(0, 211)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="required">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="required">
+												<text x="0.0" y="13.5" stroke="none" data-name="required">¿ denotes optional field</text>
+												
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+						<g transform="translate(376.75, 2162)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="vision-config">
+							<g transform="translate(8, 8)" fill="#33322E" data-name="vision-config">
+								<g transform="translate(20, 20)" data-name="vision-config">
+									<g data-name="recommended">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="recommended">
+											<rect x="0.0" y="0.0" height="267.0" width="281.0" data-name="recommended"></rect>
+											<path d="M0.0 31.0 L281.0 31.0" fill="none" data-name="recommended"></path>
+											<path d="M0.0 180.0 L281.0 180.0" fill="none" data-name="recommended"></path>
+										</g>
+										<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="recommended">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="recommended">
+												<text x="132.5" y="13.5" stroke="none" text-anchor="middle" data-name="recommended">recommended</text>
+												
+											</g>
+										</g>
+										<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="recommended">
+											<g transform="translate(8, 8)" fill="#33322E" data-name="recommended">
+												<g transform="translate(20, 20)" data-name="recommended">
+													<g data-name="tbl-vision-config-rec">
+														<g fill="#eee8d5" stroke="#33322E" data-name="tbl-vision-config-rec">
+															<rect x="0.0" y="0.0" height="93.0" width="160.0" data-name="tbl-vision-config-rec"></rect>
+															<path d="M0.0 31.0 L0.0 31.0" fill="none" data-name="tbl-vision-config-rec"></path>
+															<path d="M0.0 31.0 L160.0 31.0" fill="none" data-name="tbl-vision-config-rec"></path>
+															<path d="M0.0 62.0 L160.0 62.0" fill="none" data-name="tbl-vision-config-rec"></path>
+															<path d="M80.0 31.0 L80.0 93.0" fill="none" data-name="tbl-vision-config-rec"></path>
+															<path d="M160.0 31.0 L160.0 93.0" fill="none" data-name="tbl-vision-config-rec"></path>
+														</g>
+														<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="tbl-vision-config-rec">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="tbl-vision-config-rec">
+																<text x="72.0" y="13.5" stroke="none" text-anchor="middle" data-name="tbl-vision-config-rec">reference material</text>
+																
+															</g>
+														</g>
+														<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-vision-config-rec">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-vision-config-rec">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-vision-config-rec">.</text>
+																
+															</g>
+														</g>
+														<g transform="translate(80, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tbl-vision-config-rec">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tbl-vision-config-rec">
+																<text x="0.0" y="13.5" stroke="none" data-name="tbl-vision-config-rec">..</text>
+																
+															</g>
+														</g>
+													</g>
+												</g>
+											</g>
+										</g>
+										<g transform="translate(0, 180)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="recommended">
+											<g transform="translate(8, 8)" fill="#33322E" data-name="recommended">
+												<g transform="translate(20, 20)" data-name="recommended">
+													<g data-name="send-new-vision-to-overview">
+														<g fill="#eee8d5" stroke="#33322E" data-name="send-new-vision-to-overview">
+															<path d="M0.0 0.0 L217.0 0.0 L225.0 15.5 L217.0 31.0 L0.0 31.0 Z" data-name="send-new-vision-to-overview"></path>
+														</g>
+														<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="send-new-vision-to-overview">
+															<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="send-new-vision-to-overview">
+																<text x="0.0" y="13.5" stroke="none" data-name="send-new-vision-to-overview">CTA: goto Vision Overview</text>
+																
+															</g>
+														</g>
+													</g>
+												</g>
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+						<g transform="translate(376.75, 2485)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="vision-config">
+							<g transform="translate(8, 8)" fill="#33322E" data-name="vision-config">
+								<g transform="translate(20, 20)" data-name="vision-config">
+									<g data-name="footer">
+										<g fill="#fdf6e3" stroke="#33322E" data-name="footer">
+											<rect x="0.0" y="0.0" height="62.0" width="161.0" data-name="footer"></rect>
+											<path d="M0.0 31.0 L161.0 31.0" fill="none" data-name="footer"></path>
+										</g>
+										<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="footer">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="footer">
+												<text x="72.5" y="13.5" stroke="none" text-anchor="middle" data-name="footer">footer</text>
+												
+											</g>
+										</g>
+										<g transform="translate(0, 31)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="footer">
+											<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="footer">
+												<text x="0.0" y="13.5" stroke="none" data-name="footer">suggestions | help</text>
+												
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+					<g data-name="vision-overview">
+						<g fill="#eee8d5" stroke="#33322E" stroke-dasharray="6 6" data-name="vision-overview">
+							<rect x="254.5" y="2643.0" height="163.0" width="302.0" data-name="vision-overview"></rect>
+							<path d="M254.5 2674.0 L556.5 2674.0" fill="none" data-name="vision-overview"></path>
+							<path d="M254.5 2705.0 L556.5 2705.0" fill="none" data-name="vision-overview"></path>
+							<path d="M254.5 2736.0 L556.5 2736.0" fill="none" data-name="vision-overview"></path>
+							<path d="M254.5 2767.0 L556.5 2767.0" fill="none" data-name="vision-overview"></path>
+							<path d="M254.5 2775.0 L556.5 2775.0" fill="none" data-name="vision-overview"></path>
+						</g>
+						<g transform="translate(254.5, 2643)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="vision-overview">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="vision-overview">
+								<text x="143.0" y="13.5" stroke="none" text-anchor="middle" data-name="vision-overview">Vision Oveview</text>
+								
+							</g>
+						</g>
+						<g transform="translate(254.5, 2674)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="vision-overview">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="vision-overview">
+								<text x="0.0" y="13.5" stroke="none" data-name="vision-overview">The best references for the</text>
+								
+							</g>
+						</g>
+						<g transform="translate(254.5, 2705)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="vision-overview">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="vision-overview">
+								<text x="0.0" y="13.5" stroke="none" data-name="vision-overview">Vision Overview are currently on the</text>
+								
+							</g>
+						</g>
+						<g transform="translate(254.5, 2736)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="vision-overview">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="vision-overview">
+								<text x="0.0" y="13.5" stroke="none" data-name="vision-overview">forum and github</text>
+								
+							</g>
+						</g>
+						<g transform="translate(254.5, 2767)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="vision-overview">
+							<g transform="translate(8, 8)" fill="#33322E" data-name="vision-overview">
+								
+							</g>
+						</g>
+						<g transform="translate(254.5, 2775)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="vision-overview">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="vision-overview">
+								<text x="0.0" y="13.5" stroke="none" data-name="vision-overview">... more information coming soon ...</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="launch-app-goto">
+						<g fill="#eee8d5" stroke="#33322E" data-name="launch-app-goto">
+							<path d="M371.5 849.5 L417.3 872.8 L371.5 896.0 L325.8 872.8 Z" data-name="launch-app-goto"></path>
+						</g>
+						<g transform="translate(341, 857.25)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="launch-app-goto">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="launch-app-goto">
+								<text x="22.5" y="13.5" stroke="none" text-anchor="middle" data-name="launch-app-goto">goto?</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="lbl-launch-to-new-vision">
+						<g fill="#eee8d5" stroke="#33322E" data-name="lbl-launch-to-new-vision">
+							<path d="M267.0 1364.5 L476.0 1364.5" fill="none" data-name="lbl-launch-to-new-vision"></path>
+						</g>
+						<g transform="translate(267, 1333.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="lbl-launch-to-new-vision">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="lbl-launch-to-new-vision">
+								<text x="96.5" y="13.5" stroke="none" text-anchor="middle" data-name="lbl-launch-to-new-vision">devqon dir exists</text>
+								
+							</g>
+						</g>
+						<g transform="translate(267, 1364.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="lbl-launch-to-new-vision">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="lbl-launch-to-new-vision">
+								<text x="0.0" y="13.5" stroke="none" data-name="lbl-launch-to-new-vision">NO active Vision located</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="lbl-new-vision-to-overview">
+						<g fill="#eee8d5" stroke="#33322E" data-name="lbl-new-vision-to-overview">
+							<path d="M51.5 2218.0 L230.5 2218.0" fill="none" data-name="lbl-new-vision-to-overview"></path>
+						</g>
+						<g transform="translate(51.5, 2187)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="lbl-new-vision-to-overview">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="lbl-new-vision-to-overview">
+								<text x="81.5" y="13.5" stroke="none" text-anchor="middle" data-name="lbl-new-vision-to-overview">devqon dir exists</text>
+								
+							</g>
+						</g>
+						<g transform="translate(51.5, 2218)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="lbl-new-vision-to-overview">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="lbl-new-vision-to-overview">
+								<text x="0.0" y="13.5" stroke="none" data-name="lbl-new-vision-to-overview">active Vision located</text>
+								
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>

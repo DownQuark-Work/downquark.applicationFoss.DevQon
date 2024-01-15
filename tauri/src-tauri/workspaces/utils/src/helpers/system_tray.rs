@@ -1,6 +1,8 @@
 use tauri::{Icon,Manager};
 use tauri::{CustomMenuItem, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem};
 
+use crate::constants::enumerate;
+
 pub fn create_system_tray() -> SystemTray {
   // here `"quit".to_string()` defines the menu item id, and the second parameter is the menu item label.
   let quit = CustomMenuItem::new("quit".to_string(), "Quit DevQon");
@@ -31,13 +33,13 @@ pub fn handle_system_tray_events(app:tauri::AppHandle, event:SystemTrayEvent) {
     }
 }
 
-pub fn handle_system_tray_icon_update(app_handle:tauri::AppHandle, new_status:&str) {
+pub fn handle_system_tray_icon_update(app_handle:tauri::AppHandle, new_status_enum:enumerate::EnumIconStatusType) {
   /*
     This is sparse for now, but exists as a separate function for future scalability.
     Additional logic and/or conditions would be applied within this function.
     > e.g.: if we chose to display an icon that changed based on the one currently displayed.
   */
-  update_system_tray_icon(app_handle, new_status);
+  update_system_tray_icon(app_handle, new_status_enum);
 }
 
 // private
@@ -58,13 +60,7 @@ fn update_system_tray_hide_menu_item(app_handle: tauri::AppHandle, toggle_menu_i
     }
   }
 }
-fn update_system_tray_icon(app_handle:tauri::AppHandle, new_status:&str) {
-  
-  #![allow(unused_assignments)]
-  let mut new_icon_bytes:Vec<u8> = "".into();
-  match new_status {
-    "BUSY" => { new_icon_bytes = include_bytes!("../../../../icons/status/busy.ico").to_vec(); }
-    _ => { new_icon_bytes = include_bytes!("../../../../icons/_downquark/icon.ico").to_vec(); }
-  }
+fn update_system_tray_icon(app_handle:tauri::AppHandle, new_status_enum:enumerate::EnumIconStatusType) {
+  let new_icon_bytes:Vec<u8> = new_status_enum.to_bytes(); // get byte array from enum impl
   app_handle.tray_handle().set_icon(Icon::Raw(new_icon_bytes)).unwrap();
 }
