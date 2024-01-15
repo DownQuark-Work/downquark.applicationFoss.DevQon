@@ -4,10 +4,24 @@ import type {InitResultType} from './types/devqon.d.ts'
 
 const { invoke } = tauri
 
-invoke('update_page_title', { name: 'DevQon' })
-  .then((response) => {
-    (window as any).header.innerHTML = response
-  })
-invoke('my_custom_command', { number: 1342, })
-  .then((res) => console.log(`Message: ${(res as InitResultType).message}, Other Val: ${(res as InitResultType).other_val}`))
-  .catch((e) => console.error(e))
+const invokeCommandsList = [
+  {
+    name:'cmd_determine_view_and_title',
+    opts:{ name: 'DevQon' },
+    cb:(resp:string) => { (window as any).header.innerHTML = resp },
+  },
+  {
+    name:'cmd_two_way_comm',
+    opts:{ number: 1342, },
+    cb:(res:InitResultType) => console.log(`Message: ${res.message}, Other Val: ${res.other_val}`),
+  },
+  {
+    name:'cmd_connect_to_database',
+    opts:{ connStr:"//qonnect", qryId:1313, },
+    cb:(res:Record<string,string>) => console.log(`database connection: ${res.conn_status} with id: ${res.qry_resp}`),
+  }
+]
+invokeCommandsList.forEach(command => {
+  invoke(command.name,command.opts)
+    .then(command.cb as any).catch((e) => console.error(e))
+})

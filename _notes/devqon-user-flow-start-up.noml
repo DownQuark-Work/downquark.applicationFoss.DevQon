@@ -1,0 +1,89 @@
+#title: devqon-user-flow-start-up
+
+[<abstract>[<actor> all users]]--
+[<reference id=launch-app>Launch App|
+  // happy path
+  [<start>]-[<state id="loginreg"> login||register]->[<state> splashscreen]
+  [splashscreen]->[<choice>devqon dir exists]
+  [devqon dir exists]->yes[<choice>active devqon vision?]
+  [active devqon vision?]->yes[<note id="goto-apo">goto|active vision overview]->[<end> launch-app]
+  
+  // sad trail
+  [devqon dir exists]->no[<note id="goto-frs">goto|first-run screen]->[<end> launch-app]
+  [active devqon vision?]->no[<note id="goto-pcs">goto|vision config screen]->[<end> launch-app]
+  
+  // extraneous info
+  [splashscreen]--[<abstract>query devqon dir|~/.dq/development-console]
+]
+
+[<reference id=first-run>First Run|
+	[required|
+      [<table id=tbl-first-run-req-usr>provide user info|
+         contact info|occupation||
+         //occupation: dev/des/writer will allow for recommended presets (eventually)
+         ToC
+      ]
+     |[<table id=tbl-first-run-req-app>top level app config|
+         allow rwx|set devqon dir||
+         metric collection?
+         // tiered? only on crash reports, etc
+       ]
+    ]
+   |[recommended|
+   	 [<table id=tbl-first-run-rec>reference material|
+         docs \| glossary|tutorials||live examples|tips & tricks
+     ]
+     | [<sender id=send-first-run-to-new-vision>CTA: goto Config New Vision]
+   ]
+   |[footer|
+   	 github \| about \| contact \| pricing? \| FOSS \| feedback
+   ]
+]
+[<reference id=vision-config>Config New Vision|
+	[required|
+      [<table id=tbl-vision-config-req>top-level vision|
+         name|desc||about|invite users
+      ]
+      |¿ denotes optional field
+    ]
+   |[recommended|
+   	 [<table id=tbl-vision-config-rec>reference material|
+         keywords|categories||related visions
+         // above will allow for data visualizations which could be interesting
+         // (particularly a graphDB)
+     ]
+     | [<sender id=send-new-vision-to-overview>CTA: goto Vision Overview]
+   ]
+   |[footer|
+   	 suggestions \| help
+   ]
+]
+[<reference id=vision-overview>Vision Oveview|
+	The best references for the|Vision Overview are currently on the|forum and github||
+    ... more information coming soon ...
+]
+
+[launch-app]->[<choice id=launch-app-goto>goto?]->[first-run]
+[launch-app-goto]-[<label id=lbl-launch-to-new-vision>devqon dir exists|NO active Vision located]->[vision-config]
+
+[launch-app-goto]-[<label id=lbl-new-vision-to-overview>devqon dir exists|active Vision located]->[vision-overview]
+
+[first-run]cta click->[vision-config]
+[vision-config]cta click->[vision-overview]
+
+// below should specify recommended setups for each user type
+[<hidden>
+  [<reference id=ref-dev>
+    [<actor> developer]
+  ]
+]
+[<hidden>
+  [<reference id=ref-des>
+    [<actor> designer]
+  ]
+]
+[<hidden>
+  [<reference id=ref-write>
+    [<actor> writer]
+  ]
+]
