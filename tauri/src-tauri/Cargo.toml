@@ -5,13 +5,13 @@ members = [
     "./workspaces/utils"
 ]
 [workspace.package]
-version = "0.0.3-pre-release"
+version = "0.0.4-pre-release"
 edition = "2021"
 authors = ["downquark <development.qonsole@downquark.work>"]
 
 [package]
 name = "devqon"
-version = "0.0.3-pre-release"
+version = "0.0.4-pre-release"
 description = "DownQuark Development Qonsole"
 authors = ["downquark <development.qonsole@downquark.work>"]
 license = "GNU"
