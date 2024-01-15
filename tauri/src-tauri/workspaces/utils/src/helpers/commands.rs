@@ -2,6 +2,11 @@
 pub mod _devqon;
 
 mod command {}
+// to type the commands:
+// // https://docs.rs/tauri-macros/1.4.3/src/tauri_macros/lib.rs.html#49
+// //  - they are proc_macro::TokenStream
+// // https://doc.rust-lang.org/proc_macro/struct.TokenStream.html
+// // https://doc.rust-lang.org/reference/procedural-macros.html
 
 // I think below is close to working
 // https://users.rust-lang.org/t/puzzling-expected-fn-pointer-found-fn-item/46423/9
