@@ -1,10 +1,18 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use tauri::Manager;
-
 use utils::helpers::{build, commands, state};
 
 fn main() {
+  app_lib::run();
+}
+
+#[cfg_attr(mobile, tauri::mobile_entry_point)]
+pub fn run() {
+    // your code here
+// }
+
+// fn main() {
 
   tauri::Builder::default()
     .system_tray(utils::helpers::system_tray::create_system_tray())

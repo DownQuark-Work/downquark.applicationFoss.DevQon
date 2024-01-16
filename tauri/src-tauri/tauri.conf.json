@@ -10,10 +10,12 @@
     "productName": "devqon",
     "version": "0.0.4-pre-release"
   },
+  "plugins": {
+    "updater": {
+      "endpoints": []
+    }
+  },
   "tauri": {
-    "allowlist": {
-      "all": false
-    },
     "bundle": {
       "active": true,
       "category": "DeveloperTool",
@@ -41,6 +43,9 @@
       "resources": [],
       "shortDescription": "",
       "targets": "all",
+      "updater": {
+        "active": false
+      },
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
@@ -50,12 +55,9 @@
     "security": {
       "csp": null
     },
-    "systemTray": {
-      "iconPath": "icons/_downquark/icon.png",
-      "iconAsTemplate": true
-    },
-    "updater": {
-      "active": false
+    "trayIcon": {
+      "iconAsTemplate": true,
+      "iconPath": "icons/_downquark/icon.png"
     },
     "windows": [
       {
@@ -64,16 +66,16 @@
         "height": 600,
         "resizable": true,
         "title": "DevQon",
-        "width": 800,
-        "visible": false
+        "visible": false,
+        "width": 800
       },
       {
         "alwaysOnTop": true,
-        "width": 600,
-        "height": 400,
         "decorations": false,
+        "height": 400,
+        "label": "splashscreen",
         "url": "splash.html",
-        "label": "splashscreen"
+        "width": 600
       }
     ]
   }

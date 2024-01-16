@@ -1,0 +1,32 @@
+[workspace]
+resolver = "2"
+members = [
+  "plugins/*",
+  "plugins/*/tests/*",
+  "plugins/*/examples/*/src-tauri",
+  "examples/*/src-tauri",
+]
+
+[workspace.package]
+edition = "2021"
+authors = ["downquark <development.qonsole@downquark.work>"]
+license = "Apache-2.0 OR MIT"
+rust-version = "1.70"
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+log = "0.4"
+tauri = "2.0.0-alpha.20"
+tauri-build = "2.0.0-alpha.13"
+serde_json = "1"
+thiserror = "1"
+url = "2"
+
+# default to small, optimized release binaries
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+incremental = false
+opt-level = "s"
+

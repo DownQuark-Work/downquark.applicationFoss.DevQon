@@ -1,0 +1,13 @@
+[package]
+name = "tauri-plugin-downquark-startup"
+version = "0.0.1-pre-release"
+authors.workspace = true
+edition.workspace = true
+description = "The utility instantiation script shared between DownQuark's tauri applications"
+rust-version = "1.64"
+exclude = ["/examples", "/webview-dist", "/webview-src", "node_modules"]
+
+[dependencies]
+tauri = { path = "../../../tauri" }
+serde = "1.0"
+thiserror = "1.0"

@@ -9,6 +9,11 @@ version = "0.0.4-pre-release"
 edition = "2021"
 authors = ["downquark <development.qonsole@downquark.work>"]
 
+# https://beta.tauri.app/guides/upgrade-migrate/from-tauri-1/#preparing-for-mobile
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
 [package]
 name = "devqon"
 version = "0.0.4-pre-release"
@@ -23,15 +28,13 @@ rust-version = "1.64"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.5.1", features = [] }
+tauri-build = { features = [] }
 
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.5.4", features = [
-    "icon-ico",
-    "system-tray"
-] }
+tauri = { features = [
+    "icon-ico", "tray-icon"] , version = "2.0.0-alpha" }
 # workspace dependencies
 enhancements = { path = "./workspaces/enhancements" }
 utils = { path = "./workspaces/utils" }
