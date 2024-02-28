@@ -1,5 +1,5 @@
 [package]
-name = "utils"
+name = "macros"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -7,7 +7,3 @@ authors.workspace = true
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "2.0.0-beta", features = ["icon-ico", "tray-icon"] }
-
-enhancements = { path = "../enhancements" }

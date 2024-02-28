@@ -789,9 +789,10 @@ dependencies = [
 
 [[package]]
 name = "devqon"
-version = "0.1.0-pre-release"
+version = "0.2.0-pre-release"
 dependencies = [
  "enhancements",
+ "macros",
  "serde_json",
  "tauri",
  "tauri-build",
@@ -948,7 +949,7 @@ dependencies = [
 
 [[package]]
 name = "enhancements"
-version = "0.1.0-pre-release"
+version = "0.2.0-pre-release"
 
 [[package]]
 name = "enumflags2"
@@ -2038,6 +2039,10 @@ name = "mac"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c41e0c4fef86961ac6d6f8a82609f55f31b05e4fce149ac5710e439df7619ba4"
+
+[[package]]
+name = "macros"
+version = "0.2.0-pre-release"
 
 [[package]]
 name = "malloc_buf"
@@ -4132,8 +4137,9 @@ checksum = "09cc8ee72d2a9becf2f2febe0205bbed8fc6615b7cb429ad062dc7b7ddd036a9"
 
 [[package]]
 name = "utils"
-version = "0.1.0-pre-release"
+version = "0.2.0-pre-release"
 dependencies = [
+ "enhancements",
  "serde",
  "tauri",
 ]

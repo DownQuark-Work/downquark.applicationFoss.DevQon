@@ -6,6 +6,7 @@
 resolver = "2"
 members = [
     "./workspaces/enhancements",
+    "./workspaces/macros",
     "./workspaces/utils"
 ]
 [workspace.package]
@@ -36,6 +37,7 @@ serde_json = "1.0"
 
 # workspace dependencies
 enhancements = { path = "./workspaces/enhancements" }
+macros = { path = "./workspaces/macros" }
 utils = { path = "./workspaces/utils" }
 
 [features]

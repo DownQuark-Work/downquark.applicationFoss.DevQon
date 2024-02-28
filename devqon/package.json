@@ -8,7 +8,7 @@
     "build": "parcel build",
     "dev:deprecated": "NODE_OPTIONS=--trace-deprecation parcel",
     "dev:note": "if yarn tauri dev is active up, try deleting `.parcel-cache`, `dist`, _and_ `node_modules` and trying again",
-    "--> SIGSEGV":"SIGSEGV is usually the error thrown when the above needs to happen",
+    "--> SIGSEGV": "SIGSEGV is usually the error thrown when the above needs to happen",
     "dev": "parcel",
     "dev:x": "parcel src-ui/index.html",
     "preview": "vite preview",
@@ -28,6 +28,8 @@
     "lit": "^3.1.0"
   },
   "devDependencies": {
+    "@parcel/config-default": "^2.11.0",
+    "@parcel/core": "^2.11.0",
     "@parcel/transformer-sass": "^2.11.0",
     "@playwright/test": "^1.40.1",
     "@tauri-apps/cli": "^2.0.0-beta.1",
