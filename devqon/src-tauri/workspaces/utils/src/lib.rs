@@ -3,3 +3,4 @@ pub mod constants;
 pub mod helpers;
 pub mod hooks;
 pub mod logging;
+pub mod configuration; // parses from `src-tauri/config`

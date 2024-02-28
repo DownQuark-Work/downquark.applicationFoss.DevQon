@@ -1,22 +1,25 @@
-[dq] # required
-APPLICATION = 'DevQon' # must be unique for each application
-DIRECTORY = ['$HOME','.dq'] # name of folder for _all_ applicable DownQuark projects
+[_dq] # required
+application = 'DevQon' # must be unique for each application
+root_directory = ['$HOME','.dq'] # name of folder for _all_ applicable DownQuark projects
 
 [devqon] # must be lowercase of application name as a single word with all `/[^a-z]/` removed
 auto_update = true
+debug = false
 
 [devqon.directory]
+application = ['$RESOURCE','../../..']
 home = ['dq.DIRECTORY','devqon']
 resource = ['$RESOURCE']
-application = ['$RESOURCE','../../..']
 
 [devqon.logging]
 level = 'WARN'
-
+output = ['std.out']
 
 # TODO - replace `todo.` with `devqon` namespace when integrated
-[todo.database.arango]
+[[todo.database]]
+id = 'ARANGO_DB'
 url = "TODO: arangodb url"
 
-[todo.database.maria]
+[[todo.database]]
+id = 'MARIA_DB'
 url = "TODO: mariadb url"

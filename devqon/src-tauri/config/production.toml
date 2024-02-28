@@ -1,2 +1,2 @@
-[devqon]
-auto_update = false
+[devqon.logging]
+output = ['devqon.directory.home','.logs']

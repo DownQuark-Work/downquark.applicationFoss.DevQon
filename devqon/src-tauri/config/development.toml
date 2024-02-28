@@ -1,2 +1,5 @@
+[devqon]
+debug = true
+
 [devqon.logging]
 level = 'DEBUG'
