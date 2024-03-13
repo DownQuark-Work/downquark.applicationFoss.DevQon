@@ -1,28 +1,31 @@
 use tauri::{AppHandle,Manager};
 use std::collections::HashMap;
+use std::path::Path;
 
-use crate::configuration::DevQonConfig;
+use crate::helpers::standards::fsio;
+use crate::constants::templates;
 
-pub fn get_sys_paths(app_handle: &AppHandle) -> String {
-  // pub fn get_sys_paths(app_handle: &AppHandle) -> HashMap<&str, String> {
+pub fn get_sys_paths(app_handle: &AppHandle) -> HashMap<&str, String> {
   let home_directory_bind = app_handle.path().parse("$HOME");
   let home_directory = home_directory_bind.expect("no folder exists").to_str().unwrap().to_string();
   let resource_directory = app_handle.path().parse("$RESOURCE").expect("no folder exists");
   let application_directory = resource_directory.parent().expect("root dir").parent().expect("root dir").parent().expect("root dir").parent();
-  println!("PATH:: application_directory: {:?}", application_directory.expect("root dir").to_str().unwrap());
-  println!("PATH:: home_directory: {:?}", home_directory);
-  println!("PATH:: resource_directory: {:?}",resource_directory);
+  // println!("PATH:: application_directory: {:?}", application_directory.expect("root dir").to_str().unwrap());
+  // println!("PATH:: home_directory: {:?}", home_directory);
+  // println!("PATH:: resource_directory: {:?}",resource_directory);
+  let app_dir_bind = application_directory.expect("dir DNE").to_str().unwrap();
+  let resource_dir_bind = resource_directory.to_str().unwrap();
+  HashMap::from([
+    ("HOME", home_directory),
+    ("RESOURCE", resource_dir_bind.to_string()),
+    ("APPLICATION", app_dir_bind.to_string()),
+  ])
+}
 
-  println!("");println!("");println!("vvvvvvvv");
-  println!("TODO1:: Return a hashmap from here like below -- use Home:~, DQ: ~/.dq, DevQon:~/.dq/devqon");
-
-  let devqon_configuration = DevQonConfig::make_config(application_directory.expect("root dir").to_str().unwrap());
-  // Print out our settings
-  println!("{:?}", devqon_configuration);
-
-  // let sys_conf_paths:HashMap<&str, > = HashMap::from(["HOME",&home_directory]);
-  // sys_conf_paths
-  // .insert(std_time::epoch_ms(),current_state_enum);
-  // println!("ZXC::home_directory: {:?}",sys_conf_paths);
-  "howdy".to_string()
+pub fn create_config_file(file_path:&Path) {
+  let string_file_path = file_path.to_str().unwrap().to_string();
+  let string_file_dir = file_path.parent().expect("root dir").to_str().unwrap().to_string();
+  let string_file_name = file_path.file_name().expect("path is directory").to_str().unwrap();
+  let template_content = templates::make_template_config(string_file_name);
+  let _written_file = fsio::create_dir_and_write_file(string_file_dir,string_file_path,template_content);
 }

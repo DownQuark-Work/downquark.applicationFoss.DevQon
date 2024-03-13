@@ -1,15 +1,31 @@
 [_dq] # required
 application = 'DevQon' # must be unique for each application
 root_directory = ['$HOME','.dq'] # name of folder for _all_ applicable DownQuark projects
+# root files will always be the application naming convention specified below preceeded by an underscore
+# e.g. ~/.dq/_dq
+# e.g. ~/.dq/devqon/_devqon
+
+[_dq.repository]
+main = 'https://github.com/DownQuark-Work/downquark.ventureCore.DownQuark'
+conf.url = 'https://raw.githubusercontent.com/DownQuark-Work/downquark.ventureCore.DownQuark/develop/.downquark.products'
+conf.semver_key = 'version.semver'
 
 [devqon] # must be lowercase of application name as a single word with all `/[^a-z]/` removed
 auto_update = true
 debug = false
 
+[devqon.repository]
+main = 'https://raw.githubusercontent.com/DownQuark-Work/downquark.applicationFoss.DevQon'
+conf.url = 'https://raw.githubusercontent.com/DownQuark-Work/downquark.applicationFoss.DevQon/develop/.downquark.conf'
+conf.semver_key = 'products.0.version.semver.release'
+# conf.semver_key = 'version.semver.release'
+
 [devqon.directory]
-application = ['$RESOURCE','../../..']
-home = ['dq.DIRECTORY','devqon']
-resource = ['$RESOURCE']
+application = ['@directory_parsed','@application']
+# application = ['$RESOURCE','../../..'] # ABOVE is equivalent to the LEFT
+home = ['@_dq','@root_directory','devqon'] # value prepended with `@` means it is referencing keys in this document
+resource = ['@directory_parsed','@resource']
+# resource = ['$RESOURCE'] # ABOVE is equivalent to the LEFT
 
 [devqon.logging]
 level = 'WARN'

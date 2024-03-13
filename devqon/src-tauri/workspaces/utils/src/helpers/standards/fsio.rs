@@ -1,9 +1,10 @@
 use std::{
   fs::{self, File},
-  io::{BufRead, BufReader, Read},
+  io::{BufRead, BufReader, Read, Write},
 };
-// ../../../../../../../.downquark.conf
-// tauri::path::BaseDirectory::Home,
+use toml::Table;
+
+// READ METHODS
 pub fn read_file(f:&str) -> Result<(), Box<dyn std::error::Error>> {
   println!("READ FILE: {}", f);
   let _str = read_file_string(f)?;
@@ -22,8 +23,8 @@ pub fn read_file(f:&str) -> Result<(), Box<dyn std::error::Error>> {
   Ok(())
 }
 
-fn read_file_string(filepath: &str) -> Result<String, Box<dyn std::error::Error>> {
-  println!("read_file_string");
+pub fn read_file_string(filepath: &str) -> Result<String, Box<dyn std::error::Error>> {
+  // println!("read_file_string: {}", filepath);
   let data = fs::read_to_string(filepath.to_string())?;
   Ok(data)
 }
@@ -64,3 +65,21 @@ fn read_file_buffer(filepath: &str) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn do_something(_data: &[u8]) {println!("do: {:?}",_data)}
+
+// WRITE METHODS
+pub fn create_dir_and_write_file(dir_path:String,file_path:String,file_content:String) -> std::io::Result<()> {
+  fs::create_dir_all(dir_path)?;
+    let mut f = File::create(file_path)?;
+    f.write_all(file_content.as_bytes())?;
+    Ok(())
+}
+
+// CONVERSION METHODS
+pub fn parse_content_as_toml(content:String) -> Table {
+  content.parse::<Table>().unwrap()
+}
+pub fn parse_file_as_toml(path_str:&str) -> Table {
+  let file_contents_bind = read_file_string(path_str);
+  let file_contents = file_contents_bind.expect("invalid config");
+  parse_content_as_toml(file_contents)
+}

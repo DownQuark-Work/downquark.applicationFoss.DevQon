@@ -73,7 +73,8 @@ println!("qry_id: {}",qry_id);
 #[tauri::command]
 pub fn cmd_determine_view_and_title(name: &str) -> String {
   display_correct_view();
-  format!(".::. {}!", name)
+  println!(".::. {}!", name);
+  name.to_string()
 }
 
 // static state
