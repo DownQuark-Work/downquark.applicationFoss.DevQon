@@ -850,6 +850,7 @@ version = "0.2.0-pre-release"
 dependencies = [
  "enhancements",
  "macros",
+ "persistence",
  "serde_json",
  "tauri",
  "tauri-build",
@@ -2613,6 +2614,13 @@ name = "percent-encoding"
 version = "2.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e3148f5046208a5d56bcfc03053e3ca6334e51da8dfb19b6cdc8b306fae3283e"
+
+[[package]]
+name = "persistence"
+version = "0.2.0-pre-release"
+dependencies = [
+ "macros",
+]
 
 [[package]]
 name = "pest"

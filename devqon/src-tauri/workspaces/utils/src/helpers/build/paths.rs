@@ -1,6 +1,6 @@
 use tauri::{AppHandle,Manager};
-use std::collections::HashMap;
-use std::path::Path;
+use std::{ collections::HashMap,
+          path::Path, };
 
 use crate::helpers::standards::fsio;
 use crate::constants::templates;
@@ -28,4 +28,10 @@ pub fn create_config_file(file_path:&Path) {
   let string_file_name = file_path.file_name().expect("path is directory").to_str().unwrap();
   let template_content = templates::make_template_config(string_file_name);
   let _written_file = fsio::create_dir_and_write_file(string_file_dir,string_file_path,template_content);
+}
+
+pub fn update_application_version(file_path:&str,previous_app_version:&str,new_app_version:&str) {
+  let file_content = fsio::read_file_string(file_path);
+  let updated_file_content = file_content.expect("no match found").replace(previous_app_version,new_app_version);
+  let _ = fsio::overwrite_file(file_path,&updated_file_content);
 }

@@ -16,6 +16,7 @@ pub fn run() {
     .setup(|app| {
       #[cfg(debug_assertions)] // only include this code on debug builds
         { app.get_webview_window("main").unwrap().open_devtools(); }
+
         let tray_app_handle = dq_tray::create_system_tray(app); // tray menu item
         dq_state::initialize_app_states(app); // `manage` states
         dq_build::initialize_application(&tray_app_handle.unwrap());

@@ -21,7 +21,6 @@ pub fn initialize_application(tray_handle: &tauri::AppHandle){
   #[cfg(target_os = "macos")] // only supported on macos - only run on macos
   let _ = tray_sys.set_icon_as_template(true);
 
-
   tauri::async_runtime::spawn(async move { // run initialization code on new task so app doesn't freeze
     let sys_paths = paths::get_sys_paths(tray_sys.app_handle());
     // println!("build.rs > sys_paths: {:?}",sys_paths);
@@ -33,11 +32,18 @@ pub fn initialize_application(tray_handle: &tauri::AppHandle){
     println!("on_app_launch_conf: {:?}",on_app_launch_conf.get_app_launch_conf());
     println!("START HERE!");
     println!("START HERE!");
+    println!("https://docs.rs/sqlx/latest/sqlx/");
+    println!("https://docs.rs/sqlx/latest/sqlx/fn.raw_sql.html:");
+    println!("https://docs.rs/sqlx/latest/sqlx/types/uuid/index.html: Use version 7");
+    println!("THEN");
+    println!("https://docs.rs/arangors/latest/arangors/");
     println!("START HERE!");
     println!("START HERE!");
     println!("START HERE!");
     println!("stub the views and load them (with the prompt to update?) at this point ... move it into another method call outside of the main build path though");
+    
     // After it's done, close the splashscreen and display the main window
+    // MAYBE THIS:: https://docs.rs/tauri/2.0.0-beta.11/tauri/trait.Manager.html#method.listen_any
     // println!("initial_page: {initial_page:?}");
     let _ = splashscreen_window.destroy(); // should only be needed once
     main_window.show().unwrap();

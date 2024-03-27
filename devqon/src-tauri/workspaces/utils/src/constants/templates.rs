@@ -2,7 +2,7 @@ use chrono::Utc;
 
 const TEMPLATE_DQ:&str = "
 [DownQuark]
-version='0.0.1'
+version='0.0.0'
 created=AAAAAA
 updated=AAAAAA
 
@@ -11,7 +11,7 @@ name=''
 email=''
 
 [DownQuark.Products]
-devqon='0.0.0'
+devqon='devqon/_devqon'
 ";
 
 const TEMPLATE_DEVQON:&str = "
@@ -25,8 +25,6 @@ name=''
 conf_toml=''
 ";
 
-
-// pub fn make_template_config(template_kind:&str) -> String {
 pub fn make_template_config(template_kind:&str) -> String{
   println!("template+dq: {:?}", template_kind);
   let mut selected_template = match template_kind {

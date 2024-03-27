@@ -1,0 +1,142 @@
+-- MySQL dump 10.13  Distrib 8.3.0, for macos14.2 (arm64)
+--
+-- Host: localhost    Database: DevQon
+-- ------------------------------------------------------
+-- Server version	11.2.2-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `_project`
+--
+
+DROP TABLE IF EXISTS `_project`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `_project` (
+  `id` enum('DEVELOPMENT_QONSOLE','DEVELOPMENT_QONSOLE__QANBAN_BOARD') DEFAULT 'DEVELOPMENT_QONSOLE',
+  `version` tinytext DEFAULT '0.0.0-pre-alpha',
+  `path_repository` tinytext DEFAULT 'https://github.com/DownQuark-Work/downquark.applicationFoss.DevQon',
+  `path_website` tinytext DEFAULT 'https://www.downquark.work/?projects_active_foss_devqon',
+  `created` timestamp NULL DEFAULT current_timestamp(),
+  `edited` timestamp NULL DEFAULT current_timestamp(),
+  KEY `id` (`id`),
+  CONSTRAINT `_project_ibfk_1` FOREIGN KEY (`id`) REFERENCES `DownQuark`.`Map_Projects` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='tbd';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `_project`
+--
+
+LOCK TABLES `_project` WRITE;
+/*!40000 ALTER TABLE `_project` DISABLE KEYS */;
+/*!40000 ALTER TABLE `_project` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `account_associations`
+--
+
+DROP TABLE IF EXISTS `account_associations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `account_associations` (
+  `from` uuid NOT NULL,
+  `to` uuid NOT NULL,
+  `updated` timestamp NULL DEFAULT current_timestamp(),
+  KEY `from` (`from`),
+  KEY `to` (`to`),
+  CONSTRAINT `account_associations_ibfk_1` FOREIGN KEY (`from`) REFERENCES `accounts` (`id`),
+  CONSTRAINT `account_associations_ibfk_2` FOREIGN KEY (`to`) REFERENCES `accounts` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='\nsocial aspects - tbd\n';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `account_associations`
+--
+
+LOCK TABLES `account_associations` WRITE;
+/*!40000 ALTER TABLE `account_associations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `account_associations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `accounts`
+--
+
+DROP TABLE IF EXISTS `accounts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `accounts` (
+  `id` uuid NOT NULL,
+  `ip_address` inet4 DEFAULT NULL,
+  `last_active` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`,`ip_address`),
+  CONSTRAINT `accounts_ibfk_1` FOREIGN KEY (`id`) REFERENCES `DownQuark`.`accounts` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='\nthis table will be expanded as we continue to figure out what\nmetrics we want to track, etc\n';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accounts`
+--
+
+LOCK TABLES `accounts` WRITE;
+/*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
+INSERT INTO `accounts` VALUES ('65bd3162-ebea-11ee-8343-c29d42d3cfc7','127.0.0.1','2024-03-27 03:37:39');
+/*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `metrics`
+--
+
+DROP TABLE IF EXISTS `metrics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `metrics` (
+  `account` uuid NOT NULL DEFAULT uuid(),
+  `location` inet4 NOT NULL,
+  `entry` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`account`,`location`),
+  CONSTRAINT `metrics_ibfk_1` FOREIGN KEY (`account`, `location`) REFERENCES `accounts` (`id`, `ip_address`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='tbd';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `metrics`
+--
+
+LOCK TABLES `metrics` WRITE;
+/*!40000 ALTER TABLE `metrics` DISABLE KEYS */;
+/*!40000 ALTER TABLE `metrics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'DevQon'
+--
+
+--
+-- Dumping routines for database 'DevQon'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-03-27  2:36:32

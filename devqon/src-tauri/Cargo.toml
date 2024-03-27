@@ -7,6 +7,7 @@ resolver = "2"
 members = [
     "./workspaces/enhancements",
     "./workspaces/macros",
+    "./workspaces/persistence",
     "./workspaces/utils"
 ]
 [workspace.package]
@@ -38,6 +39,7 @@ tauri-plugin-shell = "2.0.0-beta"
 # workspace dependencies
 enhancements = { path = "./workspaces/enhancements" }
 macros = { path = "./workspaces/macros" }
+persistence = { path = "./workspaces/persistence" }
 utils = { path = "./workspaces/utils" }
 
 [features]

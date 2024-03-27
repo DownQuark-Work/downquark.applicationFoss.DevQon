@@ -7,7 +7,7 @@ mod initialize {
 
   use crate::configuration::DevQonConfig;
   use crate::helpers::{
-    build::{http, initialize::validate,},
+    build::{http, initialize::validate, paths, },
     standards::fsio,
   };
 
@@ -34,11 +34,11 @@ mod initialize {
     total_validation_successes
   }
   
-  pub fn get_local_app_versions(current_config_files:HashMap<String, Vec<String>>) -> HashMap<String,String> {
+  pub fn get_local_app_versions(current_config_files:HashMap<String, Vec<String>>) -> HashMap<String,Vec<String>> {
     let mut local_app_versions = HashMap::new();
     for (application, config_file) in current_config_files.iter() {
       let config_file_version = validate::get_version_in_conf_file(&config_file.join("/"));
-      local_app_versions.insert(application.to_string(),config_file_version);
+      local_app_versions.insert(application.to_string(),vec![config_file_version,config_file.join("/").to_string()]);
     }
     local_app_versions
   }
@@ -66,14 +66,25 @@ mod initialize {
     remote_app_versions
   }
 
-  pub fn check_for_version_update(local_versions:HashMap<String,String>,remote_versions:HashMap<String,String>) -> bool {
+  pub fn check_for_version_update(local_versions:HashMap<String,Vec<String>>,remote_versions:HashMap<String,String>) -> bool {
     let mut update_needed = false;
     for (application, remote_version) in remote_versions.iter() {
+      // If first load then update to most recent production version
+      let mut version_auto_update = false;
+      if local_versions[application][0] == "\"0.0.0\"" { // first load after auto-generation
+        paths::update_application_version(
+            &local_versions[application][1],
+            &local_versions[application][0].replace("\"", ""),
+            &remote_version.replace("\"", ""),
+        );
+        version_auto_update = true;
+      }
+      
       // Assuming that release versions will be semver only.
       // Any hyphen would be releated with a release candidate, apha, beta, etc
       // - ignore if found, and accept the stored version as correct
-      if !remote_version.contains("-") {
-        let local_semver_bind = local_versions[application].replace("\"", "");
+      if !version_auto_update && !remote_version.contains("-") {
+        let local_semver_bind = local_versions[application][0].replace("\"", "");
         let local_semver = local_semver_bind.split(".").collect::<Vec<_>>();
         let remote_semver_bind = remote_version.replace("\"", "");
         let remote_semver = remote_semver_bind.split(".").collect::<Vec<_>>();
@@ -173,10 +184,8 @@ pub async fn configure_app_launch_config(dq_conf:&DevQonConfig) -> OnAppLaunchSt
   let init_page_to_view = initialize::determine_init_page_to_view(local_config_file_paths);
   let local_config_information = &dq_config_file_paths["LOCAL_VALIDATION"];
   let local_app_versions = initialize::get_local_app_versions(local_config_information.clone());
-  // println!("local_app_versions: {local_app_versions:?}");
   let remote_config_information = &dq_config_file_paths["REMOTE_VALIDATION"];
   let remote_app_versions = initialize::get_remote_app_versions(remote_config_information.clone()).await;
-  // println!("BUILD: remote_app_versions: {remote_app_versions:?}");
   let new_version_available = initialize::check_for_version_update(local_app_versions,remote_app_versions);
   
   validate::pre_app_launch(init_page_to_view,new_version_available)

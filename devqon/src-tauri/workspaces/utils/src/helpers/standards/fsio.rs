@@ -73,6 +73,11 @@ pub fn create_dir_and_write_file(dir_path:String,file_path:String,file_content:S
     f.write_all(file_content.as_bytes())?;
     Ok(())
 }
+pub fn overwrite_file(file_path:&str,updated_file_content:&str)  -> std::io::Result<()> {
+  let mut f = File::options().write(true).open(file_path)?;
+  f.write_all(updated_file_content.as_bytes())?;
+  Ok(())
+}
 
 // CONVERSION METHODS
 pub fn parse_content_as_toml(content:String) -> Table {

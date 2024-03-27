@@ -1,0 +1,154 @@
+Project DevQon {
+  Note: '''
+    # DevQon
+    DevQon is the little thing to help make big things
+
+    ## Benefits
+    - do your work and let the metrics follow
+    - integrates with DownQuark
+  '''
+}
+
+/** DownQuark **/
+  /** Tables **/
+Table DownQuark._downquark {
+  id uuid [pk]
+  version tinytext [default:'0.0.0-pre-alpha']
+  path_repository tinytext [default:'https://github.com/DownQuark-Work']
+  path_website tinytext [default:'https://www.downquark.work']
+  created timestamp [default:`now()`]
+  edited timestamp [default:`now()`]
+  
+  Note: 'tbd'
+}
+Table DownQuark.projects {
+  id tinyint [pk, increment, not null]
+  project_id DownQuark.enum_project [ref: - DownQuark.Map_Projects.id]
+  created timestamp [default:`now()`]
+  edited timestamp [default:`now()`]
+  
+  Note: 'each project deemed sufficient will have their row here'
+}
+
+Table DownQuark.accounts {
+  id smallint [pk, note: 'used only inside the DownQuark database',
+    ref: - DownQuark.accounts_authorization.id,
+    ref: - DownQuark.accounts_development.id,
+    ref: - DownQuark.accounts_organization.id,
+    ref: - DownQuark.accounts_personal.id
+  ]
+  uuid uuid [unique, not null, note: 'this will be the lookup reference in subsequent projects']
+  type DownQuark.enum_account_type [not null, default:'PERSONAL']
+  created timestamp [default:`now()`]
+  edited timestamp [default:`now()`]
+  
+  Note: '''
+    all users across all projects will have a mapping on this database table.
+    subsequent projects and tables will store the relevant info required for their integrations
+  '''
+}
+Table DownQuark.accounts_authorization {
+  id smallint [pk]
+  salt varchar(13)
+  hash varchar(256) // probably overkill
+}
+// Each of the (non-auth) accouts_<TYPE> can reference the others to store/retrieve information as needed
+Table DownQuark.accounts_development {
+  id smallint [pk,
+    ref: - DownQuark.accounts_organization.id,
+    ref: - DownQuark.accounts_personal.id
+  ]
+  api_key tinytext [unique, not null]
+  expires datetime [note: '90 days?']
+}
+Table DownQuark.accounts_organization {
+  id smallint [pk,
+    ref: - DownQuark.accounts_personal.id
+  ]
+  name varchar(30) [note: 'the name of the organization']
+  address varchar(200)
+  state varchar(15)
+  /* The longest state name becomes a tie for first place
+      between “North Carolina” and “South Carolina” at 14
+      characters each if we do not include “Commonwealth of”
+      or any other terminology in the names.
+  */
+
+}
+Table DownQuark.accounts_personal {
+  id smallint [pk]
+  name varchar(30)
+  username varchar(30)
+  email varchar(50)
+  last_login datetime [default:  `now()`]
+}
+
+/** Enum maps */
+Table DownQuark.Map_Projects {
+  id DownQuark.enum_project [pk]
+  name varchar(50) [not null]
+  path varchar(100) [
+    note:'''
+      this will most likely be the database table
+      - but could be github, etc
+    '''
+  ]
+}
+
+/** ~!~ END OF DOWNQUARK DB ~!~ **/
+
+/** DevQon **/
+  /** Tables **/
+Table DevQon._project {
+  id DownQuark.enum_project [default:'DEVELOPMENT_QONSOLE', ref: - DownQuark.Map_Projects.id]
+  version tinytext [default:'0.0.0-pre-alpha']
+  path_repository tinytext [default:'https://github.com/DownQuark-Work/downquark.applicationFoss.DevQon']
+  path_website tinytext [default:'https://www.downquark.work/?projects_active_foss_devqon']
+  created timestamp [default:`now()`]
+  edited timestamp [default:`now()`]
+
+  Note: 'tbd'
+}
+Table DevQon.metrics {
+  account uuid [not null]
+  entry timestamp [default:`now()`]
+
+  Note: 'tbd'
+}
+
+Table DevQon.accounts {
+  id uuid [pk, not null, ref: - DownQuark.accounts.uuid]
+  ip_address tinytext [null]
+  
+  Note: '''
+    this table will be expanded as we continue to figure out what
+    metrics we want to track, etc
+  '''
+}
+Table DevQon.account_associations {
+  from uuid [not null, ref: > DevQon.accounts.id]
+  to uuid [not null, ref: > DevQon.accounts.id]
+  updated timestamp [default:`now()`]
+  
+  Note: '''
+    social aspects - tbd
+  '''
+}
+
+
+/** Enums */
+enum DownQuark.enum_project {
+  DEVELOPMENT_QONSOLE
+  DEVELOPMENT_QONSOLE__QANBAN_BOARD
+}
+enum DownQuark.enum_account_type {
+  DEVELOPMENT
+  PERSONAL
+  ORGANIZATION // not sure yet - but why not
+}
+
+/** Refs */
+Ref: DevQon.metrics.(account,entry) - DevQon.accounts.(id, ip_address)
+// Ref: DownQuark.accounts.id - DownQuark.accounts_authorization.id
+// composite example:
+// // Ref: users.(username, role) - posts.(title, status)
