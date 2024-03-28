@@ -1,3 +1,17 @@
+use super::common_queries;
+
+mod mariadb {
+  pub fn get_connection_string()->String{
+    "mysql://user:pass@host/database".to_string()
+  }
+}
+
+pub fn db_connection()->String{
+  let qualiftied_connection_string = mariadb::get_connection_string();
+  println!("qualiftied_connection_string: {qualiftied_connection_string:?}");
+  qualiftied_connection_string.to_string()
+}
+
 // https://docs.rs/sqlx/latest/sqlx/
 
 // // No to below:
@@ -18,15 +32,3 @@
 // connect::connect_to_db(); // todo: wrap in above type f
 
 // private config and auth collation etc inside of this file
-
-mod mariadb {
-  pub fn get_connection_string()->String{
-    "mysql://user:pass@host/database".to_string()
-  }
-}
-
-pub fn db_connection()->String{
-  let qualiftied_connection_string = mariadb::get_connection_string();
-  println!("qualiftied_connection_string: {qualiftied_connection_string:?}");
-  qualiftied_connection_string.to_string()
-}

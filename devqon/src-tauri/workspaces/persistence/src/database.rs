@@ -1,3 +1,4 @@
+mod common_queries;
 mod arango;
 mod maria;
 
