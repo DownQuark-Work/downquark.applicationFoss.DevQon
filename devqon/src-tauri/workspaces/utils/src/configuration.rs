@@ -12,6 +12,22 @@ pub struct DownQuark {
 
 #[derive(Debug,serde::Deserialize)]
 #[allow(unused)]
+struct AuthenticationCredentials {
+  user: String,
+  pass: String,
+  additional: Vec<String>
+}
+
+#[derive(Debug,serde::Deserialize)]
+#[allow(unused)]
+struct ConnectionConfig {
+  host: String,
+  port: String,
+  additional: Vec<String>
+}
+
+#[derive(Debug,serde::Deserialize)]
+#[allow(unused)]
 struct RepositoryConfig {
   pub url: String,
   pub semver_key: String,
@@ -55,20 +71,37 @@ pub struct DevQon {
   directory: DevQonDirectory,
   pub directory_parsed: DevQonParsedDirectory,
   logging: DevQonLogging,
+  persistence:Persistence,
   repository:ApplicationRepo,
 }
 
 #[derive(Debug,serde::Deserialize)]
 #[allow(unused)]
-struct Database {
+struct DatabaseMaria{
   id: String,
-  url: String,
+  auth:AuthenticationCredentials,
+  connection:ConnectionConfig,
 }
 
 #[derive(Debug,serde::Deserialize)]
 #[allow(unused)]
-struct ToDo {
-  database:Vec<Database>,
+struct DatabaseArango{
+  id: String,
+  url: String,
+  auth:AuthenticationCredentials,
+}
+
+#[derive(Debug,serde::Deserialize)]
+#[allow(unused)]
+struct Database {
+  arango:DatabaseArango,
+  maria:DatabaseMaria,
+}
+
+#[derive(Debug,serde::Deserialize)]
+#[allow(unused)]
+pub struct Persistence {
+  database:Database,
 }
 
 #[derive(Debug,serde::Deserialize)]
@@ -76,7 +109,6 @@ struct ToDo {
 pub struct DevQonConfig {
   pub _dq:DownQuark,
   pub devqon:DevQon,
-  todo:ToDo,
 }
 
 impl DevQonConfig {
@@ -88,7 +120,8 @@ impl DevQonConfig {
         .add_source(File::with_name(&(config_directory.clone()+&format!("{}", run_env))) // file with env overrides - defaulted to 'development' above
             .required(false),) // optional file - does not throw if file DNE
         .add_source( // optional local configuration file - ensure locality by omitting from repository
-          File::with_name(&(config_directory.clone()+"local")).required(false))
+          File::with_name(&(config_directory.clone()+"env/database.secret")).required(false))
+          // File::with_name(&(config_directory.clone()+"local")).required(false))
           // below applies cli variables specified by given prefix
         .add_source(Environment::with_prefix("dq")) // `DQ_DEBUG=1 ./target/app` would set the `debug` key to true
         .add_source(Environment::with_prefix("devqon")) // `DEVQON_DEBUG=0 DQ_DEBUG=1 ./target/app` would immediately overwrite the `debug` key to be false
