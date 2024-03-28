@@ -16,11 +16,13 @@ pub fn config_persistent(persistent_type:EnumPersistenceTypes) {
   println!("persisting: {:?}", persistent_type);
   match persistent_type {
     EnumPersistenceTypes::ProtocolEthereum => { println!("PROTOCAL TYPE CALLED: {:?}", persistent_type);},
-    _ => database::confiigure_connection(persistent_type)
+    _ => database::configure_connection(persistent_type)
   };
 }
 
-pub fn request_data(){
+pub fn request_persistent_data(tmp:&str)->String{
   println!("match where to route the data and do so:");
   println!("then (from method) return the fully parsed data to where it came from");
+  let ret_data = "Here's your Data".to_owned() + tmp;
+  ret_data.to_string()
 }

@@ -46,6 +46,12 @@ pub fn initialize_application(tray_handle: &tauri::AppHandle){
     println!("stub the views and load them (with the prompt to update?) at this point ... move it into another method call outside of the main build path though");
 
     persistence::config_persistent(persistence::EnumPersistenceTypes::DatabaseMaria);
+    let mut requested_data = persistence::request_persistent_data("A");
+    println!("requested_data: {requested_data:?}");
+    requested_data = persistence::request_persistent_data("Z");
+    println!("requested_data: {requested_data:?}");
+    println!("");
+    println!("");
     
     // After it's done, close the splashscreen and display the main window
     // MAYBE THIS:: https://docs.rs/tauri/2.0.0-beta.11/tauri/trait.Manager.html#method.listen_any
