@@ -35,6 +35,7 @@ pub fn initialize_application(tray_handle: &tauri::AppHandle){
     println!("https://docs.rs/sqlx/latest/sqlx/");
     println!("https://docs.rs/sqlx/latest/sqlx/fn.raw_sql.html:");
     println!("https://docs.rs/sqlx/latest/sqlx/types/uuid/index.html: Use version 7");
+    println!("https://docs.rs/sqlx/latest/sqlx/struct.QueryBuilder.html");
     println!("THEN");
     println!("https://docs.rs/arangors/latest/arangors/");
     println!("START HERE!");
