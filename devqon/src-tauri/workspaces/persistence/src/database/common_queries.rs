@@ -12,32 +12,32 @@ mod query_arango {
   use super::EnumCommonQuery;
   pub fn run_qry (q:EnumCommonQuery)->String {
     let mut ret_str = "Running ARANGO Query";
-    // if q = EnumCommonQuery::GetGraphMetrics {
     match q {
       EnumCommonQuery::GetGraphMetrics => ret_str = "MUTATED ARANGO Query",
-      _ => ret_str,
-    }
+      _ => ret_str = ret_str,
+    };
+    ret_str.to_string()
   }
 }
 
 mod query_maria {
   use super::EnumCommonQuery;
-  pub fn run_qry (q:EnumCommonQuery)->&str {
+  pub fn run_qry (q:EnumCommonQuery)->String {
     let mut ret_str = "Running MARIA Query";
-    // if q = EnumCommonQuery::GetGraphMetrics {
     match q {
       EnumCommonQuery::GetGraphMetrics => ret_str = "MUTATED MARIA Query",
-      // EnumCommonQuery::GetGraphMetrics => ret_str = ret_str.to_owned() + "more return",
-      _ => ret_str,
-    }
+      _ => ret_str = ret_str,
+    };
+    ret_str.to_string()
   }
 }
 
 
 pub fn run_common_query (qry:EnumCommonQuery)->String {
-  match qry { // some queries could only relational
+  let ret_qry = match qry { // some queries could only relational
     EnumCommonQuery::ShowUserAssociations | EnumCommonQuery::GetGraphMetrics => query_arango::run_qry(qry),
     EnumCommonQuery::GetProjectVersion | EnumCommonQuery::GetProjectVersion => query_maria::run_qry(qry),
-    _ => { "we would have something in place to determine what db type was used last and default to running the ambiguos query on that one" }
-  } 
+    _ => { "we would have something in place to determine what db type was used last and default to running the ambiguos query on that one".to_string() }
+  };
+  ret_qry
 }
