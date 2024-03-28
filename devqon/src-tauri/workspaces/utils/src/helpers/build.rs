@@ -45,10 +45,10 @@ pub fn initialize_application(tray_handle: &tauri::AppHandle){
     println!("START HERE!");
     println!("stub the views and load them (with the prompt to update?) at this point ... move it into another method call outside of the main build path though");
 
-    persistence::config_persistent(persistence::EnumPersistenceTypes::DatabaseMaria);
-    let mut requested_data = persistence::request_persistent_data("A");
+    let db_instance = persistence::config_persistent(&persistence::EnumPersistenceTypes::DatabaseMaria);
+    let mut requested_data = persistence::request_persistent_data(&db_instance,"A");
     println!("requested_data: {requested_data:?}");
-    requested_data = persistence::request_persistent_data("Z");
+    requested_data = persistence::request_persistent_data(&db_instance,"Z");
     println!("requested_data: {requested_data:?}");
     println!("");
     println!("");

@@ -1,5 +1,11 @@
 use super::common_queries;
 
+mod arangodb {
+  pub fn get_connection_string()->String{
+    "arango/connection/string".to_string()
+  }
+}
+
 mod mariadb {
   pub fn get_connection_string()->String{
     "mysql://user:pass@host/database".to_string()
@@ -10,6 +16,13 @@ pub fn db_connection()->String{
   let qualiftied_connection_string = mariadb::get_connection_string();
   println!("qualiftied_connection_string: {qualiftied_connection_string:?}");
   qualiftied_connection_string.to_string()
+}
+
+pub fn db_run_query()->String{
+  println!("match where to route the data and do so:"); // obviously with a helper/util of some sort
+  println!("then (from method) return the fully parsed data to where it came from");
+  println!("-- mocking only maria for examples");
+  "-- mocking only maria for examples".to_string()
 }
 
 // https://docs.rs/sqlx/latest/sqlx/
