@@ -5234,6 +5234,7 @@ dependencies = [
  "chrono",
  "config",
  "enhancements",
+ "persistence",
  "reqwest",
  "serde",
  "tauri",

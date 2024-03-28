@@ -6,6 +6,8 @@ use crate::helpers::{
   tray as dq_tray,
   state as dq_state
 };
+
+// use persistence::database;
 // use crate::hooks::traits as dq_hooks;
 
 mod http;
@@ -42,6 +44,8 @@ pub fn initialize_application(tray_handle: &tauri::AppHandle){
     println!("START HERE!");
     println!("START HERE!");
     println!("stub the views and load them (with the prompt to update?) at this point ... move it into another method call outside of the main build path though");
+
+    persistence::config_persistent(persistence::EnumPersistenceTypes::DatabaseMaria);
     
     // After it's done, close the splashscreen and display the main window
     // MAYBE THIS:: https://docs.rs/tauri/2.0.0-beta.11/tauri/trait.Manager.html#method.listen_any
