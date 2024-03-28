@@ -13,7 +13,7 @@ mod query_arango {
   pub fn run_qry (q:EnumCommonQuery)->String {
     let mut ret_str = "Running ARANGO Query";
     match q {
-      EnumCommonQuery::GetGraphMetrics => ret_str = "MUTATED ARANGO Query",
+      EnumCommonQuery::GetGraphMetrics => ret_str = "ARANGO Get Metrics For Graph query",
       _ => ret_str = ret_str,
     };
     ret_str.to_string()
@@ -25,7 +25,8 @@ mod query_maria {
   pub fn run_qry (q:EnumCommonQuery)->String {
     let mut ret_str = "Running MARIA Query";
     match q {
-      EnumCommonQuery::GetGraphMetrics => ret_str = "MUTATED MARIA Query",
+      EnumCommonQuery::AuthenticateUser => ret_str = "MARIA Authenticate User query",
+      EnumCommonQuery::GetProjectVersion => ret_str = "MARIA Get Project Version query",
       _ => ret_str = ret_str,
     };
     ret_str.to_string()
