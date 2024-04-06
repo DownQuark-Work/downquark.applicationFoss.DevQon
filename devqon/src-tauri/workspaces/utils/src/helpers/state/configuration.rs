@@ -4,6 +4,7 @@ use crate::configuration::DevQonConfig;
 
 pub fn set_app_configuration(sys_conf_paths:HashMap<&str, String>,app_handle: &AppHandle){
   let devqon_config = DevQonConfig::make_config(sys_conf_paths);
+  // println!("devqon_config: {devqon_config:?}");
   app_handle.manage(devqon_config.unwrap());
   app_handle.state::<DevQonConfig>();
 }

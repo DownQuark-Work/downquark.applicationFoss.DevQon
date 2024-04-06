@@ -1,3 +1,106 @@
+-- # DUMP DATABASES:
+--  mariadb-dump --user=mlnck@localhost --lock-tables --all-databases > ./all-database-dump.sql
+
+-- https://mariadb.com/kb/en/common-table-expressions/
+-- https://www.techonthenet.com/mariadb/loops/repeat.php
+/** MORE INTERIM WORK AT EOF*/
+/*
+##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$#
+DROP PROCEDURE IF EXISTS CreatePaths;
+
+DELIMITER ~!~
+
+CREATE PROCEDURE CreatePaths ( proj_id UUID )
+BEGIN
+  DECLARE project_iteration_done INT DEFAULT FALSE;
+  DECLARE concat_path_done INT DEFAULT FALSE;
+
+DECLARE dev_control_int INT DEFAULT 0;
+
+DECLARE fetch_project_id UUID;
+DECLARE fetch_path_part VARCHAR(50);
+DECLARE fetch_proj_parent UUID;
+
+DECLARE file_path VARCHAR(255) DEFAULT "";
+DECLARE proj_name VARCHAR(50);
+
+  DECLARE cursor_dq_projects CURSOR FOR
+    SELECT DISTINCT(uuid)
+    FROM `downquark`.`_dq_projects`
+    WHERE
+        (proj_id IS NOT NULL AND uuid = proj_id)
+        OR (proj_id IS NULL AND 1);
+
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET project_iteration_done = TRUE;
+
+IF ISNULL(proj_id) THEN -- allows TO append IF id IS passed AS argument
+  DROP TABLE IF EXISTS dqrx; -- timestamp IN TABLE below can be used WHEN adding NEW projects
+  CREATE TABLE dqrx (pid UUID PRIMARY KEY, pname VARCHAR(50) UNIQUE, pth VARCHAR(255));
+END IF;
+
+  OPEN cursor_dq_projects;
+    loop_project_uuids: LOOP
+    
+    FETCH cursor_dq_projects INTO fetch_project_id;
+    IF project_iteration_done THEN LEAVE loop_project_uuids; END IF;
+
+############ INNER ##############
+
+-- FIRST run - BEFORE iterations
+  -- - store the static data & config_file name
+SELECT project_id,path_os_config_file
+    INTO proj_name,file_path
+  FROM `downquark`.`_dq_projects` dq
+  WHERE `uuid` = fetch_project_id;
+
+-- needed for initial select statement to find a match
+SET fetch_proj_parent = fetch_project_id;
+
+repeat_concat_file_path: REPEAT
+
+  SELECT `parent`,`path_os_config_dir`
+      INTO fetch_proj_parent, fetch_path_part
+    FROM `downquark`.`_dq_projects` dq
+    WHERE `dq`.`uuid` = fetch_proj_parent;
+
+  SET file_path = CONCAT_WS( "/", fetch_path_part, file_path);
+
+UNTIL ISNULL(fetch_proj_parent)
+  END REPEAT repeat_concat_file_path;
+
+############ END INNER ##############
+
+INSERT INTO dqrx (pid,pname,pth) VALUES (fetch_project_id,proj_name,file_path);
+
+-- DEV+DEBUG BELOW
+-- SET dev_control_int = dev_control_int + 1;
+-- IF dev_control_int>=5 THEN SET project_iteration_done = TRUE; END IF;
+
+    END LOOP loop_project_uuids;
+  CLOSE cursor_dq_projects;
+
+END; ~!~
+
+DELIMITER ;
+
+-- CALL CreatePaths('362b79ae-f0a4-11ee-96c2-c29d42d3cfc8');
+-- CALL CreatePaths ('4e4beb7e-f0a2-11ee-96c2-c29d42d3cfc8'); -- ROOT: DOWNQUARK
+CALL CreatePaths(NULL); -- run ON ALL rows
+
+SELECT * FROM dqrx;
+##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$#
+
+-- https://mariadb.com/kb/en/common-table-expressions/
+
+-- https://www.techonthenet.com/mariadb/loops/repeat.php
+-----------------------
+
+-- https://mariadb.com/kb/en/triggers-events/
+--  https://mariadb.com/kb/en/create-event/
+ -- https://mariadb.com/kb/en/show-tables/
+--  https://mariadb.com/kb/en/default/
+*/
+
 -- https://mariadb.com/kb/en/data-types/
 -- https://mariadb.com/kb/en/development-writing-plugins-for-mariadb/
 -- SELECT UUID();
@@ -7,6 +110,15 @@
 DROP SCHEMA IF EXISTS `DevQon`;
 DROP SCHEMA IF EXISTS `DownQuark`;
 
+/*
+ * Needs to be updated but this will help with how we're handling user registration:
+ * 
+ * CREATE DEFINER=`root`@`localhost` TRIGGER memberadded
+AFTER INSERT
+ON `member` FOR EACH ROW
+  INSERT INTO qollection (`key.id.member`)
+    VALUES (NEW.id)
+ */
 
 CREATE SCHEMA `DownQuark`;
 
@@ -123,8 +235,6 @@ ALTER TABLE `DevQon`.`account_associations` COMMENT = '
 social aspects - tbd
 ';
 
-ALTER TABLE `DownQuark`.`projects` ADD FOREIGN KEY (`project_id`) REFERENCES `DownQuark`.`Map_Projects` (`id`);
-
 ALTER TABLE `DownQuark`.`accounts_authorization` ADD FOREIGN KEY (`id`) REFERENCES `DownQuark`.`accounts` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `DownQuark`.`accounts_development` ADD FOREIGN KEY (`id`) REFERENCES `DownQuark`.`accounts` (`id`);
@@ -142,3 +252,52 @@ ALTER TABLE `DevQon`.`account_associations` ADD FOREIGN KEY (`from`) REFERENCES 
 ALTER TABLE `DevQon`.`account_associations` ADD FOREIGN KEY (`to`) REFERENCES `DevQon`.`accounts` (`id`);
 
 ALTER TABLE `DevQon`.`metrics` ADD FOREIGN KEY (`account`,`location`) REFERENCES `DevQon`.`accounts`(`id`,`ip_address`);
+
+
+/*Re-integrate into procedure after outerloop complete*/
+/*
+##########################
+-- FIRST run - BEFORE iterations - store the name OF the file
+SELECT path_os_config_file INTO file_path
+FROM `downquark`.`_dq_projects` dq
+WHERE `uuid` = proj_id;
+  
+  OPEN cursor_create_file_path(proj_id);
+  loop_concat_path: LOOP
+-- qrk_rpt: REPEAT
+  
+-- CURRENT!! UPDATE TO USE REPEAT!! FROM ABOVE LINE
+--   THEN USE BBELOW FOR THE NULL CHECK
+--   SHOWULD BE ABLE TO USE THE SAME QUERY -- I THINK
+--   `REPEAT` ALLOWS US TO MAKE NEW QUERIES EACH TIME
+  -- NOWHERE NEAR AS EFFECTIVE BUT FINE FOR US FOR NOW
+  /*
+   SELECT `parent` INTO @nullTst
+    FROM `downquark`.`_dq_projects` dq
+    WHERE uuid = '4e4beb7e-f0a2-11ee-96c2-c29d42d3cfc8';
+  SELECT ISNULL(@nullTst); 
+   */
+
+  FETCH cursor_create_file_path INTO proj_parent,path_part;
+
+SET file_path = CONCAT_WS( "/", path_part , file_path);
+
+INSERT INTO dqrx (pid) VALUES (proj_parent);
+INSERT INTO dqrx (pth) VALUES (file_path);
+SELECT(file_path);
+
+  IF concat_path_done THEN LEAVE loop_concat_path; END IF;
+
+--     SET done = TRUE;
+  
+  --     SELECT `uuid`, `parent`, `path_os_config_dir`, `path_os_config_file`
+
+  -- SELECT `downquark`.`_dq_projects`.`parent` INTO @prnt
+--   FROM `downquark`.`_dq_projects` `dp`
+--   WHERE `dp`.`key` = 'PROJECT' LIMIT 1;
+-- SET file_path = "pool";
+
+  END LOOP loop_concat_path;
+  CLOSE cursor_create_file_path;
+#################################
+*/

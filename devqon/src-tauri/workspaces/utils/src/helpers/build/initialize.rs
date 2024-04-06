@@ -15,8 +15,8 @@ mod initialize {
     let local_validation_paths = DevQonConfig::get_validation_paths(dq_conf.devqon.directory_parsed.home.to_string());
     let remote_validation_paths = dq_conf.get_remote_validation_paths();
     HashMap::from([
-      ("LOCAL_VALIDATION".to_string(), local_validation_paths),
-      ("REMOTE_VALIDATION".to_string(), remote_validation_paths),
+      (String::from("LOCAL_VALIDATION"), local_validation_paths),
+      (String::from("REMOTE_VALIDATION"), remote_validation_paths),
     ])
   }
 

@@ -32,10 +32,18 @@ level = 'WARN'
 output = ['std.out']
 
 # TODO - replace `todo.` with `devqon` namespace when integrated
-[[todo.database]]
+[devqon.persistence.database.arango]
 id = 'ARANGO_DB'
 url = "TODO: arangodb url"
+auth.user = "user"
+auth.pass = "pass"
+auth.additional = ["mock_arango_only_cred","2fa","jwt","etc"]
 
-[[todo.database]]
+[devqon.persistence.database.maria]
 id = 'MARIA_DB'
-url = "TODO: mariadb url"
+auth.user = "user"
+auth.pass = "pass"
+auth.additional = []
+connection.host = "localhost"
+connection.port = "3366"
+connection.additional = []

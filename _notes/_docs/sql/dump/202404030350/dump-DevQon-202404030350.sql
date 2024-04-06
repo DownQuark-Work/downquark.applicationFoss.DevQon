@@ -23,15 +23,17 @@ DROP TABLE IF EXISTS `_project`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `_project` (
-  `id` enum('DEVELOPMENT_QONSOLE','DEVELOPMENT_QONSOLE__QANBAN_BOARD') DEFAULT 'DEVELOPMENT_QONSOLE',
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `uuid` uuid NOT NULL,
+  `project_id` varchar(50) NOT NULL DEFAULT 'DEVELOPMENT_QONSOLE' CHECK (`project_id` = 'DEVELOPMENT_QONSOLE'),
   `version` tinytext DEFAULT '0.0.0-pre-alpha',
-  `path_repository` tinytext DEFAULT 'https://github.com/DownQuark-Work/downquark.applicationFoss.DevQon',
-  `path_website` tinytext DEFAULT 'https://www.downquark.work/?projects_active_foss_devqon',
+  `commit` tinytext NOT NULL DEFAULT 'n/a',
   `created` timestamp NULL DEFAULT current_timestamp(),
   `edited` timestamp NULL DEFAULT current_timestamp(),
-  KEY `id` (`id`),
-  CONSTRAINT `_project_ibfk_1` FOREIGN KEY (`id`) REFERENCES `DownQuark`.`Map_Projects` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='tbd';
+  PRIMARY KEY (`id`),
+  KEY `_project__dq_projects_FK` (`uuid`,`project_id`),
+  CONSTRAINT `_project__dq_projects_FK` FOREIGN KEY (`uuid`, `project_id`) REFERENCES `DownQuark`.`_dq_projects` (`uuid`, `project_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='tbd: most updates will be version related';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +42,7 @@ CREATE TABLE `_project` (
 
 LOCK TABLES `_project` WRITE;
 /*!40000 ALTER TABLE `_project` DISABLE KEYS */;
+INSERT INTO `_project` VALUES (1,'59e8e864-f0a3-11ee-96c2-c29d42d3cfc8','DEVELOPMENT_QONSOLE','dq0.0.2-pre-release','e82c7c1367619c140662889313013b450cf9133c','2024-04-02 04:24:45','2024-04-02 04:53:05'),(3,'59e8e864-f0a3-11ee-96c2-c29d42d3cfc8','DEVELOPMENT_QONSOLE','dq0.2.0-pre-release','5282eff8121509048643e8bbdb870f86b98a314d','2024-04-02 04:24:45','2024-04-02 04:53:09');
 /*!40000 ALTER TABLE `_project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,8 +85,7 @@ CREATE TABLE `accounts` (
   `ip_address` inet4 DEFAULT NULL,
   `last_active` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`,`ip_address`),
-  CONSTRAINT `accounts_ibfk_1` FOREIGN KEY (`id`) REFERENCES `DownQuark`.`accounts` (`uuid`)
+  UNIQUE KEY `id` (`id`,`ip_address`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='\nthis table will be expanded as we continue to figure out what\nmetrics we want to track, etc\n';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -139,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-27  2:36:32
+-- Dump completed on 2024-04-03  3:50:47

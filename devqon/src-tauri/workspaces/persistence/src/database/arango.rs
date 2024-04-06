@@ -12,5 +12,7 @@
 // connect::connect_to_db(); // todo: wrap in above type f
 
 mod arangodb {
-  fn internal() {}
+  pub fn get_connection_string()->String{
+    "arango/connection/string".to_string()
+  }
 }

@@ -45,6 +45,8 @@ pub async fn cmd_two_way_comm(
 }
 
 fn display_correct_view() {
+  println!("");
+  println!("");
   println!("Show correct view based on results from splash screen init");
 }
 
