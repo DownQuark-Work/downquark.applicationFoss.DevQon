@@ -6,16 +6,18 @@
 resolver = "2"
 members = [
     "./workspaces/enhancements",
+    "./workspaces/macros",
+    "./workspaces/persistence",
     "./workspaces/utils"
 ]
 [workspace.package]
-version = "0.2.0-pre-release"
+version = "0.3.0-pre-release"
 edition = "2021"
 authors = ["downquark <development.qonsole@downquark.work>"]
 
 [package]
 name = "devqon"
-version = "0.2.0-pre-release"
+version = "0.3.0-pre-release"
 description = "DownQuark Development Qonsole"
 authors = ["downquark <development.qonsole@downquark.work>"]
 license = "GNU"
@@ -30,12 +32,14 @@ rust-version = "1.64"
 tauri-build = { version = "2.0.0-beta", features = [] }
 
 [dependencies]
+serde_json = "1.0"
 tauri = { version = "2.0.0-beta", features = ["icon-ico", "tray-icon"] }
 tauri-plugin-shell = "2.0.0-beta"
-serde_json = "1.0"
 
 # workspace dependencies
 enhancements = { path = "./workspaces/enhancements" }
+macros = { path = "./workspaces/macros" }
+persistence = { path = "./workspaces/persistence" }
 utils = { path = "./workspaces/utils" }
 
 [features]

@@ -3,13 +3,11 @@
 
 use tauri::Manager;
 
-use utils::{
-  helpers::{
+use utils::helpers::{
     build    as dq_build,
     commands as dq_commands,
     state    as dq_state,
     tray     as dq_tray,
-  }
 };
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -18,9 +16,10 @@ pub fn run() {
     .setup(|app| {
       #[cfg(debug_assertions)] // only include this code on debug builds
         { app.get_webview_window("main").unwrap().open_devtools(); }
-      dq_state::initialize_app_states(app); // `manage` states
-      let tray_app_handle = dq_tray::create_system_tray(app); // tray menu item
-      dq_build::initialize_application(&tray_app_handle.unwrap());
+
+        let tray_app_handle = dq_tray::create_system_tray(app); // tray menu item
+        dq_state::initialize_app_states(app); // `manage` states
+        dq_build::initialize_application(&tray_app_handle.unwrap());
       Ok(())
     })
     .plugin(tauri_plugin_shell::init())

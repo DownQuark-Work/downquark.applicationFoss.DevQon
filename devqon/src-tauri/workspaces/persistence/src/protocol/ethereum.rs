@@ -1,0 +1,3 @@
+mod ethereum {
+  fn internal() {}
+}

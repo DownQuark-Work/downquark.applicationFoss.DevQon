@@ -2,6 +2,18 @@
 pub mod mechanisms;
 pub mod widgets;
 
+
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
+
+//     #[test]
+//     fn it_works() {
+//         assert_eq!("result", mechanisms::database::configure_mechanism_db());
+//     }
+// }
+
+
 // pub fn add(left: usize, right: usize) -> usize {
 //     left + right
 // }
