@@ -19,7 +19,6 @@ struct ApplicationWindow {
   history: Mutex<HashMap<u128, enumerate::EnumStateAppWindow>>,
   visible: Mutex<bool>,
 }
-
   fn toggle_system_tray_hide_menu_item(app_handle: &tauri::AppHandle) {
   let app_state_window = app_handle.state::<ApplicationWindow>();
   let app_state_window_visible = app_state_window.visible.lock().unwrap();

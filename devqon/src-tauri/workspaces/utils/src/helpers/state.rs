@@ -1,14 +1,14 @@
 pub mod _devqon;
+pub mod configuration;
 
 mod state {
   use tauri::Manager;
   use crate::helpers::state;
 
   pub fn add_init_states(app:&mut tauri::App){
-    println!("adding initial states");
-    println!(" - static");
+    // - static
     app.manage(state::_devqon::set_user_session()); // set initial static state - make sure values are populated
-    println!(" - dynamic");
+    // - dynamic
     app.manage(state::_devqon::ActiveVision{ current_vision: Default::default() }); // set initial mutable state with default values - we can mutate
     app.manage(state::_devqon::History{ navigation: Default::default() }); // set initial mutable state with default values - we can mutate
   }

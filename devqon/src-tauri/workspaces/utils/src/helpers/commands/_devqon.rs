@@ -45,6 +45,8 @@ pub async fn cmd_two_way_comm(
 }
 
 fn display_correct_view() {
+  println!("");
+  println!("");
   println!("Show correct view based on results from splash screen init");
 }
 
@@ -73,7 +75,8 @@ println!("qry_id: {}",qry_id);
 #[tauri::command]
 pub fn cmd_determine_view_and_title(name: &str) -> String {
   display_correct_view();
-  format!(".::. {}!", name)
+  println!(".::. {}!", name);
+  name.to_string()
 }
 
 // static state

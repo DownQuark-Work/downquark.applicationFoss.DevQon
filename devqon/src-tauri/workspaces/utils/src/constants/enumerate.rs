@@ -38,6 +38,15 @@ impl EnumIconStatusType {
 }
 
 #[derive(Debug)]
+pub enum EnumStateAppView {
+  SplashScreen,
+    LandingInitDq, // no ~/.dq
+    LandingInitDevqon, // no ~/.dq/devqon
+    LandingNoActiveVision, // no vision found in ~/.dq/devqon || dne locally
+    LandingActiveVision, // vision found in ~/.dq/devqon && Exists locally
+}
+
+#[derive(Debug)]
 pub enum EnumStateAppWindow {
   CLOSED,EXIT,OPEN,START,UNOBTAINED,
 }
