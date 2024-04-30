@@ -6,7 +6,6 @@ mod state {
   use crate::helpers::state;
 
   pub fn add_init_states(app:&mut tauri::App){
-
     // - static
     app.manage(state::_devqon::set_user_session()); // set initial static state - make sure values are populated
     // - dynamic

@@ -9,6 +9,9 @@
 -- https://www.techonthenet.com/mariadb/loops/repeat.php
 /** MORE INTERIM WORK AT EOF*/
 /*
+##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$#
+DROP PROCEDURE IF EXISTS CreatePaths;
+
 
 ##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$#
 
