@@ -19,13 +19,9 @@ pub fn configure_connection(db_type:&EnumPersistenceTypes) {
   println!("configured_connection: {configured_connection:?}");
 }
 
-pub async fn create_connection(db_type:&EnumPersistenceTypes,connection_str:&str) {
-  println!("create_connection: db_type: {db_type:?}");
-  println!("create_connection: connection_str: {connection_str:?}");
-  // // todo: let match here for arango v maria:
-  println!("awating: ");
+pub async fn create_connection(_db_type:&EnumPersistenceTypes,connection_str:&str) {
+  // // todo: use `_db_type` and let match here for arango v maria:
   let db_connection = maria::db_connect(connection_str).await;
-  println!("awat3d: ");
   let _ = maria::run_query(db_connection.unwrap(),"").await;
 }
 

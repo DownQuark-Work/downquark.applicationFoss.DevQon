@@ -9,23 +9,23 @@ mod mariadb {
 }
 
 pub async fn db_connect(conn_str:&str) -> Result<MySqlPool, sqlx::Error> {
-  println!("conn_str: {conn_str:?}");
+  // println!("conn_str: {conn_str:?}");
   let pool = MySqlPool::connect(conn_str).await?;
   Ok(pool)
 }
-pub async fn run_query(cnx:MySqlPool, query:&str) -> Result<(), sqlx::Error> {
+pub async fn run_query(cnx:MySqlPool, _query:&str) -> Result<(), sqlx::Error> {
   let row: (i64,) = sqlx::query_as("SELECT ?")
     .bind(150_i64)
     .fetch_one(&cnx).await?;
   assert_eq!(row.0, 150);
-  println!(">>>>row: {:?}",row);
+  // println!(">>>>row: {:?}",row);
   Ok(())
 }
 
 pub fn db_connection()->String{
-  let qualiftied_connection_string = mariadb::get_connection_string();
-  println!("qualiftied_connection_string: {qualiftied_connection_string:?}");
-  qualiftied_connection_string.to_string()
+  let qualified_connection_string = mariadb::get_connection_string();
+  println!("qualified_connection_string: {qualified_connection_string:?}");
+  qualified_connection_string.to_string()
 }
 
 pub fn db_run_query()->String{

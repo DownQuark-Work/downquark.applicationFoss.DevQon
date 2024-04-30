@@ -7,8 +7,8 @@ created=AAAAAA
 updated=AAAAAA
 
 [DownQuark.User]
-name=''
-email=''
+db_lookup=''
+last_active=''
 
 [DownQuark.Products]
 devqon='devqon/_devqon'
@@ -20,9 +20,13 @@ version='0.0.0'
 install='AAAAAA'
 updated='AAAAAA'
 
+[devqon.session]
+last_active=''
+
 [[devqon.vision]]
+only_most_recent='will be stored'
 name=''
-conf_toml=''
+config_toml_file_path=''
 ";
 
 pub fn make_template_config(template_kind:&str) -> String{

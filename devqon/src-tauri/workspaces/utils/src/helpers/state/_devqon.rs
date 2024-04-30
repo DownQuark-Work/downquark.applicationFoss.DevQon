@@ -20,14 +20,16 @@ pub struct ActiveVision {
 /* STATIC */
 #[derive(serde::Serialize, Debug)]
 pub struct UserSession { // an example of something that could be static in the store
-  id: String,
+  pub id: String,
   created: String,
   pub session_id: String,
 }
 
 pub fn set_user_session() -> UserSession {
+  // TEMP: assume successful db qry
+  // set `validated_usr_status` to mapped uuid value from `QrxAggregate` database
   UserSession {
-    id: "user's id".to_string(),
+    id: String::from("63a03700-f18d-11ee-96c2-c29d42d3cfc8"),
     created: "1705122729167".to_string(),
     session_id: "mxpbmctZXhwZWN0ZWQtZm4tcG9pbnRl".to_string(),
   }

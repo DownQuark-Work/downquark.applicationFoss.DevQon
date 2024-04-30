@@ -1,7 +1,11 @@
 // to be used with `#[tauri::command]`
-pub mod _devqon;
+// use commands as dq_commands
 
-mod command {}
+pub mod _devqon;
+pub mod authenticate;
+
+mod commands {}
+
 // to type the commands:
 // // https://docs.rs/tauri-macros/1.4.3/src/tauri_macros/lib.rs.html#49
 // //  - they are proc_macro::TokenStream
