@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use tauri::{AppHandle, Manager };
+use tauri::{AppHandle, Manager};
 use crate::configuration::DevQonConfig;
 
 pub fn set_app_configuration(sys_conf_paths:HashMap<&str, String>,app_handle: &AppHandle){

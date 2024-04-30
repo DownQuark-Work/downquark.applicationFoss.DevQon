@@ -2,6 +2,8 @@ import {LitElement, css, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import { invoke } from "@tauri-apps/api/core";
 
+import { Cookie } from '../scripts/_utils/cookie';
+
 import './layout/field';
 import './layout/region';
 import './layout/sector';
@@ -55,6 +57,10 @@ export class DeveloperQonsole extends LitElement {
     .then((res:any) => console.log(`created: ${res.created}, SESSION_ID: ${res.session_id}`)).catch((e) => console.error(e))
   }
 
+  logoutUser() {
+    Cookie.DELETE()
+    alert('add reset command')
+  }
   // update_current_vision_setting :: single field overwrite
   updateCurrentVesionSetting(){ invoke('update_current_vision_setting',{ updated: ''+Date.now(), })
     .then((res:any) => console.log('current vision settings: ', res)).catch((e) => console.error(e))
@@ -75,6 +81,7 @@ export class DeveloperQonsole extends LitElement {
         <button @click="${this.updateCurrentVesionSetting}" type="button">dynamic state overwrite</button>
         <button @click="${this.updateHistoryState}" type="button">dynamic state list</button>
         <button type="button">plugin dynamic</button>
+        <button @click="${this.logoutUser}" type="button">logout</button>
       </div>
       <layout-field>layout filed loading</layout-field>
       <layout-region>layout region loading</layout-region>
@@ -112,6 +119,7 @@ export class DeveloperQonsole extends LitElement {
       </ul>
     `;
   }
+
 }
 
 declare global {

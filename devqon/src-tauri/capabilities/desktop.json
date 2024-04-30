@@ -1,0 +1,6 @@
+{
+  "identifier": "desktop-capability",
+  "windows": ["main","splashscreen"],
+  "platforms": ["linux", "macOS", "windows"],
+  "permissions": ["webview:allow-set-webview-focus"]
+}

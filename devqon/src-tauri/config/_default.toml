@@ -31,7 +31,6 @@ resource = ['@directory_parsed','@resource']
 level = 'WARN'
 output = ['std.out']
 
-# TODO - replace `todo.` with `devqon` namespace when integrated
 [devqon.persistence.database.arango]
 id = 'ARANGO_DB'
 url = "TODO: arangodb url"

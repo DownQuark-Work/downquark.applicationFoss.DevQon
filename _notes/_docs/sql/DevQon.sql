@@ -1,13 +1,64 @@
+
 -- # DUMP DATABASES:
 --  mariadb-dump --user=mlnck@localhost --lock-tables --all-databases > ./all-database-dump.sql
+
+-- SELECT trigger_name, action_order FROM information_schema.triggers it WHERE event_object_table='accounts';
+-- https://mariadb.com/kb/en/create-trigger/#followsprecedes-other_trigger_name
 
 -- https://mariadb.com/kb/en/common-table-expressions/
 -- https://www.techonthenet.com/mariadb/loops/repeat.php
 /** MORE INTERIM WORK AT EOF*/
 /*
+
+##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$#
+
+/*  USAGE:
+  UPDATE `DownQuark`.accounts SET set_password = "goofy" WHERE id = 21;
+  UPDATE `DownQuark`.accounts SET set_password = "mickeymouse" WHERE id = 22;
+  UPDATE `DownQuark`.accounts SET set_password = "donaldduck" WHERE id = 23;
+  SELECT trigger_name, action_order FROM information_schema.triggers it WHERE event_object_table='accounts';
+  SELECT hex(kdf("mickeymouse","B8E3797AC1113561535E7BED4E", 1313, 'hkdf',128));
+  SELECT hex(kdf("donaldduck","5F44617E66B5319CDAEF3A1CC4", 1313, 'hkdf',128));
+  SELECT hex(kdf("goofy","4F9520CAF7A8F9B1A938CF36E5", 1313, 'hkdf',128));
+ */
+
+DROP PROCEDURE IF EXISTS `DownQuark`.SaltPassword;
+DELIMITER ~!~
+CREATE DEFINER=`root`@`localhost` PROCEDURE `DownQuark`.SaltPassword(usr_id TINYINT(4), passwrd VARCHAR(32))
+BEGIN
+ DECLARE salt VARCHAR(26);
+ DECLARE pw VARCHAR(32);
+ DECLARE insert_at TINYINT(4);
+ 
+ SET insert_at = usr_id;
+ IF insert_at IS NULL THEN
+  SELECT LAST_VALUE(id) INTO insert_at FROM `DownQuark`.accounts a WHERE 1 ORDER BY id DESC LIMIT 1;
+ END IF;
+  SELECT hex(RANDOM_BYTES(13)) INTO salt;
+    IF passwrd IS NULL THEN -- tmp password FOR NEW users
+      SET pw = hex(RANDOM_BYTES(16));
+      INSERT INTO `DownQuark`.`accounts_authorization` (id,salt,hash) VALUES (insert_at,salt,pw);
+    END IF;
+    IF passwrd IS NOT NULL THEN -- SET USER specified password
+      SELECT `salt` INTO salt
+        FROM `DownQuark`.`accounts_authorization` daa
+        WHERE daa.id = insert_at;
+      SET pw = hex(kdf(passwrd,salt, 1313, 'hkdf',128));
+      UPDATE `DownQuark`.accounts_authorization daa
+        SET hash = pw WHERE daa.id = insert_at;
+    END IF;
+  -- SET pw = passwrd;
+  -- IF passwrd IS NULL THEN SET pw = hex(RANDOM_BYTES(26)); END IF;
+  -- SELECT pw;
+--  RETURN hex(kdf(pw,salt, 1313, 'hkdf',128));
+ -- 
+END ~!~
+
+DELIMITER ;
+##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$#
+##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$#
 ##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$#
 DROP PROCEDURE IF EXISTS CreatePaths;
-
 DELIMITER ~!~
 
 CREATE PROCEDURE CreatePaths ( proj_id UUID )
@@ -34,9 +85,10 @@ DECLARE proj_name VARCHAR(50);
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET project_iteration_done = TRUE;
 
 IF ISNULL(proj_id) THEN -- allows TO append IF id IS passed AS argument
-  DROP TABLE IF EXISTS dqrx; -- timestamp IN TABLE below can be used WHEN adding NEW projects
-  CREATE TABLE dqrx (pid UUID PRIMARY KEY, pname VARCHAR(50) UNIQUE, pth VARCHAR(255));
+  DROP TABLE IF EXISTS `QrxAggregate`.`dq_devqon_project`; -- timestamp IN TABLE below can be used WHEN adding NEW projects
+  CREATE TABLE `QrxAggregate`.`dq_devqon_project` (pid UUID PRIMARY KEY, pname VARCHAR(50) UNIQUE, pth VARCHAR(255));
 END IF;
+CREATE TABLE IF NOT EXISTS `QrxAggregate`.`dq_devqon_project`;
 
   OPEN cursor_dq_projects;
     loop_project_uuids: LOOP
@@ -70,7 +122,7 @@ UNTIL ISNULL(fetch_proj_parent)
 
 ############ END INNER ##############
 
-INSERT INTO dqrx (pid,pname,pth) VALUES (fetch_project_id,proj_name,file_path);
+INSERT INTO `QrxAggregate`.`dq_devqon_project` (pid,pname,pth) VALUES (fetch_project_id,proj_name,file_path);
 
 -- DEV+DEBUG BELOW
 -- SET dev_control_int = dev_control_int + 1;
@@ -87,7 +139,7 @@ DELIMITER ;
 -- CALL CreatePaths ('4e4beb7e-f0a2-11ee-96c2-c29d42d3cfc8'); -- ROOT: DOWNQUARK
 CALL CreatePaths(NULL); -- run ON ALL rows
 
-SELECT * FROM dqrx;
+SELECT * FROM `QrxAggregate`.`dq_devqon_project`;
 ##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$##$#
 
 -- https://mariadb.com/kb/en/common-table-expressions/

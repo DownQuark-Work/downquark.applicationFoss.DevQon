@@ -39,11 +39,20 @@ impl EnumIconStatusType {
 
 #[derive(Debug)]
 pub enum EnumStateAppView {
-  SplashScreen,
-    LandingInitDq, // no ~/.dq
-    LandingInitDevqon, // no ~/.dq/devqon
-    LandingNoActiveVision, // no vision found in ~/.dq/devqon || dne locally
-    LandingActiveVision, // vision found in ~/.dq/devqon && Exists locally
+  SplashScreen, // login/register/authenticate
+  LandingInitDq, // no ~/.dq
+  LandingInitDevqon, // no ~/.dq/devqon
+  LandingNoActiveVision, // no vision found in ~/.dq/devqon || dne locally
+  LandingActiveVision, // vision found in ~/.dq/devqon && Exists locally
+}
+impl EnumStateAppView {
+  pub fn to_payload(&self) -> String {
+    match self {
+      Self::LandingNoActiveVision => String::from("CREATE_VISION"),
+      Self::LandingActiveVision => String::from("DISPLAY_VISION"),
+      _ => String::from("AUTHENTICATE"),
+    }
+  }
 }
 
 #[derive(Debug)]

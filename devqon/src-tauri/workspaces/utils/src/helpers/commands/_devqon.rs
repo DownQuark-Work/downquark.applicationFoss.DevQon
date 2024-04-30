@@ -1,7 +1,7 @@
-use tauri::{State};
+use tauri::State;
 use std::collections::HashMap;
-// use tauri::{Manager, State};
 
+use crate::helpers::build as dq_build;
 use crate::helpers::state::_devqon::{UserSession,History,UpdatedSetting,ActiveVision,};
 
 #[derive(Debug,Default)]
@@ -25,6 +25,8 @@ async fn some_other_function() -> Option<String> {
   Some("secondary fn called".into())
 }
 
+// [tauri::command(async)] <-- for async commands
+
 #[tauri::command]
 pub async fn cmd_two_way_comm(
   window: tauri::Window,
@@ -44,39 +46,18 @@ pub async fn cmd_two_way_comm(
   }
 }
 
-fn display_correct_view() {
-  println!("");
-  println!("");
-  println!("Show correct view based on results from splash screen init");
+// the payload type must implement `Serialize` and `Clone`.
+#[derive(Clone, serde::Serialize)]
+struct Payload {
+  message: String,
 }
 
-// pub async fn cmd_connect_to_database(state: State<'_, Database>) -> Result<(), String> {
 #[tauri::command]
-pub fn cmd_connect_to_database(
-  database: State<'_, Database>,
-  conn_str:&str,
-  qry_id:usize,
-) -> Result<RespConnectDB, String> {
+pub fn cmd_initialize_build(app_handle: tauri::AppHandle,) {
   
-println!("conn_str: {}",conn_str);
-println!("qry_id: {}",qry_id);
-
-  Database {
-    conn_str:conn_str.to_string(),
-    qry_id
-  };
-  println!("with database: {:#?}",database);
-  Ok(RespConnectDB {
-    conn_status: "SUCCESS".to_string(),
-    qry_resp: "QUERY RESULTS...".to_string()
-  })
-}
-
-#[tauri::command]
-pub fn cmd_determine_view_and_title(name: &str) -> String {
-  display_correct_view();
-  println!(".::. {}!", name);
-  name.to_string()
+  // when splashscreen is initialized begin initial internal validations
+  dq_build::initialize_application(&app_handle);
+  // an `emit` will trigger the next step from within `dq_build::initialize_application`
 }
 
 // static state
@@ -130,3 +111,11 @@ pub fn track_navigation(at: u64, page: String, history: State<History>)
   history.navigation.lock().unwrap().insert(at, page);
   Ok(ResTrackNavigation {nav:history.navigation.lock().unwrap().clone()})
 }
+
+// pub fn debug_window_and_handle(name: &str, window: tauri::Window, app_handle: tauri::AppHandle,) {
+  // println!(".::. {}!", name);
+  // println!("Called from -> {}", window.label());
+
+  // let _ = app_handle.emit_to(EventTarget::any(), "on-validations-complete", 13);
+  // let _ = app_handle.emit_to(EventTarget::labeled("main"), "on-validations-complete", 42);
+  // }

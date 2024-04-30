@@ -11,6 +11,7 @@
         "resizable": true,
         "title": "DevQon",
         "visible": false,
+        "url": "index.html",
         "width": 800
       },
       {
@@ -18,7 +19,7 @@
         "decorations": false,
         "height": 400,
         "label": "splashscreen",
-        "url": "splash.html",
+        "url": "views/splash.html",
         "width": 600
       }
     ],

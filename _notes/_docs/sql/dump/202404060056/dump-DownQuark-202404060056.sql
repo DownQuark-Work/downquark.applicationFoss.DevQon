@@ -122,7 +122,7 @@ CREATE TABLE `accounts` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT 'used only inside the DownQuark database',
   `uuid` uuid NOT NULL DEFAULT uuid() COMMENT 'this will be the lookup reference in subsequent projects',
   `type` varchar(25) NOT NULL DEFAULT 'ACCNT_PERSONAL' CHECK (`enforce_account_type` = 'ACCOUNT'),
-  `role` varchar(25) NOT NULL DEFAULT '0_UNCONFIRMED',
+  `role` varchar(25) NOT NULL DEFAULT '0_UNCONFIRMED' CHECK (`enforce_account_type` = 'ROLE'),
   `enforce_account_role` varchar(10) NOT NULL DEFAULT 'ROLE',
   `enforce_account_type` varchar(10) NOT NULL DEFAULT 'ACCOUNT',
   `created` timestamp NULL DEFAULT current_timestamp(),

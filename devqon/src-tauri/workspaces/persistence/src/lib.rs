@@ -15,7 +15,7 @@ pub enum EnumPersistenceTypes{
 // want control over when to access as a string vs true enum
 impl EnumPersistenceTypes {
   pub fn get_string_keys(&self)->String {
-    println!("internal {:?}", self);
+    // println!("internal {:?}", self);
     match self {
       EnumPersistenceTypes::DatabaseMariaDownQuark => "DatabaseMariaDownQuark".to_string(),
       EnumPersistenceTypes::DatabaseMariaDevQon => "DatabaseMariaDevQon".to_string(),
@@ -50,7 +50,7 @@ pub fn config_persistent(persistent_type:&EnumPersistenceTypes) -> &EnumPersiste
   persistent_type
 }
 
-pub async fn on_application_startup_query(db_config:HashMap<String,String>) -> String {
+pub async fn on_application_startup_query(db_config:HashMap<String,String>) {
   // for (db_ref, connection_str) in db_config.iter() {
   //   println!("db_ref: {db_ref:?}");
   //   println!("awaiting connection_str: {connection_str:?}");
@@ -63,27 +63,7 @@ pub async fn on_application_startup_query(db_config:HashMap<String,String>) -> S
 
   database::create_connection(&EnumPersistenceTypes::DatabaseMaria,db_startup_connection_first).await;
   database::create_connection(&EnumPersistenceTypes::DatabaseMaria,db_startup_connection_last).await;
-
-  println!("db_startup_connection_first: {db_startup_connection_first:?}");
-  println!("db_startup_connection_last: {db_startup_connection_last:?}");
-
-  "Database Startup Data".to_string()
 }
-
-/*
-pub fn config_persistent(persistent_type:&EnumPersistenceTypes) -> &EnumPersistenceTypes {
-  println!("persisting: {:?}", persistent_type);
-  match persistent_type {
-    EnumPersistenceTypes::ProtocolEthereum => {
-      // protocol::configure_connection(persistent_type)
-      println!("PROTOCAL TYPE CALLED: {:?}", persistent_type);},
-    EnumPersistenceTypes::DatabaseArango|EnumPersistenceTypes::DatabaseMaria => {
-      database::configure_connection(&persistent_type)},
-    _ => {println!("Throwing because type DNE: {:?}", persistent_type);}
-  };
-  persistent_type
-}
- */
 
 pub fn request_persistent_data(persistent_type:&EnumPersistenceTypes,data_req:&str)->String{
   println!("match where to route the data and do so:"); // obviously with a ~helper/util~ macro of some sort

@@ -3,7 +3,7 @@ use crate::constants::enumerate::EnumStateAppView;
 
 mod initialize {
   use std::collections::HashMap;
-  use toml::{Value};
+  use toml::Value;
 
   use crate::configuration::DevQonConfig;
   use crate::helpers::{
@@ -34,16 +34,20 @@ mod initialize {
     total_validation_successes
   }
   
-  pub fn get_local_app_versions(current_config_files:HashMap<String, Vec<String>>) -> HashMap<String,Vec<String>> {
+  pub fn get_stored_local_config_data(current_config_files:HashMap<String, Vec<String>>) -> (HashMap<String,Vec<String>>,Vec<String>) {
     let mut local_app_versions = HashMap::new();
+    let mut local_usr_data: Vec<String> = Vec::new();
     for (application, config_file) in current_config_files.iter() {
-      let config_file_version = validate::get_version_in_conf_file(&config_file.join("/"));
+      let config_file_data = validate::get_local_file_config_data(&config_file.join("/"));
+      let config_file_version = config_file_data[0].to_owned();
       local_app_versions.insert(application.to_string(),vec![config_file_version,config_file.join("/").to_string()]);
+      local_usr_data.push(config_file_data[1].to_string())
     }
-    local_app_versions
+    
+    (local_app_versions,local_usr_data)
   }
 
-  pub async fn get_remote_app_versions(remote_request_information:HashMap<String, Vec<String>>) -> HashMap<String,String> {
+  pub async fn get_remote_config_data(remote_request_information:HashMap<String, Vec<String>>) -> HashMap<String,String> {
     let mut remote_app_versions = HashMap::new();
     for (application, remote_request) in remote_request_information.iter() {
       let remote_req = &remote_request[0];
@@ -100,7 +104,8 @@ mod initialize {
   }
 }
 
-mod validate { // user file system access should not have pub access
+mod validate {
+// user file system access should not have pub access
   use std::path::Path;
   use crate::constants::enumerate::EnumStateAppView;
   use crate::helpers::{build::{initialize::OnAppLaunchStruct, paths, },
@@ -137,7 +142,7 @@ mod validate { // user file system access should not have pub access
     let toml_parse = fsio::parse_file_as_toml(path_str);
     let mut additional_validations = 0;
     let current_directory = Path::new(path_str).parent().expect("directory DNE");
-    let vision_toml_file_val = &toml_parse["devqon"]["vision"][0]["conf_toml"];
+    let vision_toml_file_val = &toml_parse["devqon"]["vision"][0]["config_toml_file_path"];
     let binding = vision_toml_file_val.as_str().expect("invalid file");
     let vision_toml_file = Path::new(current_directory).join(binding);
     if binding != "invalid file" { additional_validations += 1; }
@@ -149,21 +154,28 @@ mod validate { // user file system access should not have pub access
     additional_validations
   }
 
-  pub fn get_version_in_conf_file(file_path:&str) -> String {
+  pub fn get_local_file_config_data(file_path:&str) -> Vec<String> {
     let toml_parse = fsio::parse_file_as_toml(file_path);
     let vision_toml_file_val;
+    let usr_toml_file_val;
     if file_path.contains("_devqon") { // TODO: unharcode this
-      vision_toml_file_val = &toml_parse["devqon"]["version"];
-    } else { vision_toml_file_val = &toml_parse["DownQuark"]["version"]; }
-    vision_toml_file_val.to_string()
+      usr_toml_file_val = &toml_parse["devqon"]["session"]["last_active"];
+      vision_toml_file_val = &toml_parse["devqon"]["vision"][0]["config_toml_file_path"];
+    } else {
+      usr_toml_file_val = &toml_parse["DownQuark"]["User"]["db_lookup"];
+      vision_toml_file_val = &toml_parse["DownQuark"]["version"];
+    }
+    vec![vision_toml_file_val.to_string(),usr_toml_file_val.to_string()]
   }
 
-  pub fn pre_app_launch(validation_amt:u8,new_version_available:bool) -> OnAppLaunchStruct {
+  pub fn pre_app_launch(validation_amt:u8,new_version_available:bool,stored_usr_config:Vec<String>) -> OnAppLaunchStruct {
     let page_in_queue = determine_landing_page(validation_amt);
-    // page_in_queue // after TODO3 this should return the correct enum value from the `hooks` to update the page to the correct location
+    
     OnAppLaunchStruct {
       init_view:page_in_queue,
       version_update_available:new_version_available,
+      db_usr_lookup:stored_usr_config[1].to_owned(),
+      db_last_session:stored_usr_config[0].to_owned(),
     }
   }
 }
@@ -171,22 +183,33 @@ mod validate { // user file system access should not have pub access
 pub struct OnAppLaunchStruct {
   init_view:EnumStateAppView,
   version_update_available:bool,
+  db_usr_lookup:String,
+  db_last_session:String,
 }
 impl OnAppLaunchStruct {
   pub fn get_app_launch_conf(&self) -> (&EnumStateAppView, bool) {
     (&self.init_view,self.version_update_available)
   }
+  pub fn get_stored_usr_info(&self) -> (&String,&String) {
+    (&self.db_usr_lookup,&self.db_last_session)
+  }
 }
 
 pub async fn configure_app_launch_config(dq_conf:&DevQonConfig) -> OnAppLaunchStruct {
+  // version and previous install of any dq app
   let dq_config_file_paths = initialize::get_conf_file_paths(dq_conf);
   let local_config_file_paths = vec![ dq_config_file_paths["LOCAL_VALIDATION"]["_DQ"].join("/"), dq_config_file_paths["LOCAL_VALIDATION"]["DEVQON"].join("/") ];
-  let init_page_to_view = initialize::determine_init_page_to_view(local_config_file_paths);
-  let local_config_information = &dq_config_file_paths["LOCAL_VALIDATION"];
-  let local_app_versions = initialize::get_local_app_versions(local_config_information.clone());
-  let remote_config_information = &dq_config_file_paths["REMOTE_VALIDATION"];
-  let remote_app_versions = initialize::get_remote_app_versions(remote_config_information.clone()).await;
-  let new_version_available = initialize::check_for_version_update(local_app_versions,remote_app_versions);
+  let determine_page_to_view = initialize::determine_init_page_to_view(local_config_file_paths);
+  let local_config_information_paths = &dq_config_file_paths["LOCAL_VALIDATION"];
+  let local_config_information = initialize::get_stored_local_config_data(local_config_information_paths.clone());
+  let remote_config_information_paths = &dq_config_file_paths["REMOTE_VALIDATION"];
+  let remote_config_information = initialize::get_remote_config_data(remote_config_information_paths.clone()).await;
   
-  validate::pre_app_launch(init_page_to_view,new_version_available)
+  let local_version_information: std::collections::HashMap<String, Vec<String>> = local_config_information.0;
+  let new_version_available = initialize::check_for_version_update(local_version_information,remote_config_information);
+
+  let local_usr_information = local_config_information.1;
+  // println!("local_usr_information: {local_usr_information:?}");
+  println!("IF FAILING REMEMBER TO LAUNCH DB");
+  validate::pre_app_launch(determine_page_to_view ,new_version_available, local_usr_information)
 }
