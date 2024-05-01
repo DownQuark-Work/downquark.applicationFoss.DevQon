@@ -89,6 +89,7 @@ export class DeveloperQonsole extends LitElement {
       <layout-zone>layout zone loading</layout-zone>
       
       <p>Below may come in handy:</p>
+      <b><i>https://component.gallery/</i></b>
       <ul>
         <li>https://github.com/web-padawan/awesome-lit</li>
         <li> --- </li>
