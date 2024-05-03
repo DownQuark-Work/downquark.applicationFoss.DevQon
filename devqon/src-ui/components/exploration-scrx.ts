@@ -1,21 +1,23 @@
 import {LitElement, css, html} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 
-@customElement('simple-greeting')
+@customElement('exploration-scrx')
 export class SimpleGreeting extends LitElement {
   // Define scoped styles right with your component, in plain CSS
   static styles = css`
-    :host {
-      color: teal;
-    }
+      canvas {
+        color: gold;
+        position:absolute;
+        top:0; left:0;
+      }
   `;
 
   // Declare reactive properties
   @property()
-  name?: string = 'I am a lit component';
+  name?: string = 'mandala exploration?';
 
-  // Render the UI as a function of component state
+
   render() {
-    return html`<p>Hello, ${this.name}!</p>`;
+    return html`<canvas height="600" width="800">UI/UX Exploration!</canvas> ${this.name}`;
   }
 }

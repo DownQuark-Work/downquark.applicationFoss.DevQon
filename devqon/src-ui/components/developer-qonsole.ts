@@ -59,7 +59,7 @@ export class DeveloperQonsole extends LitElement {
 
   logoutUser() {
     Cookie.DELETE()
-    alert('add reset command')
+    // std::process::exit(0);
   }
   // update_current_vision_setting :: single field overwrite
   updateCurrentVesionSetting(){ invoke('update_current_vision_setting',{ updated: ''+Date.now(), })
