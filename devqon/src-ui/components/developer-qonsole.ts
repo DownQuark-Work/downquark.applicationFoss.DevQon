@@ -91,6 +91,7 @@ export class DeveloperQonsole extends LitElement {
       <p>Below may come in handy:</p>
       <ul>
         <li>https://heropatterns.com/</li>
+        <li>https://doodad.dev/pattern-generator/</li>
         <li>https://github.com/web-padawan/awesome-lit</li>
         <li>https://component.gallery/</li>
         <li> --- </li>
