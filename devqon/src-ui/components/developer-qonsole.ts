@@ -89,6 +89,8 @@ export class DeveloperQonsole extends LitElement {
       <layout-zone>layout zone loading</layout-zone>
       
       <p>Below may come in handy:</p>
+      <p><strong><em>- simple ... but maybe a good thing ... macros:
+      - https://www.programiz.com/rust/macro</em></strong></p>
       <ul>
         <li>https://heropatterns.com/</li>
         <li>https://doodad.dev/pattern-generator/</li>
