@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body{
+    margin:0;
+    font-family:  inter, -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue", Arial, sans-serif;
+     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background-color: #080808;
+    color: #fff;
+}
+
+#loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8); /* Semi-transparent black background */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    font-size: 24px;
+    font-weight: 400;
+    z-index: 9999;
+
+}
+
+#loader img {
+    width: 100px;
+    height: 100px;
+}
+#uploader_wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#uploader {
+    width: 50%; /* Larger area */
+    height: 50%;
+    background-color: #171717;
+    border: 2px dashed #333333; /* Dashed border for drag area */
+    border-radius: 18px;
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Needed for absolute positioning inside */
+    transition: 0.5s;
+}
+#uploader.hover {
+    border-color: #BABFFC; /* Color changes when dragging */
+    transition: 0.4s;
+}
+
+#dragImg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-size: 20px;
+}
+
+
+#dragText {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #7A7A7A;
+    font-size: 16px;
+}
+
+
+ svg{
+    width: 160px;
+
+}
+
+#dragText span{
+    color: white; 
+    text-decoration: none; 
+    cursor: pointer; 
+     transition: 0.2s;
+}
+
+
+#dragText span:hover{
+    color: #BABFFC;
+    transition: 0.1s;
+}
+
+
+
+#analyzeButton{
+    position: absolute;
+    background-color: #4E4E4E;
+    font-size: 16px;
+     font-family:  inter, -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
+    color: white;
+    border:0;
+    letter-spacing: -0.6px;
+    border-radius: 28px;
+    bottom:40px;
+    left: 50%;         /* Position the left edge of the element at the middle of the screen */
+    transform: translateX(-50%); /* Shift the element leftwards by half its width */
+    width: 200px;      /* Optional: Set a specific width if needed */
+    height: 50px;      /* Optional: Set a specific height if needed */
+    z-index: 99;
+    transition: 0.4s;
+
+}
+
+#analyzeButton:hover{
+    background-color: #BABFFC;
+    color: #333333;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+#imagePreview {
+    max-height: 300px;
+    max-width: 100%;      /* Limits the width to the parent container's width */
+    height: auto;         /* Maintains aspect ratio */
+    width: auto;          /* Maintains aspect ratio */
+    object-fit: contain;  /* Ensures the image is fully visible within the frame */
+    display: block;       /* Treats the image as a block element to enable margin settings */
+    margin: auto;         /* Centers the image horizontally */
+    position: absolute;   /* Allows precise positioning */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;             /* These settings work with margin: auto to center the image vertically and horizontally */
+
+    border: 1px solid rgba(100,100,100,0.1);
+    box-shadow: 0 2px 18px rgba(0,0,0,0.4);
+    border-radius: 8px;
+}
+
+
+
+#report{
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:420px;
+     font-family:  inter, -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue", Arial, sans-serif;
+     letter-spacing: -0.2px;
+     padding-bottom: 40px;
+     padding:20px;
+}
+
+
+#uploadedDesign{
+    padding:10px;
+}
+
+#uploadedDesign img{
+    margin-right: auto;
+    max-height: 360px;
+    max-width: 400px;
+    border-radius: 8px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin-left: auto;
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 1px solid rgba(100,100,100,0.1);
+}
+
+
+
+#pitch{
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.4px;
+    max-width: 550px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: auto;
+    margin-top: 35px;
+    margin-right: auto;
+}
+
+
+
+
+
+
+
+/* Main wrapper styling for desktop */
+#uploader_wrapper {
+    display: flex;
+    flex-direction: row; /* Elements side by side */
+    align-items: center; /* Center items vertically */
+    justify-content: space-around; /* Even space around items */
+    padding: 20px; /* Add some padding around */
+    padding-right: 100px;
+    height: calc(100vh - 40px); /* Adjust height calculation if necessary */
+    box-sizing: border-box; /* Includes padding in height calculation */
+
+}
+
+#pitch {
+    width: 40%; /* Set width to 40% of its container */
+    min-width: 300px; /* Minimum width before it scales down */
+    order: 1; /* Ensure this comes first in the order */
+}
+
+#uploader {
+    width: 40%; /* Set width to 40% of its container */
+    min-width: 300px; /* Minimum width before it scales down */
+    order: 2; /* Ensure this comes second in the order */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    #uploader_wrapper {
+        flex-direction: column; /* Stack vertically on small screens */
+        height: auto; /* Height should be automatic on mobile */
+    }
+
+    #pitch, #uploader {
+        width: 90%; /* Full width on small screens */
+        order: unset; /* Remove any specific ordering */
+    }
+
+    #pitch {
+        margin-bottom: 20px; /* Add space between the pitch and uploader on mobile */
+    }
+}
+
+/* Additional responsive adjustments */
+/* You might want to adjust the height or padding of elements for smaller screens */
+@media (max-width: 800px) {
+    #pitch, #uploader {
+        width: 100%; /* Full width on very small screens */
+        height:300px;
+    }
+
+    #pitch{
+        margin-top: 160px;
+        margin-bottom: -10px;
+    }
+
+    #uploader{
+       margin-left: auto;
+       margin-right: auto;
+       margin-bottom: 50px;
+    }
+
+    #uploader_wrapper{
+        padding-right: 60px;
+    }
+}
+
+
+
+#logo{
+    position: fixed;
+    top:20px;
+    left:20px;
+}
+
+#logo img{
+    width: 60px;
+}
+
+#madeby{
+    position: fixed;
+    bottom:20px;
+    right:20px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    color: #7A7A7A;
+    z-index: 999;
+
+}
+
+#madeby a{
+    color: #fff;
+    text-decoration: none;
+}
+
+#madeby a:hover

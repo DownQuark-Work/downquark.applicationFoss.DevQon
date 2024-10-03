@@ -102,6 +102,8 @@ pub fn initialize_application(app_handle: &tauri::AppHandle){
     };
     // println!("emit_payload: {emit_payload:?}");
     let _ = tray_sys.app_handle().emit("on-validations-complete", emit_payload);
+    // set_focus prevents duplicate click on splashscreen to interact with elemements
+    let _ = tray_sys.app_handle().get_webview_window("splashscreen").unwrap().set_focus();
   });
   // let _ = http::block_get_request(); // blocking must be outside of async thread above
 }

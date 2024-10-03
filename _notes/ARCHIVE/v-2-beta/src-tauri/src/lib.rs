@@ -4,7 +4,6 @@
 use tauri::Manager;
 
 use utils::helpers::{
-    // build    as dq_build,
     commands as dq_commands,
     state    as dq_state,
     tray     as dq_tray,
@@ -21,11 +20,9 @@ pub fn run() {
         { app.get_webview_window("main").unwrap().open_devtools(); }
         let _tray_app_handle = dq_tray::create_system_tray(app); // tray menu item
         dq_state::initialize_app_states(app); // `manage` states
-        // dq_build::initialize_application(&tray_app_handle.unwrap());
       Ok(())
     })
     .plugin(tauri_plugin_shell::init())
-    // .manage(dq_commands::_devqon::Database::default()) // TODO: update or remove - this is temporary for now
     .on_window_event(|window, event| { utils::helpers::build::run_frontend_in_background(&window, event.clone()) })
     .invoke_handler(tauri::generate_handler![
       dq_commands::_devqon::cmd_two_way_comm,

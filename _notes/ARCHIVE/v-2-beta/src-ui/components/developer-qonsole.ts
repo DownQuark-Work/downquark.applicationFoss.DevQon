@@ -59,7 +59,7 @@ export class DeveloperQonsole extends LitElement {
 
   logoutUser() {
     Cookie.DELETE()
-    alert('add reset command')
+    // std::process::exit(0);
   }
   // update_current_vision_setting :: single field overwrite
   updateCurrentVesionSetting(){ invoke('update_current_vision_setting',{ updated: ''+Date.now(), })
@@ -89,8 +89,13 @@ export class DeveloperQonsole extends LitElement {
       <layout-zone>layout zone loading</layout-zone>
       
       <p>Below may come in handy:</p>
+      <p><strong><em>- simple ... but maybe a good thing ... macros:
+      - https://www.programiz.com/rust/macro</em></strong></p>
       <ul>
+        <li>https://heropatterns.com/</li>
+        <li>https://doodad.dev/pattern-generator/</li>
         <li>https://github.com/web-padawan/awesome-lit</li>
+        <li>https://component.gallery/</li>
         <li> --- </li>
         <li>https://lit.dev/docs/templates/directives/#choose</li>
         <li>https://lit.dev/docs/templates/directives/#keyed</li>
