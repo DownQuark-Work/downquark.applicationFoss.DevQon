@@ -1,6 +1,24 @@
 # Development Qonsole
 > A dq build
 
+```
+Template created! To get started run:
+  cd devqon
+  pnpm install
+  pnpm tauri android init
+  pnpm tauri ios init
+
+For Desktop development, run:
+  pnpm tauri dev
+
+For Android development, run:
+  pnpm tauri android dev
+
+For iOS development, run:
+  pnpm tauri ios dev
+
+```
+
 ## WIP
 
 The first implementation will be created simultaneously with the [Qanban Board](//github.com/DownQuark-Work/downquark.applicationFoss.QanbanBoard).
