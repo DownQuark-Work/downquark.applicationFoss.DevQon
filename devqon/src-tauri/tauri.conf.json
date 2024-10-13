@@ -40,7 +40,7 @@
       "iconPath": "icons/_downquark/32x32.png",
       "iconAsTemplate":true,
       "menuOnLeftClick":true,
-      "title":null,
+      "title":"TESTX",
       "tooltip":"tray tooltip"
     },
     "security": {
