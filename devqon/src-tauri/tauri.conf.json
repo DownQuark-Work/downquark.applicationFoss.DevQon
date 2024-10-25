@@ -30,8 +30,8 @@
         "height": 400,
         "label": "splashscreen",
         "theme":"Dark",
-        "title": "dq splash",
-        "url": "views/splash.html",
+        "title": "acquire qrx",
+        "url": "src-ui/views/splash.html",
         "width": 600
       }
     ],
@@ -40,8 +40,9 @@
       "iconPath": "icons/_downquark/32x32.png",
       "iconAsTemplate":true,
       "menuOnLeftClick":true,
-      "title":null,
-      "tooltip":"tray tooltip"
+//      "title":"TESTX",
+      "title":"",
+      "tooltip":"downquarx"
     },
     "security": {
       "csp": null

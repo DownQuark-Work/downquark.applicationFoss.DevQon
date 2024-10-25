@@ -1,0 +1,3 @@
+mod configuration {
+  fn internal() {}
+}
