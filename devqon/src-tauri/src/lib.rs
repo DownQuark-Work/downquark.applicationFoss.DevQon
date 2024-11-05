@@ -1,40 +1,27 @@
-// Prevents additional console window on Windows in release, DO NOT REMOVE!!
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-
+use tauri::async_runtime::spawn;
 use tauri::Manager;
 
-use utils::helpers::{
-    // build    as dq_build,
-    commands as dq_commands,
-    state    as dq_state,
-    tray     as dq_tray,
-};
+use build::build::initialize as dq_init;
+use commands::commands::cmd as dq_cmd;
 
-
-#[cfg_attr(mobile, tauri::mobile_entry_point)]
-pub fn run() {
-    tauri::Builder::default()
-    .setup(|app| {
-      #[cfg(debug_assertions)] // only include this code on debug builds
-        { app.get_webview_window("splashscreen").unwrap().open_devtools(); }
-      #[cfg(debug_assertions)] // only include this code on debug builds
-        { app.get_webview_window("main").unwrap().open_devtools(); }
-        let _tray_app_handle = dq_tray::create_system_tray(app); // tray menu item
-        dq_state::initialize_app_states(app); // `manage` states
-        // dq_build::initialize_application(&tray_app_handle.unwrap());
-      Ok(())
-    })
+pub fn run() { // Don't write code before Tauri starts, write it in the setup hook instead!
+  tauri::Builder::default()
     .plugin(tauri_plugin_shell::init())
-    // .manage(dq_commands::_devqon::Database::default()) // TODO: update or remove - this is temporary for now
-    .on_window_event(|window, event| { utils::helpers::build::run_frontend_in_background(&window, event.clone()) })
     .invoke_handler(tauri::generate_handler![
-      dq_commands::_devqon::cmd_two_way_comm,
-      dq_commands::_devqon::cmd_initialize_build,
-      dq_commands::_devqon::cmd_state_trigger_us,
-      dq_commands::_devqon::update_current_vision_setting,
-      dq_commands::_devqon::track_navigation,
-      dq_commands::authenticate::cmd_authenticate_user,
+        dq_cmd::greet,
+        dq_cmd::set_complete
     ])
-    .run(tauri::generate_context!())
+      // Use the setup hook to execute setup related tasks
+    .setup(|app| { // Runs before the main loop, so no windows are yet created
+      use state::state as dq_state;
+      #[cfg(debug_assertions)] // only include this code on debug builds
+        { app.get_webview_window("splashscreen").unwrap().open_devtools();
+          app.get_webview_window("main").unwrap().open_devtools(); }
+      dq_state::initialize_app_states(app); // configure initial states for the application
+      spawn( // Spawn setup as a non-blocking task so windows can be created while it executes
+        dq_init::init_setup(app.handle().clone()));
+      Ok(()) // The hook expects an Ok result
+    })
+    .run(tauri::generate_context!()) // Run the app
     .expect("error while running tauri application");
 }

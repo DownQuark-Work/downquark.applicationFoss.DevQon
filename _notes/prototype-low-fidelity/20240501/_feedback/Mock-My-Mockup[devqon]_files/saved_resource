@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Mock-My-Mockup</title>
+</head>
+<body>
+     <div id="logo">
+        <img src="logo.svg">
+    </div>
+    <div id="loader">
+        <h2>Give me a few seconds to look at it...</h2>
+    </div>
+
+
+    <div id="madeby">
+        Made by <a href="https://fairpixels.pro">Fairpixels</a>
+    </div>
+
+
+
+
+
+    <div id="uploader_wrapper">
+
+
+        <h1 id="pitch">
+         I'm your AI-powered product design know-it-all. Upload a screenshot of a page you’re working on, and I’ll give you brutally honest feedback.</h1>
+
+        <div id="uploader" ondragover="dragOverHandler(event)" ondrop="dropHandler(event)" ondragleave="dragLeaveHandler(event)">
+            <form method="post" enctype="multipart/form-data" style="height: 100%;">
+                <input type="file" name="image" accept="image/*" id="uploadBtn" onchange="previewImage();" style="display:none;">
+                <!-- Make the imagePreview clickable for re-uploading an image -->
+                <img id="imagePreview" src="#" alt="Image Preview" style="max-width:100%; height:auto; display:none;" onclick="document.getElementById('uploadBtn').click();">
+                <div id="dragText">Gracefully drag and drop your product screenshot into this box, or go classic and <span onclick="document.getElementById('uploadBtn').click()">click here to upload</span>.</div>
+
+                <div id="dragImg">
+                     <img src="upload.svg">
+                </div>
+                <input type="submit" value="Get feedback  →" id="analyzeButton" onclick="showLoader();" style="display:none;">
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+     <script src="script.js"></script>
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M7FKBL3EM4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M7FKBL3EM4');
+</script>
+
+</body>
+</html>

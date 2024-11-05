@@ -54,52 +54,52 @@ _OR_ better yet, follow the rust directory structure.
 ~/.dq/development-qonsole
 ├── first-project
 │   ├── _map.toml
-│   ├── _zone
-│   ├── first-zone
-│   │   ├── _sector
-│   │   ├── sector-one
-│   │   │   ├── _region
-│   │   │   ├── a
-│   │   │   │   ├── _field
-│   │   │   │   ├── clicky.toml
-│   │   │   │   ├── input.toml
-│   │   │   │   └── text.toml
-│   │   │   ├── a.toml
-│   │   │   ├── b
-│   │   │   │   ├── _field
-│   │   │   │   └── clicky.toml
-│   │   │   ├── b.toml
-│   │   │   ├── c
-│   │   │   │   ├── _field
-│   │   │   │   ├── clicky.toml
-│   │   │   │   └── input.toml
-│   │   │   └── c.toml
-│   │   ├── sector-one.toml
-│   │   ├── two
-│   │   │   ├── _region
-│   │   │   ├── a
-│   │   │   │   ├── _field
-│   │   │   │   └── input.toml
-│   │   │   ├── a.toml
-│   │   │   ├── aa
-│   │   │   │   ├── _field
-│   │   │   │   ├── clicky.toml
-│   │   │   │   └── input.toml
-│   │   │   └── aa.toml
-│   │   └── two.toml
-│   ├── first-zone.toml
-│   ├── not-first-zone
-│   │   ├── _sector
-│   │   ├── another
-│   │   │   ├── _region
-│   │   │   ├── something-new
-│   │   │   │   ├── _field
-│   │   │   │   └── camera.toml
-│   │   │   └── something-new.toml
-│   │   └── another.toml
-│   └── not-first-zone.toml
+│   └── _zone
+│       ├── first-zone
+│       │   └── _sector
+│       │       ├── sector-one
+│       │       │   └── _region
+│       │       │       ├── a
+│       │       │       │   ├── _field
+│       │       │       │   ├── clicky.toml
+│       │       │       │   ├── input.toml
+│       │       │       │   └── text.toml
+│       │       │       ├── a.toml
+│       │       │       ├── b
+│       │       │       │   ├── _field
+│       │       │       │   └── clicky.toml
+│       │       │       ├── b.toml
+│       │       │       ├── c
+│       │       │       │   ├── _field
+│       │       │       │   ├── clicky.toml
+│       │       │       │   └── input.toml
+│       │       │       └── c.toml
+│       │       ├── sector-one.toml
+│       │       ├── two
+│       │       │   └── _region
+│       │       │       ├── a
+│       │       │       │   ├── _field
+│       │       │       │   └── input.toml
+│       │       │       ├── a.toml
+│       │       │       ├── aa
+│       │       │       │   ├── _field
+│       │       │       │   ├── clicky.toml
+│       │       │       │   └── input.toml
+│       │       │       └── aa.toml
+│       │       └── two.toml
+│       ├── first-zone.toml
+│       ├── not-first-zone
+│       │   └── _sector
+│       │       ├── another
+│       │       │   └── _region
+│       │       │       ├── something-new
+│       │       │       │   ├── _field
+│       │       │       │   └── camera.toml
+│       │       │       └── something-new.toml
+│       │       └── another.toml
+│       └── not-first-zone.toml
 └── second-project
-│   ├── _map.toml
-│   ├── _zone
-│   └── ... same naming conventions as above ...
+    ├── _map.toml
+    ├── _zone
+    └── ... same naming conventions as above ...
 ```

@@ -134,6 +134,7 @@ dist
 
 # Optional private notes directory
 _notes/.ignored/
+_notes/ARCHIVE/v-2-beta/
 
 # Playwright
 **/__specs__/r*

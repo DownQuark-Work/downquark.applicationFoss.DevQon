@@ -9,7 +9,7 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-export default defineConfig({ 
+export default defineConfig({
   testDir: './__specs__/assertions',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -82,7 +82,7 @@ export default defineConfig({
 
 
 /**
- *   
+ *
   yarn playwright test
     Runs the end-to-end tests.
 
