@@ -28,7 +28,7 @@ This will ensure that all customizable aspects required to make the Development 
 This may be helpful when it is time to implement the board:
 - https://tauri.app/v1/guides/building/resources
 And from this directory:
-- `% cargo tree --manifest-path tauri/src-tauri/Cargo.toml`
+- `% cargo tree --manifest-path devqon/src-tauri/Cargo.toml`
 
 <details><summary><u><i>rough</i></u>dashboard editor concept</summary>
 <img width="1048" alt="Screenshot 2023-12-22 at 02 14 51" src="https://github.com/DownQuark-Work/downquark.applicationFoss.DevQon/assets/40064794/645c2d8e-2553-45bd-a7ac-30c7bb9e7fa8">

@@ -9,7 +9,9 @@ async function greet() {
     greetMsgEl.textContent = await invoke("greet", {
       name: greetInputEl.value,
     });
+    return greetMsgEl.textContent
   }
+  return "no greeting"
 }
 
 // Utility function to implement a sleep function in TypeScript
@@ -24,7 +26,7 @@ async function setup() {
   await sleep(3);
   console.log('Frontend setup task complete!')
   // Set the frontend task as being completed
-  invoke('set_complete', {task: 'frontend'})
+  await invoke('set_complete', {task: 'frontend'})
 }
 
 // Effectively a JavaScript main function
@@ -37,7 +39,11 @@ window.addEventListener("DOMContentLoaded", () => {
   greetMsgEl = document.querySelector("#greet-msg");
   document.querySelector("#greet-form")?.addEventListener("submit", (e) => {
     e.preventDefault();
-    greet();
+    greet().then(r => {
+      console.log('greet', r);
+    });
   });
-  setup()
+  setup().then(r => {
+    console.log('setup', r);
+  });
 });
