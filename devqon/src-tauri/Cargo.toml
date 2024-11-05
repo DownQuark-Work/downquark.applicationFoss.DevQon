@@ -16,13 +16,13 @@ members = [
     "downquark/devqon/utils"
 ]
 [workspace.package]
-version = "0.4.0-pre-release"
+version = "0.5.0-pre-release"
 edition = "2021"
 authors = ["downquark <development.qonsole@downquark.work>"]
 
 [package]
 name = "devqon"
-version = "0.4.0-pre-release"
+version = "0.5.0-pre-release"
 description = "Development Qonsole"
 authors = ["mlnck"]
 edition = "2021"
