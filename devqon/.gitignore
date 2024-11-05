@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# assertions
+__specs__/*
+!__specs__/assertions
+

@@ -1,52 +1,53 @@
-# https://beta.tauri.app/references/v2/config/
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-# Permissions: https://beta.tauri.app/references/v2/acl/
-
 [workspace]
 resolver = "2"
 members = [
-    "./workspaces/enhancements",
-    "./workspaces/macros",
-    "./workspaces/persistence",
-    "./workspaces/utils"
+    # tauri specific
+    "downquark/_base/build",
+    "downquark/_base/commands",
+    "downquark/_base/network",
+    "downquark/_base/standards",
+    "downquark/_base/state",
+
+    # network specific
+    "downquark/devqon/enhancements",
+    "downquark/devqon/macros",
+    "downquark/devqon/services",
+    "downquark/devqon/symbols",
+    "downquark/devqon/utils"
 ]
 [workspace.package]
-version = "0.4.0-pre-release"
+version = "0.5.0-pre-release"
 edition = "2021"
 authors = ["downquark <development.qonsole@downquark.work>"]
 
 [package]
 name = "devqon"
-version = "0.4.0-pre-release"
-description = "DownQuark Development Qonsole"
-authors = ["downquark <development.qonsole@downquark.work>"]
-license = "GNU"
-repository = "https://github.com/DownQuark-Work/downquark.applicationFoss.DevQon"
-default-run = "devqon"
+version = "0.5.0-pre-release"
+description = "Development Qonsole"
+authors = ["mlnck"]
 edition = "2021"
-rust-version = "1.64"
 
-# https://beta.tauri.app/guides/develop/updating-dependencies/
-
-[build-dependencies]
-tauri-build = { version = "2.0.0-beta", features = [] }
-
-[dependencies]
-serde_json = "1.0"
-tauri = { version = "2.0.0-beta", features = ["icon-ico", "tray-icon"] }
-tauri-plugin-shell = "2.0.0-beta"
-
-# workspace dependencies
-enhancements = { path = "./workspaces/enhancements" }
-macros = { path = "./workspaces/macros" }
-persistence = { path = "./workspaces/persistence" }
-utils = { path = "./workspaces/utils" }
-
-[features]
-# this feature is used for production builds or when `devPath` points to the filesystem
-# DO NOT REMOVE!!
-custom-protocol = ["tauri/custom-protocol"]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
+# The `_lib` suffix may seem redundant, but it is necessary
+# to make the lib name unique and wouldn't conflict with the bin name.
+# This seems to be only an issue on Windows, see https://github.com/rust-lang/cargo/issues/8519
 name = "devqon_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0.2", features = ["config-json5"] }
+
+[dependencies]
+tauri = { version = "2.0.6", features = [ "config-json5", "tray-icon", "devtools", "image-ico"] }
+tauri-plugin-shell = "2.0.2"
+serde = { version = "1.0.213", features = ["derive"] }
+serde_json = "1.0.132"
+tokio = "1.41.0"
+
+# workspace dependencies
+build = { path = "downquark/_base/build" }
+commands = { path = "downquark/_base/commands" }
+state = { path = "downquark/_base/state" }
+symbols = { path = "downquark/devqon/symbols" }
