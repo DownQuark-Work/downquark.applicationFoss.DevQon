@@ -2,18 +2,18 @@
 resolver = "2"
 members = [
     # tauri specific
-    "./downquark/build",
-    "./downquark/commands",
-    "./downquark/network",
-    "./downquark/standards",
-    "./downquark/state",
+    "downquark/_base/build",
+    "downquark/_base/commands",
+    "downquark/_base/network",
+    "downquark/_base/standards",
+    "downquark/_base/state",
 
     # network specific
-    "./devqon/enhancements",
-    "./devqon/macros",
-    "./devqon/services",
-    "./devqon/symbols",
-    "./devqon/utils"
+    "downquark/devqon/enhancements",
+    "downquark/devqon/macros",
+    "downquark/devqon/services",
+    "downquark/devqon/symbols",
+    "downquark/devqon/utils"
 ]
 [workspace.package]
 version = "0.4.0-pre-release"
@@ -47,7 +47,7 @@ serde_json = "1.0.132"
 tokio = "1.41.0"
 
 # workspace dependencies
-build = { path = "./downquark/build"}
-commands = { path = "./downquark/commands" }
-state = { path = "./downquark/state" }
-symbols = { path = "./devqon/symbols" }
+build = { path = "downquark/_base/build" }
+commands = { path = "downquark/_base/commands" }
+state = { path = "downquark/_base/state" }
+symbols = { path = "downquark/devqon/symbols" }

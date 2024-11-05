@@ -13,5 +13,5 @@ serde = { version = "1.0.213", features = ["derive"] }
 toml = "0.8.19"
 tokio = "1.41.0"
 
-commands = { path ="../../downquark/commands"}
+commands = { path = "../commands" }
 symbols = { path = "../../devqon/symbols" }
