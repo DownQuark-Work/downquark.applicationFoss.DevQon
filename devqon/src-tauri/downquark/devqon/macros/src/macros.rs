@@ -1,3 +1,0 @@
-mod macros {
-  fn internal() {}
-}

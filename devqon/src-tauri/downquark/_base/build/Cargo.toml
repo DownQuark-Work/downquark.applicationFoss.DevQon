@@ -14,4 +14,4 @@ toml = "0.8.19"
 tokio = "1.41.0"
 
 commands = { path = "../commands" }
-symbols = { path = "../../devqon/symbols" }
+particle_flows = { path = "../../particle_flows" }

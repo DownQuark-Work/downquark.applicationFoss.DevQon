@@ -1,7 +1,7 @@
 use std::sync::Mutex;
 use tauri::{AppHandle, Manager, State};
 
-use symbols::structs::_downquark::SetupState;
+use particle_flows::particles::symbols::structs::_downquark::SetupState;
 
 #[tauri::command]
 pub fn greet(name: &str) -> String {

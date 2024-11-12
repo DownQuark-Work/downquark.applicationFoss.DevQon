@@ -1,3 +1,0 @@
-mod protocol {
-  fn internal() {}
-}

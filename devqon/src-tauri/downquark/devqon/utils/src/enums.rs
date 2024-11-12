@@ -1,3 +1,0 @@
-mod enums {
-  fn internal() {}
-}

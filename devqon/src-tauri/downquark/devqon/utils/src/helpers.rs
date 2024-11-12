@@ -1,3 +1,3 @@
 mod helper {
-  fn internal() {}
+    fn internal() {}
 }

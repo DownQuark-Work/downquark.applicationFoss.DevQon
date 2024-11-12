@@ -1,3 +1,0 @@
-mod stdout {
-  fn internal() {}
-}

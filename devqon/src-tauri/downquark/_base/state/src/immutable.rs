@@ -1,5 +1,5 @@
 pub mod _downquark;
 
 mod immutable {
-  fn internal() {}
+    fn internal() {}
 }

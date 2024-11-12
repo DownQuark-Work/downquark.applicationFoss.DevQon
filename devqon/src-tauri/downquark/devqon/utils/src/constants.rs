@@ -1,3 +1,0 @@
-mod constant {
-  fn internal() {}
-}

@@ -3,7 +3,7 @@ use tauri::{AppHandle, Manager};
 use tokio::time::{sleep, Duration};
 
 use commands::commands::cmd as dq_cmd;
-use symbols::structs::_downquark::SetupState;
+use particle_flows::particles::symbols::structs::_downquark::SetupState;
 
 // An async function that does some heavy setup task
 pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
@@ -19,7 +19,7 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
         app.state::<Mutex<SetupState>>(),
         "backend".to_string(),
     )
-        .await?;
+    .await?;
     Ok(())
 }
 
@@ -51,14 +51,14 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
 //       let validation_successes = validate::is_valid_path(validating_path);
 //       total_validation_successes += validation_successes;
 //     }
-  
+
 //     if total_validation_successes >= 4 { // devqon config file was located
 //       fsio::parse_file_as_toml(&paths_to_validate[1]);
 //       total_validation_successes += validate::config_contains_valid_vision(&paths_to_validate[1]);
 //     }
 //     total_validation_successes
 //   }
-  
+
 //   pub fn get_stored_local_config_data(current_config_files:HashMap<String, Vec<String>>) -> (HashMap<String,Vec<String>>,Vec<String>) {
 //     let mut local_app_versions = HashMap::new();
 //     let mut local_usr_data: Vec<String> = Vec::new();
@@ -68,7 +68,7 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
 //       local_app_versions.insert(application.to_string(),vec![config_file_version,config_file.join("/").to_string()]);
 //       local_usr_data.push(config_file_data[1].to_string())
 //     }
-    
+
 //     (local_app_versions,local_usr_data)
 //   }
 
@@ -80,7 +80,7 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
 //       let current_remote_version_toml = fsio::parse_content_as_toml(current_remote_version.expect("Invalid Url Response"));
 //       let toml_version_path = remote_request[1].split(".");
 //       let toml_version_path_collection = toml_version_path.collect::<Vec<_>>();
-      
+
 //       let mut cur_walked_toml_path_value:Option<&Value> = current_remote_version_toml.get(toml_version_path_collection[0]);
 //       for path_key in toml_version_path_collection.iter() {
 //         if path_key.to_string() != toml_version_path_collection[0].to_string() {
@@ -108,7 +108,7 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
 //         );
 //         version_auto_update = true;
 //       }
-      
+
 //       // Assuming that release versions will be semver only.
 //       // Any hyphen would be releated with a release candidate, apha, beta, etc
 //       // - ignore if found, and accept the stored version as correct
@@ -117,7 +117,7 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
 //         let local_semver = local_semver_bind.split(".").collect::<Vec<_>>();
 //         let remote_semver_bind = remote_version.replace("\"", "");
 //         let remote_semver = remote_semver_bind.split(".").collect::<Vec<_>>();
-  
+
 //         for (i,rem_semver) in remote_semver.iter().enumerate() {
 //           let rem_semver_parsed = rem_semver.parse::<u8>();
 //           let loc_semver_parsed = local_semver[i].parse::<u8>();
@@ -135,7 +135,7 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
 //   use crate::constants::enumerate::EnumStateAppView;
 //   use crate::helpers::{build::{initialize::OnAppLaunchStruct, paths, },
 //                             standards::fsio};
-  
+
 //   // user file system access should not have pub access
 //   fn determine_landing_page(validation_amount:u8) -> EnumStateAppView {
 //     let active_landing_page = match validation_amount {
@@ -152,7 +152,7 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
 //     let mut validated_steps = 0;
 //     let file_path = Path::new(path_str);
 //     let path_exists = file_path.try_exists().expect("path DNE");
-//     if path_exists { 
+//     if path_exists {
 //       validated_steps += 1;
 //       if file_path.is_file() { validated_steps += 1; }
 //     } else {
@@ -195,7 +195,7 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
 
 //   pub fn pre_app_launch(validation_amt:u8,new_version_available:bool,stored_usr_config:Vec<String>) -> OnAppLaunchStruct {
 //     let page_in_queue = determine_landing_page(validation_amt);
-    
+
 //     OnAppLaunchStruct {
 //       init_view:page_in_queue,
 //       version_update_available:new_version_available,
@@ -229,7 +229,7 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
 //   let local_config_information = initialize::get_stored_local_config_data(local_config_information_paths.clone());
 //   let remote_config_information_paths = &dq_config_file_paths["REMOTE_VALIDATION"];
 //   let remote_config_information = initialize::get_remote_config_data(remote_config_information_paths.clone()).await;
-  
+
 //   let local_version_information: std::collections::HashMap<String, Vec<String>> = local_config_information.0;
 //   let new_version_available = initialize::check_for_version_update(local_version_information,remote_config_information);
 

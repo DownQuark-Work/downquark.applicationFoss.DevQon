@@ -1,3 +1,0 @@
-mod hook {
-  fn internal() {}
-}

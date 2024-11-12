@@ -10,4 +10,4 @@ authors.workspace = true
 serde = { version = "1.0.213", features = ["derive"] }
 tauri = "2.0.6"
 
-symbols = { path = "../../devqon/symbols" }
+particle_flows = { path = "../../particle_flows" }

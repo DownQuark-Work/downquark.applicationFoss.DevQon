@@ -1,3 +1,0 @@
-mod stdin {
-  fn internal() {}
-}

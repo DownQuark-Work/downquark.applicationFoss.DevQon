@@ -1,8 +1,8 @@
 mod state {
-    pub fn add_init_states(app:&mut tauri::App){
-        use tauri::Manager;
-        use crate::mutable::_downquark as mutable_state;
+    pub fn add_init_states(app: &mut tauri::App) {
         use crate::immutable::_downquark as immutable_state;
+        use crate::mutable::_downquark as mutable_state;
+        use tauri::Manager;
 
         // - static
         // app.manage(state::_devqon::set_user_session()); // set initial static state - make sure values are populated
@@ -13,7 +13,7 @@ mod state {
     }
 }
 
-pub fn initialize_app_states(app:&mut tauri::App) {
+pub fn initialize_app_states(app: &mut tauri::App) {
     // TODO: switch by page here -- call from mod when ready
     state::add_init_states(app);
 }
