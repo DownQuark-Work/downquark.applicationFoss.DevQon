@@ -11,26 +11,22 @@ pub fn run() {
             dq_cmd::greet,
             dq_cmd::set_complete
         ])
-        // Use the setup hook to execute setup related tasks
-        .setup(|app| {
-            // Runs before the main loop, so no windows are yet created
-            use state::state as dq_state;
-            #[cfg(debug_assertions)] // only include this code on debug builds
-            {
+        .setup(|app| { // Use the setup hook to execute setup related tasks
+            use state::state as dq_state; // Runs before the main loop, so no windows are yet created
+            #[cfg(debug_assertions)]
+            { // only include this code on debug builds
                 app.get_webview_window("splashscreen")
                     .unwrap()
                     .open_devtools();
                 app.get_webview_window("main").unwrap().open_devtools();
             }
             dq_state::initialize_app_states(app); // configure initial states for the application
-            spawn(
-                dq_init::init_setup(app.handle().clone()),
-            );
+            spawn( dq_init::init_setup(app.handle().clone()), );
 
             let _base_tray = dq_init::create_base_tray(app);
             Ok(()) // The hook expects an Ok result
         })
-      .on_window_event(|window, event| match event {
+        .on_window_event(|window, event| match event {
         tauri::WindowEvent::CloseRequested { api, .. } => {
           if window.label() == "main" {
             api.prevent_close();
@@ -42,10 +38,8 @@ pub fn run() {
       .build(tauri::generate_context!())
       .expect("error while building tauri application");
 
-  dev_qon_app.run(|_app_handle, event| match event {
-        tauri::RunEvent::ExitRequested { api, .. } => {
-          api.prevent_exit();
-        }
+      dev_qon_app.run(|_app_handle, event| match event {
+        tauri::RunEvent::ExitRequested { api, .. } => { api.prevent_exit(); }
         _ => {}
-    });
+      });
 }
