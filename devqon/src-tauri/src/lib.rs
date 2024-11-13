@@ -3,10 +3,9 @@ use tauri::Manager;
 
 use build::build::initialize as dq_init;
 use commands::commands::cmd as dq_cmd;
-
 pub fn run() {
     // Don't write code before Tauri starts, write it in the setup hook instead!
-    tauri::Builder::default()
+    let dev_qon_app = tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![
             dq_cmd::greet,
@@ -25,11 +24,28 @@ pub fn run() {
             }
             dq_state::initialize_app_states(app); // configure initial states for the application
             spawn(
-                // Spawn setup as a non-blocking task so windows can be created while it executes
                 dq_init::init_setup(app.handle().clone()),
             );
+
+            let _base_tray = dq_init::create_base_tray(app);
             Ok(()) // The hook expects an Ok result
         })
-        .run(tauri::generate_context!()) // Run the app
-        .expect("error while running tauri application");
+      .on_window_event(|window, event| match event {
+        tauri::WindowEvent::CloseRequested { api, .. } => {
+          if window.label() == "main" {
+            api.prevent_close();
+            window.get_webview_window("main").expect("main window closed").hide().unwrap();
+          }
+        }
+        _ => {  }
+      })
+      .build(tauri::generate_context!())
+      .expect("error while building tauri application");
+
+  dev_qon_app.run(|_app_handle, event| match event {
+        tauri::RunEvent::ExitRequested { api, .. } => {
+          api.prevent_exit();
+        }
+        _ => {}
+    });
 }

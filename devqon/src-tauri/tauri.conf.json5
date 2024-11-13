@@ -35,15 +35,15 @@
         "width": 600
       }
     ],
-    "trayIcon": {
-      "id":"dq_tray",
-      "iconPath": "icons/_downquark/32x32.png",
-      "iconAsTemplate":true,
-      "menuOnLeftClick":true,
-//      "title":"TESTX",
-      "title":"",
-      "tooltip":"downquarx"
-    },
+//    "trayIcon": {
+//      "id":"dq_tray",
+//      "iconPath": "icons/_downquark/32x32.png",
+//      "iconAsTemplate":true,
+//      "menuOnLeftClick":true,
+////      "title":"TESTX",
+//      "title":"DownQuark",
+//      "tooltip":"devqon"
+//    },
     "security": {
       "csp": null
     }
