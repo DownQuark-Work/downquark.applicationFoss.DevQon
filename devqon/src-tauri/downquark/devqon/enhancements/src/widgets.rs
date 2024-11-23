@@ -3,5 +3,5 @@
 //pub mod select;
 
 mod widget {
-  fn internal() {}
+    fn internal() {}
 }

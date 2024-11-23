@@ -1,6 +1,6 @@
-mod logging;
-mod hooks;
-mod protocol;
 mod database;
+mod hooks;
+mod logging;
+mod protocol;
 
 mod services {}

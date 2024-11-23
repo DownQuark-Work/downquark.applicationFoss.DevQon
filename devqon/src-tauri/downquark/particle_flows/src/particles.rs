@@ -1,7 +1,7 @@
 pub mod design_patterns;
 
 mod content;
-mod services;
-pub mod symbols;
 mod network;
+mod services;
 mod standards;
+pub mod symbols;

@@ -2,7 +2,6 @@
 pub mod mechanisms;
 pub mod widgets;
 
-
 // #[cfg(test)]
 // mod tests {
 //     use super::*;
@@ -12,7 +11,6 @@ pub mod widgets;
 //         assert_eq!("result", mechanisms::database::configure_mechanism_db());
 //     }
 // }
-
 
 // pub fn add(left: usize, right: usize) -> usize {
 //     left + right

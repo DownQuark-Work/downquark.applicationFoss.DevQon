@@ -1,3 +1,3 @@
 mod mechanism {
-  fn internal() {}
+    fn internal() {}
 }

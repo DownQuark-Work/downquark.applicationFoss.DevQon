@@ -1,10 +1,10 @@
 use std::sync::Mutex;
-use tauri::{AppHandle, Manager};
-use tauri::{
-  menu::{Menu, MenuItem},
-  tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent}
-};
 use tauri::tray::TrayIcon;
+use tauri::{
+    menu::{Menu, MenuItem},
+    tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
+};
+use tauri::{AppHandle, Manager};
 use tokio::time::{sleep, Duration};
 
 use commands::commands::cmd as dq_cmd;
@@ -12,52 +12,66 @@ use particle_flows::particles::symbols::structs::_downquark::SetupState;
 
 // An async function that does some heavy setup task
 pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
-  // Handles pre "application_launch" setup
-  // - 1. compiles configuration fukes
-  // - 1. determines pathing
-  // - stores in state
-  // - init database from here when ready?
+    // Handles pre "application_launch" setup
+    // - 1. compiles configuration fukes
+    // - 1. determines pathing
+    // - stores in state
+    // - init database from here when ready?
 
-  // Fake performing some heavy action for 3 seconds
-  println!("Performing really heavy backend setup task...");
-  sleep(Duration::from_secs(3)).await;
-  println!("Backend setup task completed!");
-  // Set the backend task as being completed
-  // Commands can be run as regular functions as long as you take
-  // care of the input arguments yourself
-  dq_cmd::set_complete(
-    app.clone(),
-    app.state::<Mutex<SetupState>>(),
-    "backend".to_string(),
-  )
+    // Fake performing some heavy action for 3 seconds
+    println!("Performing really heavy backend setup task...");
+    sleep(Duration::from_secs(3)).await;
+    println!("Backend setup task completed!");
+    // Set the backend task as being completed
+    // Commands can be run as regular functions as long as you take
+    // care of the input arguments yourself
+    dq_cmd::set_complete(
+        app.clone(),
+        app.state::<Mutex<SetupState>>(),
+        "backend".to_string(),
+    )
     .await?;
-  Ok(())
+    Ok(())
 }
 
 pub fn create_base_tray(app: &mut tauri::App) -> TrayIcon {
-  let show_app = MenuItem::with_id(app, "show_app", "DevQon", true, None::<&str>).expect("Couldn't make menu item");
-  let tray_menu = Menu::with_items(app, &[&show_app]).expect("Couldn't make menu");
+    let show_app = MenuItem::with_id(app, "show_app", "DevQon", true, None::<&str>)
+        .expect("Couldn't make menu item");
+    let tray_menu = Menu::with_items(app, &[&show_app]).expect("Couldn't make menu");
 
-  TrayIconBuilder::new()
-    .icon(app.default_window_icon().unwrap().clone())
-    .menu(&tray_menu)
-    .menu_on_left_click(true)
-    .on_menu_event(|app, event| match event.id.as_ref() {
-      "show_app" => {
-        app.get_webview_window("main").expect("main window closed").show().unwrap();
-      }
-      _ => { println!("menu item {:?} not handled", event.id); }
-    })
-    .on_tray_icon_event(|tray, event| match event {
-      TrayIconEvent::Click { button: MouseButton::Left, button_state: MouseButtonState::Up, .. } => {
-        let app = tray.app_handle();
-        if let Some(window) = app.get_webview_window("main") {
-          let _ = window.show(); let _ = window.set_focus(); }
-      } _ => {
-        //println!("unhandled event {event:?}");
-      }
-    })
-    .build(app).expect("could not build tray menu")
+    TrayIconBuilder::new()
+        .icon(app.default_window_icon().unwrap().clone())
+        .menu(&tray_menu)
+        .menu_on_left_click(true)
+        .on_menu_event(|app, event| match event.id.as_ref() {
+            "show_app" => {
+                app.get_webview_window("main")
+                    .expect("main window closed")
+                    .show()
+                    .unwrap();
+            }
+            _ => {
+                println!("menu item {:?} not handled", event.id);
+            }
+        })
+        .on_tray_icon_event(|tray, event| match event {
+            TrayIconEvent::Click {
+                button: MouseButton::Left,
+                button_state: MouseButtonState::Up,
+                ..
+            } => {
+                let app = tray.app_handle();
+                if let Some(window) = app.get_webview_window("main") {
+                    let _ = window.show();
+                    let _ = window.set_focus();
+                }
+            }
+            _ => {
+                //println!("unhandled event {event:?}");
+            }
+        })
+        .build(app)
+        .expect("could not build tray menu")
 }
 
 // use crate::configuration::DevQonConfig;

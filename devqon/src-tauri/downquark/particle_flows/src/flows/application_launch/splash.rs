@@ -9,6 +9,4 @@
 ...
 */
 
-pub fn init_screen() {
-
-}
+pub fn init_screen() {}
