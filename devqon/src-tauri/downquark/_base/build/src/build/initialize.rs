@@ -8,7 +8,7 @@ use tauri::{AppHandle, Manager};
 use tokio::time::{sleep, Duration};
 
 use commands::commands::cmd as dq_cmd;
-use particle_flows::particles::symbols::structs::_downquark::SetupState;
+use particle_flows::particles::symbols::structs::_downquark::StateApplicationInitialization;
 
 // An async function that does some heavy setup task
 pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
@@ -27,7 +27,7 @@ pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
     // care of the input arguments yourself
     dq_cmd::set_complete(
         app.clone(),
-        app.state::<Mutex<SetupState>>(),
+        app.state::<Mutex<StateApplicationInitialization>>(),
         "backend".to_string(),
     )
     .await?;

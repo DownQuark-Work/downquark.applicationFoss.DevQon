@@ -1,7 +1,7 @@
 use std::sync::Mutex;
 use tauri::{AppHandle, Manager, State};
 
-use particle_flows::particles::symbols::structs::_downquark::SetupState;
+use particle_flows::particles::symbols::structs::_downquark::StateApplicationInitialization;
 
 #[tauri::command]
 pub fn greet(name: &str) -> String {
@@ -11,7 +11,7 @@ pub fn greet(name: &str) -> String {
 #[tauri::command]
 pub async fn set_complete(
     app: AppHandle,
-    state: State<'_, Mutex<SetupState>>,
+    state: State<'_, Mutex<StateApplicationInitialization>>,
     task: String,
 ) -> Result<(), ()> {
     // Lock the state without write access

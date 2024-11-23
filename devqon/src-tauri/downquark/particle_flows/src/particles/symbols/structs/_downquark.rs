@@ -1,6 +1,6 @@
 use std::time::SystemTime;
 
-pub struct SetupState {
+pub struct StateApplicationInitialization {
     pub frontend_task: bool,
     pub backend_task: bool,
 }
