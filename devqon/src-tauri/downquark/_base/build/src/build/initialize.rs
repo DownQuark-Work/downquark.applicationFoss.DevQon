@@ -12,6 +12,12 @@ use particle_flows::particles::symbols::structs::_downquark::SetupState;
 
 // An async function that does some heavy setup task
 pub async fn init_setup(app: AppHandle) -> Result<(), ()> {
+  // Handles pre "application_launch" setup
+  // - 1. compiles configuration fukes
+  // - 1. determines pathing
+  // - stores in state
+  // - init database from here when ready?
+
   // Fake performing some heavy action for 3 seconds
   println!("Performing really heavy backend setup task...");
   sleep(Duration::from_secs(3)).await;
