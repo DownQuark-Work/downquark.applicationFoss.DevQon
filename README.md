@@ -32,6 +32,9 @@ And from this directory:
 
 <details><summary><u><i>rough</i></u>dashboard editor concept</summary>
 <img width="1048" alt="Screenshot 2023-12-22 at 02 14 51" src="https://github.com/DownQuark-Work/downquark.applicationFoss.DevQon/assets/40064794/645c2d8e-2553-45bd-a7ac-30c7bb9e7fa8">
+<hr>
+This could be leveraged for future implementations (maybe):
+- https://nino.app/ (Classic > search for _Interoperable pages and blocks_)
 </details>
 
 https://wireframe.cc/eEzsrw
